@@ -99,11 +99,15 @@ export const HomePage: React.FC<HomePageProps> = ({
             className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight"
             style={{ textWrap: 'balance' }}
           >
-            Complete Solved IT Recruitment Exam Papers & Question Bank
+            Govt IT &amp; Bank Prep Portal
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-            Study {allExamPapers.length} authentic 200-mark written examination papers ({totalQuestions} solved questions) for Assistant Programmer, Senior Officer (IT), and Officer (IT) across DBBL, BRAC, Islami Bank, City Bank, EBL, Bangladesh Bank, Combined Govt Banks, and BPSC Ministries.
+          <p className="text-base sm:text-lg text-emerald-400 font-semibold leading-snug">
+            Complete Solved Papers &amp; Question Bank for Bank IT and Non-IT Jobs
+          </p>
+
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
+            Complete solved question bank for Bangladesh Bank, Combined Banks &amp; Ministry exams. Covers Bank IT and Non-IT positions with written, MCQ, and detailed solutions (2010–2026).
           </p>
 
           {/* Hero Search Bar */}

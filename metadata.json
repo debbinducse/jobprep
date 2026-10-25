@@ -1,6 +1,6 @@
 {
   "name": "Combined Bank Officer (IT) & SO (IT) Question Bank",
-  "description": "Complete scraped question papers and step-by-step solutions for Bangladesh Bank Combined Bank Officer (IT) and Senior Officer (IT) recruitment examinations across all official Job IDs.",
+  "description": "Complete solved question bank for Bangladesh Bank, Combined Banks & Ministry exams. Covers Bank IT and Non-IT positions with written, MCQ, and detailed solutions (2010–2026).",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -294,15 +294,15 @@ export function App() {
               onClick={() => handleNavigate('home')}
               className="flex items-center gap-2.5 text-left group cursor-pointer shrink-0"
             >
-              <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-mono font-extrabold text-sm shadow-xs group-hover:bg-emerald-500 transition-colors">
-                BD
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-800 flex items-center justify-center text-white font-mono font-extrabold text-sm shadow-xs group-hover:from-emerald-500 group-hover:to-teal-700 transition-colors border border-emerald-500/30">
+                IT
               </div>
               <div>
                 <div className="text-sm sm:text-base font-extrabold tracking-tight text-white leading-none">
-                  BankPrep<span className="text-emerald-400">Archive</span>
+                  Govt IT &amp; <span className="text-emerald-400">BankPrep</span>
                 </div>
                 <div className="text-[11px] text-slate-400 font-medium mt-0.5">
-                  IT & Non-IT Question Portal
+                  Official Solved Archive
                 </div>
               </div>
             </button>
@@ -1023,7 +1023,7 @@ export function App() {
           <div className="flex items-center gap-2">
             <ShieldAlert className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>
-              <strong>BankPrepArchive (2010–2026)</strong> · Dedicated Bank IT Prep & Bank Non-IT Prep Portal
+              <strong>Govt IT &amp; BankPrep Portal (2010–2026)</strong> · Dedicated Bank IT Prep &amp; Bank Non-IT Prep Portal
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-slate-400">
