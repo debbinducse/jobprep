@@ -190,38 +190,38 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
     return (
       <div
         key={q.id}
-        className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-slate-300 transition-colors"
+        className="bg-white dark:bg-[#1E1E1E] rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] overflow-hidden shadow-xs hover:border-blue-500/40 dark:hover:border-blue-500/40 transition-colors"
       >
         {/* Question Metadata Top Bar */}
-        <div className="bg-slate-50 border-b border-slate-200 px-4 py-3 flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
-            <span className="font-mono font-bold text-slate-900 tabular-nums">
+        <div className="bg-[#FAF8F5] dark:bg-[#16181D] border-b border-[#E6E0D6] dark:border-[#2D3139] px-4 sm:px-5 py-3 flex flex-wrap items-center justify-between gap-2.5 text-xs text-[#4A4A4A] dark:text-[#A0A0A0]">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-mono font-bold text-[#1A1A1A] dark:text-[#E8E8E8] tabular-nums">
               {q.questionNo}
             </span>
-            <span aria-hidden="true">·</span>
+            <span aria-hidden="true" className="opacity-40">·</span>
             <span
               className={`font-bold ${
-                q.questionType === 'MCQ' ? 'text-indigo-700' : 'text-emerald-700'
+                q.questionType === 'MCQ' ? 'text-blue-600 dark:text-blue-400' : 'text-emerald-600 dark:text-emerald-400'
               }`}
             >
               {q.questionType === 'MCQ' ? 'Preliminary MCQ' : 'Written Exam'}
             </span>
-            <span aria-hidden="true">·</span>
-            <span className="font-medium text-slate-800">{q.subject}</span>
-            <span aria-hidden="true">·</span>
-            <span className="font-mono font-semibold text-slate-900 tabular-nums">
+            <span aria-hidden="true" className="opacity-40">·</span>
+            <span className="font-medium text-[#1A1A1A] dark:text-[#E8E8E8]">{q.subject}</span>
+            <span aria-hidden="true" className="opacity-40">·</span>
+            <span className="font-mono font-semibold text-[#1A1A1A] dark:text-[#E8E8E8] tabular-nums">
               {q.marks} {q.marks === 1 ? 'Mark' : 'Marks'}
             </span>
           </div>
 
           {/* Question / Detailed Solution Sub-Tabs */}
-          <div className="flex items-center gap-1 bg-slate-200/75 p-1 rounded-lg">
+          <div className="flex items-center gap-1 bg-[#F8F6F2] dark:bg-[#14171D] p-1 rounded-lg border border-[#E6E0D6] dark:border-[#2D3139]">
             <button
               onClick={() => setQuestionTab(q.id, 'question')}
-              className={`px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer min-h-[34px] ${
                 activeTab === 'question'
-                  ? 'bg-slate-900 text-white'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-[#1A1A1A] dark:bg-blue-600 text-white shadow-xs'
+                  : 'text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8]'
               }`}
             >
               <HelpCircle className="w-3.5 h-3.5" />
@@ -229,10 +229,10 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
             </button>
             <button
               onClick={() => setQuestionTab(q.id, 'solution')}
-              className={`px-3 py-1 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer min-h-[34px] ${
                 activeTab === 'solution'
-                  ? 'bg-emerald-700 text-white'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-emerald-600 dark:bg-emerald-600 text-white shadow-xs'
+                  : 'text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8]'
               }`}
             >
               <FileCheck2 className="w-3.5 h-3.5" />
@@ -242,26 +242,26 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
         </div>
 
         {/* Question & Solution Body */}
-        <div className="p-5 space-y-4">
-          <div className="text-sm font-medium text-slate-900 leading-relaxed whitespace-pre-line">
+        <div className="p-5 sm:p-6 space-y-4">
+          <div className="text-[16.5px] sm:text-[17px] font-medium text-[#1A1A1A] dark:text-[#E8E8E8] leading-[1.7] whitespace-pre-line font-sans">
             {q.questionText}
           </div>
 
-          {/* If MCQ, render interactive 4 options */}
+          {/* If MCQ, render interactive 4 options with >= 44px touch targets */}
           {q.questionType === 'MCQ' && q.options && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
               {q.options.map((opt, idx) => {
                 const isSelected = chosenOption === opt;
                 const isCorrect = q.correctAnswer === opt;
                 const showResult = Boolean(chosenOption) || activeTab === 'solution';
 
                 let optionStyle =
-                  'bg-slate-50 border-slate-200 text-slate-800 hover:bg-slate-100';
+                  'bg-[#FAF8F5] dark:bg-[#16181D] border-[#E6E0D6] dark:border-[#2D3139] text-[#1A1A1A] dark:text-[#E8E8E8] hover:border-blue-500/50';
                 if (showResult) {
                   if (isCorrect) {
-                    optionStyle = 'bg-emerald-50 border-emerald-500 text-emerald-950 font-semibold';
+                    optionStyle = 'bg-emerald-500/10 border-emerald-500 dark:border-emerald-500 text-emerald-900 dark:text-emerald-300 font-semibold';
                   } else if (isSelected && !isCorrect) {
-                    optionStyle = 'bg-rose-50 border-rose-400 text-rose-900';
+                    optionStyle = 'bg-rose-500/10 border-rose-500 dark:border-rose-500 text-rose-900 dark:text-rose-300';
                   }
                 }
 
@@ -275,11 +275,11 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                         [q.id]: opt
                       }))
                     }
-                    className={`p-3 rounded-lg border text-left text-xs transition-colors flex items-center justify-between gap-2 cursor-pointer ${optionStyle}`}
+                    className={`min-h-[44px] p-3 rounded-lg border text-left text-[15px] sm:text-[16px] leading-relaxed transition-colors flex items-center justify-between gap-2.5 cursor-pointer ${optionStyle}`}
                   >
                     <span>{opt}</span>
                     {showResult && isCorrect && (
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                     )}
                   </button>
                 );
@@ -289,13 +289,13 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
 
           {/* Action Footer when on Question Tab */}
           {activeTab === 'question' && (
-            <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
-              <span className="text-[11px] font-mono text-slate-500">
+            <div className="pt-3 border-t border-[#E6E0D6] dark:border-[#2D3139] flex flex-wrap items-center justify-between gap-2">
+              <span className="text-xs font-mono text-[#4A4A4A] dark:text-[#A0A0A0]">
                 Paper ID: {q.questionPaperCode}
               </span>
               <button
                 onClick={() => setQuestionTab(q.id, 'solution')}
-                className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 transition-colors cursor-pointer"
+                className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline bg-emerald-50 dark:bg-emerald-950/40 px-3.5 py-2 rounded-lg border border-emerald-200 dark:border-emerald-800 transition-colors cursor-pointer min-h-[38px] flex items-center"
               >
                 View Step-by-Step Solution →
               </button>
@@ -304,20 +304,20 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
 
           {/* Detailed Step-by-Step Solution Box */}
           {activeTab === 'solution' && (
-            <div className="mt-3 pt-4 border-t border-slate-200 space-y-2.5">
+            <div className="mt-4 pt-4 border-t border-[#E6E0D6] dark:border-[#2D3139] space-y-3">
               {q.questionType === 'MCQ' && q.correctAnswer && (
-                <div className="px-3.5 py-2 bg-emerald-900 text-white rounded-lg text-xs font-bold flex items-center justify-between">
+                <div className="px-4 py-2.5 bg-emerald-900/90 dark:bg-emerald-950 text-white rounded-lg text-xs font-bold flex items-center justify-between border border-emerald-700/60">
                   <span>Verified Correct Option: {q.correctAnswer}</span>
                   <span className="font-mono text-emerald-300">1 Mark</span>
                 </div>
               )}
 
-              <div className="text-xs font-bold text-emerald-800 flex items-center gap-1.5">
-                <FileCheck2 className="w-4 h-4 text-emerald-600" />
+              <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
+                <FileCheck2 className="w-4 h-4" />
                 <span>Step-by-Step Model Solution & Explanation:</span>
               </div>
 
-              <div className="text-xs sm:text-sm text-slate-800 leading-relaxed whitespace-pre-line bg-slate-50 p-4 rounded-xl border border-slate-200 font-sans">
+              <div className="text-[16.5px] sm:text-[17px] text-[#1A1A1A] dark:text-[#E8E8E8] leading-[1.7] whitespace-pre-line bg-[#FAF8F5] dark:bg-[#16181D] p-5 rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] font-sans">
                 {q.solution}
               </div>
             </div>
@@ -330,26 +330,26 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Hero Header */}
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 border border-slate-800">
+      <div className="bg-white dark:bg-[#1E1E1E] rounded-2xl p-6 sm:p-8 border border-[#E6E0D6] dark:border-[#2D3139] shadow-xs">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div className="space-y-2.5 max-w-3xl">
-            <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400 font-medium">
-              <span className={isItOperatorMode ? 'text-emerald-400 font-semibold' : 'text-amber-400 font-semibold'}>
+            <div className="flex flex-wrap items-center gap-2 text-xs text-[#4A4A4A] dark:text-[#A0A0A0] font-medium">
+              <span className={isItOperatorMode ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-amber-600 dark:text-amber-400 font-semibold'}>
                 {isItOperatorMode
-                  ? '1. Bank IT Prep · Computer & Data Entry Operator Archive'
-                  : '2. Bank Non-IT Prep Archive'}
+                  ? 'Bank IT Prep · Computer & Data Entry Operator Archive'
+                  : 'Bank Non-IT Prep Archive'}
               </span>
-              <span aria-hidden="true">·</span>
+              <span aria-hidden="true" className="opacity-40">·</span>
               <span>2010 – 2026 Complete Question Bank</span>
-              <span aria-hidden="true">·</span>
-              <span>Govt Banks · Govt Ministries · Private Banks</span>
+              <span aria-hidden="true" className="opacity-40">·</span>
+              <span>Govt Banks · Ministries · Private Banks</span>
             </div>
-            <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight text-white">
+            <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight text-[#1A1A1A] dark:text-white">
               {isItOperatorMode
                 ? 'Computer Operator & Data Entry / Control Operator Question Bank (2010–2026)'
                 : 'Bank Non-IT Question Bank (2010–2026)'}
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-[#4A4A4A] dark:text-[#A0A0A0] leading-relaxed">
               {isItOperatorMode ? (
                 <>
                   Complete Preliminary <strong>MCQ ({totalArchiveMcq})</strong> and <strong>Written ({totalArchiveWritten})</strong> questions with detailed step-by-step solutions for <strong>Computer Operator (Full 100-MCQ + Written Sets)</strong> and <strong>Data Entry / Control Operator (Full 100-MCQ + Written Sets)</strong> across Bangladesh Bank, Combined Govt Banks, BPSC Ministries, and Private Banks (2010–2026).
@@ -363,15 +363,15 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            <div className="bg-slate-950/90 px-4 py-3 rounded-xl border border-slate-800 text-right">
-              <span className="text-xs text-slate-400 font-medium block">Matching Papers</span>
-              <span className="text-2xl font-extrabold text-amber-400 font-mono tabular-nums">
+            <div className="bg-[#FAF8F5] dark:bg-[#14171D] px-4 py-3 rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] text-right">
+              <span className="text-xs text-[#4A4A4A] dark:text-[#A0A0A0] font-medium block">Matching Papers</span>
+              <span className="text-2xl font-extrabold text-blue-600 dark:text-blue-400 font-mono tabular-nums">
                 {filteredPapersWithQuestions.length}
               </span>
             </div>
-            <div className="bg-slate-950/90 px-4 py-3 rounded-xl border border-slate-800 text-right">
-              <span className="text-xs text-slate-400 font-medium block">Matching Questions</span>
-              <span className="text-2xl font-extrabold text-emerald-400 font-mono tabular-nums">
+            <div className="bg-[#FAF8F5] dark:bg-[#14171D] px-4 py-3 rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] text-right">
+              <span className="text-xs text-[#4A4A4A] dark:text-[#A0A0A0] font-medium block">Matching Questions</span>
+              <span className="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono tabular-nums">
                 {totalMatchingQuestions} / {totalArchiveQuestions}
               </span>
             </div>
@@ -380,32 +380,32 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
       </div>
 
       {/* Comprehensive Filter Deck */}
-      <div className="bg-white rounded-xl border border-slate-200 p-5 space-y-5 shadow-xs">
+      <div className="bg-white dark:bg-[#1E1E1E] rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] p-5 space-y-5 shadow-xs">
         {/* Top Row: Search Bar + Quick Expand/Collapse + Reset */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
-          <div className="flex items-center gap-2 text-xs font-bold text-slate-800">
-            <Filter className="w-4 h-4 text-emerald-600" />
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E0D6] dark:border-[#2D3139]">
+          <div className="flex items-center gap-2 text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
+            <Filter className="w-4 h-4 text-blue-600 dark:text-blue-400" />
             <span>
               {isItOperatorMode
-                ? 'Filter Computer Operator & Data Entry / Control Operator Question Bank (2010–2026)'
+                ? 'Filter Computer Operator & Data Entry Operator Questions (2010–2026)'
                 : 'Filter Bank Non-IT Question Bank (2010–2026)'}
             </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
             <div className="relative flex-1 sm:w-80">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+              <Search className="w-4 h-4 text-[#767676] dark:text-[#6B7280] absolute left-3 top-3" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 placeholder="Search math, translation, Bijoy, VLOOKUP, Job ID..."
-                className="w-full pl-9 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-900"
+                className="w-full pl-9 pr-8 py-2.5 bg-[#FAF8F5] dark:bg-[#16181D] border border-[#E6E0D6] dark:border-[#2D3139] rounded-lg text-xs text-[#1A1A1A] dark:text-[#E8E8E8] placeholder-[#767676] dark:placeholder-[#6B7280] focus:outline-none focus:border-blue-500 min-h-[40px]"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-2 text-slate-400 hover:text-slate-700 cursor-pointer"
+                  className="absolute right-2.5 top-2.5 text-[#767676] hover:text-[#1A1A1A] dark:hover:text-white cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -414,19 +414,19 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
 
             <button
               onClick={expandAllSolutions}
-              className="px-3 py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap"
+              className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap min-h-[40px]"
             >
               Show All Solutions
             </button>
             <button
               onClick={collapseAllSolutions}
-              className="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap"
+              className="px-3.5 py-2 bg-[#FAF8F5] dark:bg-[#16181D] hover:bg-[#EAE6DF] dark:hover:bg-[#252830] text-[#1A1A1A] dark:text-[#E8E8E8] border border-[#E6E0D6] dark:border-[#2D3139] rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap min-h-[40px]"
             >
               Hide Solutions
             </button>
             <button
               onClick={resetAllFilters}
-              className="px-3 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap"
+              className="px-3.5 py-2 bg-[#1A1A1A] hover:bg-black dark:bg-[#2D3139] dark:hover:bg-[#383D47] text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap min-h-[40px]"
             >
               Reset Filters
             </button>
@@ -435,17 +435,17 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
 
         {/* Filter 1: Job Category */}
         <div className="space-y-2">
-          <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-            <Layers className="w-3.5 h-3.5 text-slate-500" />
+          <label className="text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8] flex items-center gap-1.5">
+            <Layers className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
             <span>1. Job Category:</span>
           </label>
           <div className="flex flex-wrap items-center gap-1.5">
             <button
               onClick={() => setSelectedCategory('All')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 min-h-[36px] ${
                 selectedCategory === 'All'
-                  ? 'bg-slate-900 text-white'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'bg-[#FAF8F5] dark:bg-[#16181D] text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8] border border-[#E6E0D6] dark:border-[#2D3139]'
               }`}
             >
               <span>
@@ -459,10 +459,10 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 min-h-[36px] ${
                     selectedCategory === cat
-                      ? 'bg-slate-900 text-white'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      ? 'bg-blue-600 text-white shadow-xs'
+                      : 'bg-[#FAF8F5] dark:bg-[#16181D] text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8] border border-[#E6E0D6] dark:border-[#2D3139]'
                   }`}
                 >
                   <span>{cat}</span>
@@ -474,29 +474,29 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
         </div>
 
         {/* Filter 2, 3, 4: Organization Type, Question Type (Written / MCQ), and Subject */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3 border-t border-slate-100">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3 border-t border-[#E6E0D6] dark:border-[#2D3139]">
           {/* Organization Type */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-              <Building2 className="w-3.5 h-3.5 text-slate-500" />
+            <label className="text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8] flex items-center gap-1.5">
+              <Building2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
               <span>2. Organization Type:</span>
             </label>
             <div className="flex flex-wrap gap-1.5">
               {(
                 [
                   { id: 'All', label: 'All Sectors' },
-                  { id: 'Government Bank', label: 'Government Bank' },
-                  { id: 'Government Ministry / Department', label: 'Govt Ministry / Dept' },
+                  { id: 'Government Bank', label: 'Govt Bank' },
+                  { id: 'Government Ministry / Department', label: 'Govt Ministry' },
                   { id: 'Private Bank', label: 'Private Bank' }
                 ] as const
               ).map(org => (
                 <button
                   key={org.id}
                   onClick={() => setSelectedOrgType(org.id)}
-                  className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                  className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[36px] ${
                     selectedOrgType === org.id
-                      ? 'bg-indigo-700 text-white'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      ? 'bg-blue-600 text-white shadow-xs'
+                      : 'bg-[#FAF8F5] dark:bg-[#16181D] text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8] border border-[#E6E0D6] dark:border-[#2D3139]'
                   }`}
                 >
                   {org.label}
@@ -507,23 +507,23 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
 
           {/* Question Type (Written / MCQ) */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-              <ListChecks className="w-3.5 h-3.5 text-slate-500" />
+            <label className="text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8] flex items-center gap-1.5">
+              <ListChecks className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
               <span>3. Question Type (MCQ / Written):</span>
             </label>
             <div className="flex flex-wrap gap-1.5">
               {[
-                { id: 'All', label: 'All (Separate MCQ + Written)' },
+                { id: 'All', label: 'All (MCQ + Written)' },
                 { id: 'MCQ', label: 'MCQ Only' },
                 { id: 'Written', label: 'Written Only' }
               ].map(qt => (
                 <button
                   key={qt.id}
                   onClick={() => setSelectedQuestionType(qt.id as NonItQuestionType | 'All')}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[36px] ${
                     selectedQuestionType === qt.id
-                      ? 'bg-emerald-700 text-white'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      ? 'bg-blue-600 text-white shadow-xs'
+                      : 'bg-[#FAF8F5] dark:bg-[#16181D] text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8] border border-[#E6E0D6] dark:border-[#2D3139]'
                   }`}
                 >
                   {qt.label}
@@ -534,14 +534,14 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
 
           {/* Subject / Topic */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-              <BookOpen className="w-3.5 h-3.5 text-slate-500" />
+            <label className="text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8] flex items-center gap-1.5">
+              <BookOpen className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
               <span>4. Subject / Topic:</span>
             </label>
             <select
               value={selectedSubject}
               onChange={e => setSelectedSubject(e.target.value as NonItSubject | 'All')}
-              className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-800 focus:outline-none focus:border-slate-900"
+              className="w-full px-3 py-2 bg-[#FAF8F5] dark:bg-[#16181D] border border-[#E6E0D6] dark:border-[#2D3139] rounded-lg text-xs font-semibold text-[#1A1A1A] dark:text-[#E8E8E8] focus:outline-none focus:border-blue-500 min-h-[40px]"
             >
               <option value="All">All Subjects & Topics (7 Domains)</option>
               {nonItSubjects.map(subj => (
@@ -554,18 +554,18 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
         </div>
 
         {/* Filter 5: Exam Year (2010 – 2026) */}
-        <div className="space-y-2 pt-3 border-t border-slate-100">
-          <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-slate-500" />
+        <div className="space-y-2 pt-3 border-t border-[#E6E0D6] dark:border-[#2D3139]">
+          <label className="text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8] flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
             <span>5. Exam Year (2010 – 2026):</span>
           </label>
           <div className="flex items-center gap-1.5 flex-wrap">
             <button
               onClick={() => setSelectedYear('All')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-mono font-semibold transition-colors cursor-pointer min-h-[34px] ${
                 selectedYear === 'All'
-                  ? 'bg-slate-900 text-white'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'bg-[#FAF8F5] dark:bg-[#16181D] text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8] border border-[#E6E0D6] dark:border-[#2D3139]'
               }`}
             >
               All Years (2010–2026)
@@ -574,10 +574,10 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
               <button
                 key={yr}
                 onClick={() => setSelectedYear(yr)}
-                className={`px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-colors cursor-pointer tabular-nums ${
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold transition-colors cursor-pointer tabular-nums min-h-[34px] ${
                   selectedYear === yr
-                    ? 'bg-amber-600 text-white'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    ? 'bg-blue-600 text-white shadow-xs'
+                    : 'bg-[#FAF8F5] dark:bg-[#16181D] text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8] border border-[#E6E0D6] dark:border-[#2D3139]'
                 }`}
               >
                 {yr}
@@ -587,15 +587,15 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
         </div>
       </div>
 
-      {/* Grouped Question Papers Stream (Keeping MCQ and Written Separate Under the Same Question Paper ID) */}
+      {/* Grouped Question Papers Stream */}
       {filteredPapersWithQuestions.length === 0 ? (
-        <div className="bg-white rounded-xl border border-slate-200 p-12 text-center space-y-3">
-          <p className="text-sm font-semibold text-slate-700">
+        <div className="bg-white dark:bg-[#1E1E1E] rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] p-12 text-center space-y-3">
+          <p className="text-base font-semibold text-[#1A1A1A] dark:text-[#E8E8E8]">
             No Bank Non-IT questions found matching your selected filter combination.
           </p>
           <button
             onClick={resetAllFilters}
-            className="px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800 transition-colors cursor-pointer"
+            className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[44px]"
           >
             Reset All Filters
           </button>
@@ -644,29 +644,29 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
             return (
               <section
                 key={paper.paperId}
-                className="bg-slate-100/80 rounded-2xl border border-slate-300 overflow-hidden shadow-xs"
+                className="bg-[#FAF8F5] dark:bg-[#16181D] rounded-2xl border border-[#E6E0D6] dark:border-[#2D3139] overflow-hidden shadow-xs"
               >
                 {/* Shared Question Paper Header Banner */}
-                <div className="bg-slate-900 text-white p-5 sm:p-6 space-y-3">
+                <div className="bg-white dark:bg-[#1E1E1E] border-b border-[#E6E0D6] dark:border-[#2D3139] p-5 sm:p-6 space-y-3">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div className="space-y-1.5">
-                      <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-300">
-                        <span className="font-mono font-bold text-amber-400">
+                      <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-[#4A4A4A] dark:text-[#A0A0A0]">
+                        <span className="font-mono font-bold text-blue-600 dark:text-blue-400">
                           Question Paper ID: {paper.questionPaperCode}
                         </span>
-                        <span aria-hidden="true">·</span>
-                        <span className="text-emerald-400 font-semibold">{paper.category}</span>
-                        <span aria-hidden="true">·</span>
+                        <span aria-hidden="true" className="opacity-40">·</span>
+                        <span className="text-[#1A1A1A] dark:text-white font-semibold">{paper.category}</span>
+                        <span aria-hidden="true" className="opacity-40">·</span>
                         <span>{paper.orgType}</span>
-                        <span aria-hidden="true">·</span>
+                        <span aria-hidden="true" className="opacity-40">·</span>
                         <span className="font-mono tabular-nums">Year: {paper.year}</span>
                       </div>
 
-                      <h2 className="text-base sm:text-xl font-bold text-white">
+                      <h2 className="text-base sm:text-xl font-bold text-[#1A1A1A] dark:text-white">
                         {paper.title}
                       </h2>
 
-                      <p className="text-xs text-slate-300">
+                      <p className="text-xs text-[#4A4A4A] dark:text-[#A0A0A0]">
                         <strong>Institutions:</strong> {paper.organizationName} ·{' '}
                         <strong>Exam Taker:</strong> {paper.examTaker} ·{' '}
                         <strong>Exam Date:</strong> {paper.examDate}
@@ -674,15 +674,15 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                     </div>
 
                     {/* Per-Paper Section Switcher (Both / Preliminary MCQ / Written) */}
-                    <div className="flex items-center gap-1 bg-slate-800 p-1 rounded-xl border border-slate-700 shrink-0">
+                    <div className="flex items-center gap-1 bg-[#F8F6F2] dark:bg-[#14171D] p-1 rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] shrink-0">
                       <button
                         onClick={() =>
                           setPaperSectionTab(prev => ({ ...prev, [paper.paperId]: 'both' }))
                         }
-                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[34px] ${
                           currentPaperMode === 'both'
-                            ? 'bg-amber-500 text-slate-950 font-bold'
-                            : 'text-slate-300 hover:text-white'
+                            ? 'bg-blue-600 text-white font-bold shadow-xs'
+                            : 'text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8]'
                         }`}
                       >
                         MCQ + Written ({mcqList.length + writtenList.length})
@@ -692,10 +692,10 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                           onClick={() =>
                             setPaperSectionTab(prev => ({ ...prev, [paper.paperId]: 'mcq' }))
                           }
-                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[34px] ${
                             currentPaperMode === 'mcq'
-                              ? 'bg-indigo-600 text-white'
-                              : 'text-slate-300 hover:text-white'
+                              ? 'bg-blue-600 text-white font-bold shadow-xs'
+                              : 'text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8]'
                           }`}
                         >
                           Part A: MCQ ({mcqList.length})
@@ -706,10 +706,10 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                           onClick={() =>
                             setPaperSectionTab(prev => ({ ...prev, [paper.paperId]: 'written' }))
                           }
-                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[34px] ${
                             currentPaperMode === 'written'
-                              ? 'bg-emerald-600 text-white'
-                              : 'text-slate-300 hover:text-white'
+                              ? 'bg-emerald-600 text-white font-bold shadow-xs'
+                              : 'text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8]'
                           }`}
                         >
                           Part B: Written ({writtenList.length})
@@ -720,26 +720,26 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                 </div>
 
                 {/* Paper Content Body: Separate MCQ Section & Written Section under the same Paper ID */}
-                <div className="p-5 sm:p-6 space-y-6">
+                <div className="p-4 sm:p-6 space-y-6">
                   {/* PART A: PRELIMINARY MCQ SECTION */}
                   {showMcqSection && (
-                    <div className="space-y-3">
-                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-300 pb-2.5">
+                    <div className="space-y-4">
+                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#E6E0D6] dark:border-[#2D3139] pb-3">
                         <div className="flex items-center gap-2">
-                          <ListChecks className="w-4 h-4 text-indigo-700" />
-                          <h3 className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-indigo-950">
+                          <ListChecks className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                          <h3 className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#1A1A1A] dark:text-[#E8E8E8]">
                             Part A — Preliminary MCQ Section ({paper.questionPaperCode})
                           </h3>
                         </div>
-                        <span className="text-xs font-mono font-semibold text-indigo-700">
+                        <span className="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400">
                           {mcqList.length} Preliminary MCQ Questions · Full Paper Marks: {paper.mcqMarks}
                         </span>
                       </div>
 
                       {/* 100-MCQ Subject & Question Range Navigator */}
                       {isFull100McqSet && (
-                        <div className="bg-white rounded-xl border border-indigo-200 p-3 flex flex-wrap items-center justify-between gap-2">
-                          <span className="text-xs font-bold text-indigo-950">
+                        <div className="bg-white dark:bg-[#1E1E1E] rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] p-3 flex flex-wrap items-center justify-between gap-2">
+                          <span className="text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
                             100-MCQ Set Navigator (Jump by Subject / Question No.):
                           </span>
                           <div className="flex flex-wrap items-center gap-1.5">
@@ -770,10 +770,10 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                                     [paper.paperId]: rng.id
                                   }))
                                 }
-                                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[34px] ${
                                   activeRange === rng.id
-                                    ? 'bg-indigo-700 text-white'
-                                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                    ? 'bg-blue-600 text-white shadow-xs'
+                                    : 'bg-[#FAF8F5] dark:bg-[#16181D] text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8] border border-[#E6E0D6] dark:border-[#2D3139]'
                                 }`}
                               >
                                 {rng.label}
@@ -783,13 +783,13 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                         </div>
                       )}
 
-                      <div className="space-y-3">
+                      <div className="space-y-4">
                         {displayedMcqList.map(q => renderQuestionCard(q))}
                       </div>
 
                       {isFull100McqSet && activeRange !== 'all' && (
-                        <div className="pt-2 flex flex-wrap items-center justify-between gap-2 bg-indigo-50/80 border border-indigo-200 rounded-xl px-4 py-3">
-                          <span className="text-xs font-semibold text-indigo-950">
+                        <div className="pt-2 flex flex-wrap items-center justify-between gap-2 bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl px-4 py-3">
+                          <span className="text-xs font-semibold text-[#1A1A1A] dark:text-[#E8E8E8]">
                             Showing {displayedMcqList.length} of {mcqList.length} Preliminary MCQs in this Question Set ({paper.questionPaperCode}).
                           </span>
                           <button
@@ -800,7 +800,7 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                                 [paper.paperId]: 'all'
                               }))
                             }
-                            className="px-3.5 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold transition-colors cursor-pointer"
+                            className="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-colors cursor-pointer min-h-[40px]"
                           >
                             Expand All {mcqList.length} MCQs (MCQ-001 to MCQ-100) →
                           </button>
@@ -827,23 +827,23 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                       : writtenList.slice(10, 12);
 
                     return (
-                      <div className="space-y-3">
-                        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-300 pb-2.5">
+                      <div className="space-y-4">
+                        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#E6E0D6] dark:border-[#2D3139] pb-3">
                           <div className="flex items-center gap-2">
-                            <PenTool className="w-4 h-4 text-emerald-700" />
-                            <h3 className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-emerald-950">
+                            <PenTool className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                            <h3 className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#1A1A1A] dark:text-[#E8E8E8]">
                               Part B — Written Examination Section ({paper.questionPaperCode})
                             </h3>
                           </div>
-                          <span className="text-xs font-mono font-semibold text-emerald-700">
+                          <span className="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400">
                             {writtenList.length} Written {writtenList.length === 1 ? 'Question' : 'Questions'} · Full Written Paper Marks: {paper.writtenMarks}
                           </span>
                         </div>
 
                         {/* 12-Question Written Set Navigator */}
                         {isFull12WrittenSet && (
-                          <div className="bg-white rounded-xl border border-emerald-200 p-3 flex flex-wrap items-center justify-between gap-2">
-                            <span className="text-xs font-bold text-emerald-950">
+                          <div className="bg-white dark:bg-[#1E1E1E] rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] p-3 flex flex-wrap items-center justify-between gap-2">
+                            <span className="text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
                               Written Paper Navigator ({writtenList.length} Questions • {paper.writtenMarks} Marks):
                             </span>
                             <div className="flex flex-wrap items-center gap-1.5">
@@ -865,10 +865,10 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                                       [paper.paperId]: wRng.id
                                     }))
                                   }
-                                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                                  className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[34px] ${
                                     activeWrtRange === wRng.id
-                                      ? 'bg-emerald-700 text-white'
-                                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                      ? 'bg-emerald-600 text-white shadow-xs'
+                                      : 'bg-[#FAF8F5] dark:bg-[#16181D] text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8] border border-[#E6E0D6] dark:border-[#2D3139]'
                                   }`}
                                 >
                                   {wRng.label}
@@ -878,7 +878,7 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                           </div>
                         )}
 
-                        <div className="space-y-3">
+                        <div className="space-y-4">
                           {displayedWrittenList.map(q => renderQuestionCard(q))}
                         </div>
                       </div>

@@ -24,7 +24,10 @@ import {
   Lock,
   Terminal,
   Briefcase,
-  Layers
+  Layers,
+  Sun,
+  Moon,
+  FileText
 } from 'lucide-react';
 
 type ActivePage =
@@ -37,10 +40,36 @@ type ActivePage =
 export function App() {
   const [activePage, setActivePage] = useState<ActivePage>('home');
 
+  // Reading Theme: 'dark' (#0F1115) or 'light' (#F8F6F2), defaulting to dark as requested
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('jobprep_theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+      return 'dark';
+    }
+    return 'dark';
+  });
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    try {
+      localStorage.setItem('jobprep_theme', theme);
+    } catch (e) {}
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   // Exam Papers page state (Bank IT Prep)
   const [selectedPaperId, setSelectedPaperId] = useState<string>(allExamPapers[0].id);
   const [paperSectorFilter, setPaperSectorFilter] = useState<string>('All');
   const [paperSearchQuery, setPaperSearchQuery] = useState<string>('');
+  const [mobilePaperDrawerOpen, setMobilePaperDrawerOpen] = useState<boolean>(false);
 
   // Question Bank initial filters (Bank IT Prep)
   const [qbInitialTopic, setQbInitialTopic] = useState<TopicCategory | 'All'>('All');
@@ -277,7 +306,7 @@ export function App() {
 
   return (
     <div
-      className="min-h-screen bg-[#FAF8F5] text-slate-900 flex flex-col select-none"
+      className="min-h-screen bg-[#F8F6F2] dark:bg-[#14171D] text-[#1A1A1A] dark:text-[#E8E8E8] flex flex-col select-none transition-colors duration-150"
       onContextMenu={e => e.preventDefault()}
       onCopy={e => e.preventDefault()}
       onCut={e => e.preventDefault()}
@@ -484,10 +513,10 @@ export function App() {
             </nav>
           </div>
 
-          {/* Right: Search Bar + Mobile Hamburger Button */}
-          <div className="flex items-center gap-2.5">
+          {/* Right: Search Bar + Dark/Light Mode Reading Toggle + Mobile Hamburger */}
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Global Search Box */}
-            <div className="relative hidden sm:block w-60 md:w-72" ref={searchDropdownRef}>
+            <div className="relative hidden sm:block w-52 md:w-64" ref={searchDropdownRef}>
               <form onSubmit={handleNavSearchSubmit}>
                 <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
                 <input
@@ -499,7 +528,7 @@ export function App() {
                   }}
                   onFocus={() => setShowSearchDropdown(true)}
                   placeholder="Search IT or Non-IT questions..."
-                  className="w-full pl-8 pr-7 py-1.5 bg-slate-900 border border-slate-700/80 rounded-lg text-xs text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 transition-colors"
+                  className="w-full pl-8 pr-7 py-1.5 bg-[#181B22] border border-[#2D3139] rounded-lg text-xs text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition-colors"
                 />
                 {navSearch && (
                   <button
@@ -517,7 +546,7 @@ export function App() {
 
               {/* Live Search Dropdown (Separated into Bank IT and Bank Non-IT) */}
               {showSearchDropdown && navSearch.trim().length > 0 && (
-                <div className="absolute right-0 mt-2 w-96 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl p-2 z-50 text-xs space-y-2 max-h-[440px] overflow-y-auto">
+                <div className="absolute right-0 mt-2 w-96 bg-[#16181F] border border-[#2D3139] rounded-xl shadow-2xl p-2 z-50 text-xs space-y-2 max-h-[440px] overflow-y-auto">
                   {navSearchResults.itPapers.length === 0 &&
                   navSearchResults.itQuestions.length === 0 &&
                   navSearchResults.nonItQuestions.length === 0 ? (
@@ -541,7 +570,7 @@ export function App() {
                                 });
                                 setNavSearch('');
                               }}
-                              className="w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 transition-colors flex flex-col gap-0.5 cursor-pointer"
+                              className="w-full text-left px-2.5 py-2 rounded-lg hover:bg-white/5 transition-colors flex flex-col gap-0.5 cursor-pointer"
                             >
                               <span className="font-semibold text-white line-clamp-1">
                                 {item.questionNo} ({item.questionType}): {item.text}
@@ -555,7 +584,7 @@ export function App() {
                       )}
 
                       {navSearchResults.itPapers.length > 0 && (
-                        <div className="pt-1 border-t border-slate-800">
+                        <div className="pt-1 border-t border-[#262A32]">
                           <div className="px-2.5 py-1 text-[11px] font-bold text-emerald-400 uppercase tracking-wider">
                             Bank IT Exam Papers
                           </div>
@@ -566,7 +595,7 @@ export function App() {
                                 handleNavigate('papers', { paperId: p.id });
                                 setNavSearch('');
                               }}
-                              className="w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 transition-colors flex flex-col gap-0.5 cursor-pointer"
+                              className="w-full text-left px-2.5 py-2 rounded-lg hover:bg-white/5 transition-colors flex flex-col gap-0.5 cursor-pointer"
                             >
                               <span className="font-semibold text-white truncate">{p.title}</span>
                               <span className="text-[11px] text-slate-400 font-mono">
@@ -578,7 +607,7 @@ export function App() {
                       )}
 
                       {navSearchResults.itQuestions.length > 0 && (
-                        <div className="pt-1 border-t border-slate-800">
+                        <div className="pt-1 border-t border-[#262A32]">
                           <div className="px-2.5 py-1 text-[11px] font-bold text-sky-400 uppercase tracking-wider">
                             Bank IT Questions
                           </div>
@@ -589,7 +618,7 @@ export function App() {
                                 handleNavigate('questions', { search: navSearch.trim() });
                                 setNavSearch('');
                               }}
-                              className="w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 transition-colors flex flex-col gap-0.5 cursor-pointer"
+                              className="w-full text-left px-2.5 py-2 rounded-lg hover:bg-white/5 transition-colors flex flex-col gap-0.5 cursor-pointer"
                             >
                               <span className="font-semibold text-white line-clamp-1">
                                 Q{item.qNo}: {item.text}
@@ -607,10 +636,31 @@ export function App() {
               )}
             </div>
 
+            {/* Reading Mode Dark/Light Toggle Icon on Top-Right Corner */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to soft light mode' : 'Switch to reading dark mode'}
+              title={theme === 'dark' ? 'Current: Dark Mode (#14171D). Click for Soft Light Mode (#F8F6F2)' : 'Current: Light Mode (#F8F6F2). Click for Dark Mode (#14171D)'}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-semibold transition-all cursor-pointer bg-[#181B22] border-[#2D3139] hover:border-slate-500 text-slate-200 hover:text-white"
+            >
+              {theme === 'dark' ? (
+                <>
+                  <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
+                  <span className="text-[11px] font-medium text-amber-200 hidden sm:inline">Light</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-4 h-4 text-sky-400" />
+                  <span className="text-[11px] font-medium text-sky-200 hidden sm:inline">Dark</span>
+                </>
+              )}
+            </button>
+
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(prev => !prev)}
-              className="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+              className="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -829,32 +879,32 @@ export function App() {
         {/* ----------------------------------------------------------------- */}
         {activePage === 'papers' && (
           <div className="space-y-6">
-            <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 border border-slate-800 space-y-5">
+            <div className="bg-white dark:bg-[#1E1E1E] text-[#1A1A1A] dark:text-[#E8E8E8] rounded-2xl p-5 sm:p-7 border border-[#E6E0D6] dark:border-[#2D3139] space-y-5 shadow-xs">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-xs text-slate-400 font-medium">
-                    <span className="text-emerald-400 font-semibold">1. Bank IT Prep · Exam Papers</span>
+                  <div className="flex items-center gap-2 text-xs text-[#4A4A4A] dark:text-[#A0A0A0] font-medium">
+                    <span className="text-blue-600 dark:text-blue-400 font-semibold">1. Bank IT Prep · Exam Papers</span>
                     <span aria-hidden="true">·</span>
-                    <span>3 Viewing Modes (Question Paper · Model Answers · Official Hall Print View)</span>
+                    <span>3 Viewing Modes (Question Paper · Model Answers · Official Hall Print)</span>
                   </div>
-                  <h1 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                    Complete 200-Mark Bank & Ministry IT Examination Papers ({allExamPapers.length})
+                  <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#1A1A1A] dark:text-[#E8E8E8]">
+                    Complete 200-Mark Bank &amp; Ministry IT Examination Papers ({allExamPapers.length})
                   </h1>
                 </div>
 
                 <div className="relative w-full sm:w-72">
-                  <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                  <Search className="w-4 h-4 text-[#4A4A4A] dark:text-[#A0A0A0] absolute left-3 top-2.5" />
                   <input
                     type="text"
                     value={paperSearchQuery}
                     onChange={e => setPaperSearchQuery(e.target.value)}
                     placeholder="Filter papers by bank, Job ID, year..."
-                    className="w-full pl-9 pr-8 py-2 bg-slate-950 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500"
+                    className="w-full pl-9 pr-8 py-2 bg-[#F8F6F2] dark:bg-[#16181D] border border-[#E6E0D6] dark:border-[#2D3139] rounded-xl text-xs text-[#1A1A1A] dark:text-[#E8E8E8] placeholder-[#4A4A4A] dark:placeholder-[#A0A0A0] focus:outline-none focus:border-blue-500 transition-colors"
                   />
                   {paperSearchQuery && (
                     <button
                       onClick={() => setPaperSearchQuery('')}
-                      className="absolute right-2.5 top-2 text-slate-400 hover:text-white cursor-pointer"
+                      className="absolute right-2.5 top-2 text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-white cursor-pointer"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -862,7 +912,8 @@ export function App() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-1.5 flex-wrap pt-2 border-t border-slate-800">
+              {/* Filter Chips with Touch-Friendly Horizontal Scroll */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 pt-2 border-t border-[#E6E0D6] dark:border-[#2D3139]">
                 {[
                   { id: 'All', label: `All Papers (${allExamPapers.length})` },
                   { id: 'All Private Bank', label: 'All Private Banks (12)' },
@@ -899,8 +950,8 @@ export function App() {
                     }}
                     className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                       paperSectorFilter === sec.id
-                        ? 'bg-emerald-600 text-white'
-                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
+                        ? 'bg-blue-600 text-white shadow-xs'
+                        : 'bg-[#F2EFE9] dark:bg-[#16181D] text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-white border border-[#E6E0D6] dark:border-[#2D3139]'
                     }`}
                   >
                     {sec.label}
@@ -909,21 +960,63 @@ export function App() {
               </div>
             </div>
 
+            {/* Mobile Paper Switcher (Solves Endless Scrolling on Mobile) */}
+            <div className="block lg:hidden">
+              <button
+                onClick={() => setMobilePaperDrawerOpen(prev => !prev)}
+                className="w-full p-3.5 bg-white dark:bg-[#1E1E1E] border border-[#E6E0D6] dark:border-[#2D3139] rounded-xl flex items-center justify-between font-bold text-xs text-[#1A1A1A] dark:text-[#E8E8E8] shadow-xs cursor-pointer"
+              >
+                <div className="flex items-center gap-2 truncate text-left">
+                  <FileText className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
+                  <span className="truncate">Selected Paper: {currentPaper.title}</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[11px] font-mono text-blue-600 dark:text-blue-400 shrink-0">
+                  <span>Browse ({filteredPapers.length})</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobilePaperDrawerOpen ? 'rotate-180' : ''}`} />
+                </div>
+              </button>
+
+              {mobilePaperDrawerOpen && (
+                <div className="mt-2 bg-white dark:bg-[#1E1E1E] border border-[#E6E0D6] dark:border-[#2D3139] rounded-xl overflow-hidden max-h-80 overflow-y-auto divide-y divide-[#E6E0D6] dark:divide-[#2D3139] shadow-md">
+                  {filteredPapers.map(paper => (
+                    <button
+                      key={paper.id}
+                      onClick={() => {
+                        setSelectedPaperId(paper.id);
+                        setMobilePaperDrawerOpen(false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className={`w-full text-left p-3 text-xs flex flex-col gap-0.5 transition-colors cursor-pointer ${
+                        paper.id === currentPaper.id
+                          ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 font-bold border-l-3 border-blue-600'
+                          : 'text-[#1A1A1A] dark:text-[#E8E8E8] hover:bg-[#F8F6F2] dark:hover:bg-white/5'
+                      }`}
+                    >
+                      <span className="font-semibold line-clamp-1">{paper.title}</span>
+                      <span className="text-[11px] text-[#4A4A4A] dark:text-[#A0A0A0] font-mono">
+                        {paper.category} · Job ID: {paper.jobId} · {paper.examDate}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-              {/* Left Sidebar: Exam Paper Directory */}
-              <aside className="lg:col-span-4 xl:col-span-3 bg-white rounded-xl border border-slate-200 overflow-hidden lg:sticky lg:top-28">
-                <div className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between">
-                  <span className="text-xs font-bold">
+              {/* Desktop Left Sidebar: Exam Paper Directory */}
+              <aside className="hidden lg:block lg:col-span-4 xl:col-span-3 bg-white dark:bg-[#1E1E1E] rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] overflow-hidden lg:sticky lg:top-28 shadow-xs">
+                <div className="bg-[#F3EFE9] dark:bg-[#16181D] border-b border-[#E6E0D6] dark:border-[#2D3139] px-4 py-3 flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
                     Select Exam Paper ({filteredPapers.length})
                   </span>
-                  <span className="text-[11px] font-mono text-emerald-400 tabular-nums">
+                  <span className="text-[11px] font-mono text-blue-600 dark:text-blue-400 font-bold tabular-nums">
                     200 Marks
                   </span>
                 </div>
 
-                <div className="max-h-[420px] lg:max-h-[calc(100vh-14rem)] overflow-y-auto divide-y divide-slate-100">
+                <div className="max-h-[calc(100vh-14rem)] overflow-y-auto divide-y divide-[#E6E0D6] dark:divide-[#2D3139]">
                   {filteredPapers.length === 0 ? (
-                    <div className="p-6 text-center text-xs text-slate-500">
+                    <div className="p-6 text-center text-xs text-[#4A4A4A] dark:text-[#A0A0A0]">
                       No papers match your filter.
                     </div>
                   ) : (
@@ -939,19 +1032,19 @@ export function App() {
                           }}
                           className={`w-full text-left p-3.5 transition-colors flex flex-col gap-1 cursor-pointer ${
                             isSelected
-                              ? 'bg-slate-900 text-white'
-                              : 'hover:bg-slate-50 text-slate-800'
+                              ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border-l-3 border-blue-600'
+                              : 'hover:bg-[#F8F6F2] dark:hover:bg-white/5 text-[#1A1A1A] dark:text-[#E8E8E8]'
                           }`}
                         >
                           <div className="flex items-center justify-between gap-2 text-[11px] font-mono tabular-nums">
                             <span
                               className={
-                                isSelected ? 'text-emerald-400 font-bold' : 'text-slate-500 font-semibold'
+                                isSelected ? 'text-blue-700 dark:text-blue-300 font-bold' : 'text-[#4A4A4A] dark:text-[#A0A0A0] font-semibold'
                               }
                             >
                               {paper.jobId} · {paper.circularYear}
                             </span>
-                            <span className={isSelected ? 'text-slate-300' : 'text-slate-400'}>
+                            <span className={isSelected ? 'text-blue-600 dark:text-blue-400' : 'text-[#4A4A4A] dark:text-[#A0A0A0]'}>
                               {qCount} Qs
                             </span>
                           </div>
@@ -960,7 +1053,7 @@ export function App() {
                           </div>
                           <div
                             className={`text-[11px] truncate ${
-                              isSelected ? 'text-slate-300' : 'text-slate-500'
+                              isSelected ? 'text-blue-600 dark:text-blue-400' : 'text-[#4A4A4A] dark:text-[#A0A0A0]'
                             }`}
                           >
                             {paper.category}
@@ -972,7 +1065,7 @@ export function App() {
                 </div>
               </aside>
 
-              {/* Right Main Area: Selected Paper with 5 Viewing Modes */}
+              {/* Right Main Area: Selected Paper with 3 Viewing Modes */}
               <div className="lg:col-span-8 xl:col-span-9 min-w-0">
                 <ExamPaperView paper={currentPaper} />
               </div>
@@ -1018,28 +1111,31 @@ export function App() {
       {/* =================================================================== */}
       {/* CLEAN PROFESSIONAL FOOTER                                           */}
       {/* =================================================================== */}
-      <footer className="bg-slate-950 text-slate-400 border-t border-slate-800 mt-16">
+      {/* =================================================================== */}
+      {/* CLEAN PROFESSIONAL FOOTER                                           */}
+      {/* =================================================================== */}
+      <footer className="bg-white dark:bg-[#121418] text-[#4A4A4A] dark:text-[#A0A0A0] border-t border-[#E6E0D6] dark:border-[#262A32] mt-16 transition-colors duration-200">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
           <div className="flex items-center gap-2">
-            <ShieldAlert className="w-4 h-4 text-emerald-400 shrink-0" />
+            <ShieldAlert className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
             <span>
-              <strong>Govt IT &amp; BankPrep Portal (2010–2026)</strong> · Dedicated Bank IT Prep &amp; Bank Non-IT Prep Portal
+              <strong className="text-[#1A1A1A] dark:text-[#E8E8E8]">Govt IT &amp; BankPrep Portal (2010–2026)</strong> · Dedicated Bank IT &amp; Non-IT Reading Archive
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-4 text-slate-400">
+          <div className="flex flex-wrap items-center gap-4 text-[#4A4A4A] dark:text-[#A0A0A0]">
             <button
               onClick={() => handleNavigate('papers')}
-              className="hover:text-white transition-colors cursor-pointer"
+              className="hover:text-blue-600 dark:hover:text-white transition-colors cursor-pointer"
             >
               1. Bank IT Prep ({allExamPapers.length} Papers)
             </button>
             <button
               onClick={() => handleNavigate('non-it-questions', { nonItCategory: 'All' })}
-              className="hover:text-white transition-colors cursor-pointer"
+              className="hover:text-blue-600 dark:hover:text-white transition-colors cursor-pointer"
             >
               2. Bank Non-IT Question Bank (2010–2026)
             </button>
-            <span className="flex items-center gap-1 text-slate-500">
+            <span className="flex items-center gap-1 text-[#666666] dark:text-[#888888]">
               <Lock className="w-3.5 h-3.5" />
               <span>Read-Only Protected</span>
             </span>
