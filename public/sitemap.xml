@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 1. Bank IT Prep: Complete Exam Papers -->
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=papers</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 1. Bank IT Prep: Category & Topic-Wise Solved Question Bank -->
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=questions</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 1. Bank IT Prep: Computer Operator & Data Entry Operator Archive -->
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=it-operator-questions</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- 2. Bank Non-IT Prep: Senior Officer, Officer & Cash Full Question Bank -->
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=non-it-questions</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Bank IT Categories Deep Links -->
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=papers&amp;category=Senior%20Officer%20(IT)</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=papers&amp;category=Officer%20(IT)</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=papers&amp;category=Bank%20Assistant%20Programmer</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=papers&amp;category=Ministry%20Assistant%20Programmer</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Bank Non-IT Job Categories Deep Links -->
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=non-it-questions&amp;category=Senior%20Officer%20(General)</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=non-it-questions&amp;category=Officer%20(General)</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=non-it-questions&amp;category=Officer%20(Cash)</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- IT Operator Categories Deep Links -->
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=it-operator-questions&amp;category=Computer%20Operator</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://debbairagi.com.bd/jobprep/?page=it-operator-questions&amp;category=Data%20Entry%20/%20Control%20Operator</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+</urlset>

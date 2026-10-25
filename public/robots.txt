@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /jobprep/
+Allow: /
+
+# Sitemap Index
+Sitemap: https://debbairagi.com.bd/jobprep/sitemap.xml

@@ -13,6 +13,7 @@ import { HomePage } from './components/HomePage';
 import { ExamPaperView } from './components/ExamPaperView';
 import { CategoryWiseExplorer } from './components/CategoryWiseExplorer';
 import { BankNonItQuestionBank } from './components/BankNonItQuestionBank';
+import { SEOHead } from './components/SEOHead';
 import {
   BookOpen,
   LayoutGrid,
@@ -38,7 +39,15 @@ type ActivePage =
   | 'non-it-questions';
 
 export function App() {
-  const [activePage, setActivePage] = useState<ActivePage>('home');
+  const [activePage, setActivePage] = useState<ActivePage>(() => {
+    if (typeof window !== 'undefined') {
+      const p = new URLSearchParams(window.location.search).get('page');
+      if (p === 'papers' || p === 'questions' || p === 'it-operator-questions' || p === 'non-it-questions') {
+        return p;
+      }
+    }
+    return 'home';
+  });
 
   // Reading Theme: 'dark' (#0F1115) or 'light' (#F8F6F2), defaulting to dark as requested
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
@@ -112,6 +121,47 @@ export function App() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Parse URL query parameters on initial mount and support browser back/forward
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const parseParams = () => {
+      const params = new URLSearchParams(window.location.search);
+      const pageParam = params.get('page') as ActivePage | null;
+      if (
+        pageParam &&
+        ['home', 'papers', 'questions', 'it-operator-questions', 'non-it-questions'].includes(pageParam)
+      ) {
+        setActivePage(pageParam);
+      }
+      const paperIdParam = params.get('paperId');
+      if (paperIdParam && allExamPapers.some(p => p.id === paperIdParam)) {
+        setSelectedPaperId(paperIdParam);
+      }
+      const catParam = params.get('category');
+      if (catParam) {
+        setPaperSectorFilter(catParam);
+        setNonItInitialCategory(catParam as NonItJobCategory);
+        setItOpInitialCategory(catParam as NonItJobCategory);
+      }
+      const topicParam = params.get('topic');
+      if (topicParam) {
+        setQbInitialTopic(topicParam as TopicCategory);
+      }
+      const searchParam = params.get('search');
+      if (searchParam) {
+        setNavSearch(searchParam);
+        setQbInitialSearch(searchParam);
+        setNonItInitialSearch(searchParam);
+        setItOpInitialSearch(searchParam);
+      }
+    };
+
+    parseParams();
+    window.addEventListener('popstate', parseParams);
+    return () => window.removeEventListener('popstate', parseParams);
+  }, []);
+
   // Strict Read-Only Copy/Print/Save Protection
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -123,7 +173,7 @@ export function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Unified Navigation Handler
+  // Unified Navigation Handler with URL History State (Technical SEO)
   const handleNavigate = (
     page: ActivePage,
     options?: {
@@ -174,6 +224,21 @@ export function App() {
       setNonItInitialCategory(options?.nonItCategory || 'All');
       setNonItInitialSearch(options?.search ?? '');
     }
+
+    // Sync clean URL query parameters without reloading
+    try {
+      const params = new URLSearchParams();
+      if (page !== 'home') params.set('page', page);
+      if (options?.paperId) params.set('paperId', options.paperId);
+      if (options?.category && options.category !== 'All') params.set('category', options.category);
+      if (options?.topic && options.topic !== 'All') params.set('topic', options.topic);
+      if (options?.search) params.set('search', options.search);
+      if (options?.nonItCategory && options.nonItCategory !== 'All') params.set('category', options.nonItCategory);
+
+      const queryStr = params.toString();
+      const newUrl = queryStr ? `${window.location.pathname}?${queryStr}` : window.location.pathname;
+      window.history.pushState({ page }, '', newUrl);
+    } catch (e) {}
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -304,6 +369,143 @@ export function App() {
 
   const isBankNonItActive = activePage === 'non-it-questions';
 
+  // Dynamic SEO Configuration for Each Page & Exam Paper
+  const seoConfig = useMemo(() => {
+    switch (activePage) {
+      case 'home':
+        return {
+          title: 'Govt IT & Bank Prep Portal | Bangladesh Bank & Combined Bank Question Bank (2010–2026)',
+          description: 'Complete solved question bank for Bangladesh Bank, Combined Banks & BPSC Ministry recruitment exams (2010–2026). Features 42 full IT exam papers and comprehensive Non-IT solutions.',
+          canonicalPath: '',
+          keywords: 'Bangladesh Bank IT job preparation, Combined Bank Officer IT question, Bank Non-IT exam questions, Senior Officer General bank job, Computer Operator bank exam, BPSC Non-Cadre IT question, Bank written question solution Bangladesh',
+          jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://debbairagi.com.bd/jobprep/'
+              }
+            ]
+          }
+        };
+      case 'papers':
+        return {
+          title: `${currentPaper ? `${currentPaper.title} (${currentPaper.category})` : 'Bank IT Exam Papers (42 Complete Solved Papers)'} | Govt IT & BankPrep`,
+          description: currentPaper
+            ? `Complete 200-mark solved exam paper for ${currentPaper.title} (${currentPaper.category}, ${currentPaper.examDate}). Includes step-by-step model solutions and hall print view.`
+            : 'Explore 42 complete solved 200-mark Bank IT examination papers for Bangladesh Bank, Combined Govt Banks, and BPSC Ministry Assistant Programmer (2010–2026).',
+          canonicalPath: currentPaper ? `?page=papers&paperId=${encodeURIComponent(currentPaper.id)}` : '?page=papers',
+          keywords: `${currentPaper?.category || 'Bank IT'}, ${currentPaper?.examBody || 'Bangladesh Bank'}, ${currentPaper?.jobId ? `Job ID ${currentPaper.jobId}` : ''}, Bank IT exam papers, Assistant Programmer question solution, Senior Officer IT solved paper, Combined Bank IT preparation`,
+          jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://debbairagi.com.bd/jobprep/'
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Bank IT Exam Papers',
+                item: 'https://debbairagi.com.bd/jobprep/?page=papers'
+              },
+              ...(currentPaper
+                ? [
+                    {
+                      '@type': 'ListItem',
+                      position: 3,
+                      name: currentPaper.title,
+                      item: `https://debbairagi.com.bd/jobprep/?page=papers&paperId=${encodeURIComponent(currentPaper.id)}`
+                    }
+                  ]
+                : [])
+            ]
+          }
+        };
+      case 'questions':
+        return {
+          title: 'Bank IT Solved Question Bank (2010–2026) | Topic-Wise Archive | Govt IT & BankPrep',
+          description: 'Explore verified solved Bank IT questions by topic: Database & SQL, Data Structures & Algorithms, Networking, Software Engineering, OOP & Web with step-by-step model answers.',
+          canonicalPath: '?page=questions',
+          keywords: 'Combined Bank Officer IT question, Database SQL bank questions, Data Structures Algorithms bank prep, Computer Networks VLSM questions, Bank written question solution Bangladesh, Software Engineering bank exam',
+          jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://debbairagi.com.bd/jobprep/'
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Bank IT Question Bank',
+                item: 'https://debbairagi.com.bd/jobprep/?page=questions'
+              }
+            ]
+          }
+        };
+      case 'it-operator-questions':
+        return {
+          title: 'Computer Operator & Data Entry Operator Question Bank (2010–2026) | Govt IT & BankPrep',
+          description: 'Comprehensive 100-MCQ Preliminary and written question sets with verified solutions for Computer Operator and Data Entry / Control Operator across Bangladesh Bank & Govt Ministries.',
+          canonicalPath: '?page=it-operator-questions',
+          keywords: 'Computer Operator bank exam, Data Entry Operator bank exam, Computer Operator preliminary MCQ, Data Entry Control Operator written solution Bangladesh, ICT Operator question bank',
+          jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://debbairagi.com.bd/jobprep/'
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Computer & Data Entry Operator Archive',
+                item: 'https://debbairagi.com.bd/jobprep/?page=it-operator-questions'
+              }
+            ]
+          }
+        };
+      case 'non-it-questions':
+        return {
+          title: 'Bank Non-IT Question Bank (Senior Officer, Officer & Cash 2010–2026) | Govt IT & BankPrep',
+          description: 'Complete solved question bank for Senior Officer (General), Officer (General), and Officer (Cash). Full 100-MCQ Preliminary sets and 12-question written solutions with explanations.',
+          canonicalPath: '?page=non-it-questions',
+          keywords: 'Bank Non-IT exam questions, Senior Officer General bank job, Officer General exam questions, Officer Cash question bank, Bank written math focus writing Bangladesh, Combined Bank Non-IT prep',
+          jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://debbairagi.com.bd/jobprep/'
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Bank Non-IT Question Bank',
+                item: 'https://debbairagi.com.bd/jobprep/?page=non-it-questions'
+              }
+            ]
+          }
+        };
+    }
+  }, [activePage, currentPaper]);
+
   return (
     <div
       className="min-h-screen bg-[#F8F6F2] dark:bg-[#14171D] text-[#1A1A1A] dark:text-[#E8E8E8] flex flex-col select-none transition-colors duration-150"
@@ -311,6 +513,8 @@ export function App() {
       onCopy={e => e.preventDefault()}
       onCut={e => e.preventDefault()}
     >
+      {/* Dynamic SEO Meta Tags, Social Cards, and JSON-LD Structured Data */}
+      <SEOHead {...seoConfig} />
       {/* =================================================================== */}
       {/* STICKY MODERN NAVBAR WITH 2 MAIN MENUS + GLOBAL SEARCH              */}
       {/* 1. Bank IT Prep | 2. Bank Non-IT Prep                               */}
@@ -1109,36 +1313,236 @@ export function App() {
       </main>
 
       {/* =================================================================== */}
-      {/* CLEAN PROFESSIONAL FOOTER                                           */}
-      {/* =================================================================== */}
-      {/* =================================================================== */}
-      {/* CLEAN PROFESSIONAL FOOTER                                           */}
+      {/* COMPREHENSIVE SEO & DIRECTORY FOOTER                                */}
       {/* =================================================================== */}
       <footer className="bg-white dark:bg-[#121418] text-[#4A4A4A] dark:text-[#A0A0A0] border-t border-[#E6E0D6] dark:border-[#262A32] mt-16 transition-colors duration-200">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <div className="flex items-center gap-2">
-            <ShieldAlert className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
-            <span>
-              <strong className="text-[#1A1A1A] dark:text-[#E8E8E8]">Govt IT &amp; BankPrep Portal (2010–2026)</strong> · Dedicated Bank IT &amp; Non-IT Reading Archive
-            </span>
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Main 4-Column Directory */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-[#E6E0D6] dark:border-[#262A32]">
+            {/* Column 1: Brand & Mission */}
+            <div className="space-y-3.5">
+              <div className="flex items-center gap-2 text-sm font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
+                <ShieldAlert className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />
+                <span>Govt IT &amp; BankPrep Portal</span>
+              </div>
+              <p className="text-xs text-[#4A4A4A] dark:text-[#A0A0A0] leading-relaxed">
+                National preparation repository for <strong>Bangladesh Bank IT job preparation</strong>, <strong>Combined Bank Officer IT questions</strong>, and <strong>Bank Non-IT exam solutions</strong> (2010–2026). Features step-by-step model answers, coding implementations, and official hall formats.
+              </p>
+              <div className="flex items-center gap-2 text-xs font-mono text-[#666666] dark:text-[#888888]">
+                <Lock className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+                <span>Read-Only Study Archive · 2010–2026</span>
+              </div>
+            </div>
+
+            {/* Column 2: 1. Bank IT Recruitment Exams */}
+            <div className="space-y-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A] dark:text-[#E8E8E8]">
+                1. Bank IT Recruitment Exams
+              </h3>
+              <ul className="space-y-2 text-xs">
+                <li>
+                  <button
+                    onClick={() => handleNavigate('papers', { category: 'Senior Officer (IT)' })}
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Combined Bank Senior Officer (IT) (11 Papers)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('papers', { category: 'Officer (IT)' })}
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Combined Bank Officer (IT) (11 Papers)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('papers', { category: 'Bank Assistant Programmer' })}
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Bangladesh Bank Assistant Programmer
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('papers', { category: 'Ministry Assistant Programmer' })}
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left cursor-pointer"
+                  >
+                    • BPSC Ministry Assistant Programmer (5 Papers)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('papers', { category: 'All Private Bank' })}
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Private Commercial Banks (DBBL, BRAC, MTB)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('papers')}
+                    className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>View All 42 Exam Papers →</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3: 2. Bank Non-IT Recruitment Exams */}
+            <div className="space-y-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A] dark:text-[#E8E8E8]">
+                2. Bank Non-IT Exam Solutions
+              </h3>
+              <ul className="space-y-2 text-xs">
+                <li>
+                  <button
+                    onClick={() => handleNavigate('non-it-questions', { nonItCategory: 'Senior Officer (General)' })}
+                    className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Senior Officer (General) (100-MCQ + Written)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('non-it-questions', { nonItCategory: 'Officer (General)' })}
+                    className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Officer (General) (100-MCQ + Written)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('non-it-questions', { nonItCategory: 'Officer (Cash)' })}
+                    className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Officer (Cash) (100-MCQ + Written)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('non-it-questions', { search: 'math' })}
+                    className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Bank Written Math Problems with Solutions
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('non-it-questions', { search: 'focus writing' })}
+                    className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors text-left cursor-pointer"
+                  >
+                    • English &amp; Bengali Focus Writing Model Essays
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('non-it-questions')}
+                    className="text-amber-600 dark:text-amber-400 font-semibold hover:underline flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>Full Bank Non-IT Question Bank →</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 4: IT Operator & Syllabus Explorer */}
+            <div className="space-y-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A] dark:text-[#E8E8E8]">
+                3. IT Operator &amp; CS Topics
+              </h3>
+              <ul className="space-y-2 text-xs">
+                <li>
+                  <button
+                    onClick={() => handleNavigate('it-operator-questions', { nonItCategory: 'Computer Operator' })}
+                    className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Computer Operator Bank Exam (100-MCQ + Written)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('it-operator-questions', { nonItCategory: 'Data Entry / Control Operator' })}
+                    className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Data Entry / Control Operator Bank Exam
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('questions', { topic: 'Database & SQL' })}
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Database &amp; SQL Query Solutions
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('questions', { topic: 'Networking & Security' })}
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Computer Networks &amp; Subnetting (VLSM)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('questions', { topic: 'Programming & Algorithms' })}
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left cursor-pointer"
+                  >
+                    • Data Structures, OOP &amp; Algorithms
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNavigate('questions')}
+                    className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>Explore All 7 Syllabus Topics →</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="flex flex-wrap items-center gap-4 text-[#4A4A4A] dark:text-[#A0A0A0]">
-            <button
-              onClick={() => handleNavigate('papers')}
-              className="hover:text-blue-600 dark:hover:text-white transition-colors cursor-pointer"
-            >
-              1. Bank IT Prep ({allExamPapers.length} Papers)
-            </button>
-            <button
-              onClick={() => handleNavigate('non-it-questions', { nonItCategory: 'All' })}
-              className="hover:text-blue-600 dark:hover:text-white transition-colors cursor-pointer"
-            >
-              2. Bank Non-IT Question Bank (2010–2026)
-            </button>
-            <span className="flex items-center gap-1 text-[#666666] dark:text-[#888888]">
-              <Lock className="w-3.5 h-3.5" />
-              <span>Read-Only Protected</span>
-            </span>
+
+          {/* Bottom Utility Bar */}
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#666666] dark:text-[#888888]">
+            <div className="flex flex-wrap items-center gap-3">
+              <span>© 2010–2026 Govt IT &amp; BankPrep Portal. All rights reserved.</span>
+              <span aria-hidden="true" className="opacity-40">·</span>
+              <span>Host: debbairagi.com.bd/jobprep</span>
+            </div>
+            <div className="flex flex-wrap items-center gap-4 text-xs font-medium">
+              <a
+                href="/jobprep/sitemap.xml"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                XML Sitemap
+              </a>
+              <a
+                href="/jobprep/robots.txt"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                Robots.txt
+              </a>
+              <button
+                onClick={() => handleNavigate('home')}
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
+              >
+                Home
+              </button>
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline cursor-pointer"
+              >
+                Back to Top ↑
+              </button>
+            </div>
           </div>
         </div>
       </footer>

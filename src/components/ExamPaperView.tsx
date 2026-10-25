@@ -36,9 +36,9 @@ export const ExamPaperView: React.FC<ExamPaperViewProps> = ({
               <span>Testing Body: {paper.examBody}</span>
             </div>
 
-            <h1 className="text-xl sm:text-2xl font-bold text-[#1A1A1A] dark:text-[#E8E8E8] leading-snug">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#1A1A1A] dark:text-[#E8E8E8] leading-snug">
               {paper.title}
-            </h1>
+            </h2>
 
             <p className="text-sm sm:text-[15.5px] text-[#4A4A4A] dark:text-[#A0A0A0] leading-relaxed">
               {paper.summary}

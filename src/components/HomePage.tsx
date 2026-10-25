@@ -537,6 +537,59 @@ export const HomePage: React.FC<HomePageProps> = ({
           ))}
         </div>
       </section>
+
+      {/* SECTION 5: FREQUENTLY ASKED QUESTIONS & PREPARATION GUIDE (SEO & Crawlability) */}
+      <section className="space-y-5 pt-4">
+        <div>
+          <div className="flex items-center gap-2 text-xs font-semibold text-blue-600 dark:text-blue-400">
+            <span>Bangladesh Bank &amp; Ministry Recruitment Guide</span>
+          </div>
+          <h2 className="text-lg sm:text-2xl font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
+            Frequently Asked Questions — Bank IT &amp; Non-IT Exam Preparation
+          </h2>
+          <p className="text-xs sm:text-sm text-[#4A4A4A] dark:text-[#A0A0A0]">
+            Essential guidelines for candidates preparing for Bangladesh Bank IT, Combined Govt Banks, and BPSC Ministry examinations.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <article className="bg-white dark:bg-[#1E1E1E] rounded-2xl border border-[#E6E0D6] dark:border-[#2D3139] p-5 sm:p-6 space-y-2.5 shadow-xs">
+            <h3 className="text-sm sm:text-base font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
+              How to prepare for Bangladesh Bank IT job preparation and Combined Bank Officer (IT) exams?
+            </h3>
+            <p className="text-xs sm:text-sm text-[#4A4A4A] dark:text-[#A0A0A0] leading-relaxed">
+              Bank IT recruitment exams (Senior Officer IT, Officer IT, Assistant Programmer) require thorough mastery of Database Management &amp; SQL, Data Structures &amp; Algorithms, Computer Networks &amp; Subnetting (VLSM), Software Engineering, and Operating Systems. Practicing authentic past 200-mark written questions from 2010 to 2026 is the most effective approach.
+            </p>
+          </article>
+
+          <article className="bg-white dark:bg-[#1E1E1E] rounded-2xl border border-[#E6E0D6] dark:border-[#2D3139] p-5 sm:p-6 space-y-2.5 shadow-xs">
+            <h3 className="text-sm sm:text-base font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
+              Where can I find Combined Bank Officer IT questions and written solutions in Bangladesh?
+            </h3>
+            <p className="text-xs sm:text-sm text-[#4A4A4A] dark:text-[#A0A0A0] leading-relaxed">
+              This portal provides 42 full 200-mark solved exam papers covering Bangladesh Bank, Combined 8/10 Govt Banks, Private Commercial Banks (DBBL, BRAC, MTB), and BPSC Ministries. Each question includes verified step-by-step explanations, mathematics workings, and executable SQL/code snippets.
+            </p>
+          </article>
+
+          <article className="bg-white dark:bg-[#1E1E1E] rounded-2xl border border-[#E6E0D6] dark:border-[#2D3139] p-5 sm:p-6 space-y-2.5 shadow-xs">
+            <h3 className="text-sm sm:text-base font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
+              What is included in the Bank Non-IT exam question bank?
+            </h3>
+            <p className="text-xs sm:text-sm text-[#4A4A4A] dark:text-[#A0A0A0] leading-relaxed">
+              Our Bank Non-IT archive covers Senior Officer (General), Officer (General), and Officer (Cash) positions. It includes full Preliminary 100-MCQ sets (Bengali, English, Math, General Knowledge, Banking) and 12-question written sets (Focus Writing, Critical Math, and Comprehension).
+            </p>
+          </article>
+
+          <article className="bg-white dark:bg-[#1E1E1E] rounded-2xl border border-[#E6E0D6] dark:border-[#2D3139] p-5 sm:p-6 space-y-2.5 shadow-xs">
+            <h3 className="text-sm sm:text-base font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
+              Are Computer Operator and Data Entry Operator bank exams covered?
+            </h3>
+            <p className="text-xs sm:text-sm text-[#4A4A4A] dark:text-[#A0A0A0] leading-relaxed">
+              Yes, complete Preliminary MCQs and written test solutions for Computer Operator and Data Entry / Control Operator across Bangladesh Bank, Sonali Bank, Janata Bank, and Govt Ministries (2010–2026) are fully organized and searchable.
+            </p>
+          </article>
+        </div>
+      </section>
     </div>
   );
 };
