@@ -13,11 +13,16 @@ interface ExamPaperViewProps {
 
 export const ExamPaperView: React.FC<ExamPaperViewProps> = ({ 
   paper
-}) => {
+}: ExamPaperViewProps) => {
   // 3 Viewing Modes: 'questions' | 'answers' | 'official'
   const [activeTab, setActiveTab] = useState<'questions' | 'answers' | 'official'>('questions');
+  const [selectedSectionId, setSelectedSectionId] = useState<string>('all');
+  const [userAnswers, setUserAnswers] = useState<{ [qId: string]: number }>({});
 
   const totalPaperQuestions = paper.sections.reduce((acc, s) => acc + s.questions.length, 0);
+  const displayedSections = selectedSectionId === 'all'
+    ? paper.sections
+    : paper.sections.filter(s => s.id === selectedSectionId);
 
   return (
     <div className="space-y-6 sm:space-y-8">
@@ -146,12 +151,40 @@ export const ExamPaperView: React.FC<ExamPaperViewProps> = ({
             </button>
           </div>
 
-          {paper.sections.map((section, sIdx) => (
+          {paper.sections.length > 1 && (
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+              <button
+                onClick={() => setSelectedSectionId('all')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
+                  selectedSectionId === 'all'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-white dark:bg-[#1E1E1E] text-[#4A4A4A] dark:text-[#A0A0A0] border border-[#E6E0D6] dark:border-[#2D3139]'
+                }`}
+              >
+                All Sections ({totalPaperQuestions} Questions)
+              </button>
+              {paper.sections.map((s, idx) => (
+                <button
+                  key={s.id}
+                  onClick={() => setSelectedSectionId(s.id)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
+                    selectedSectionId === s.id
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-white dark:bg-[#1E1E1E] text-[#4A4A4A] dark:text-[#A0A0A0] border border-[#E6E0D6] dark:border-[#2D3139]'
+                  }`}
+                >
+                  Part {String.fromCharCode(65 + idx)} ({s.questions.length} Qs)
+                </button>
+              ))}
+            </div>
+          )}
+
+          {displayedSections.map((section, sIdx) => (
             <div key={section.id} className="bg-white dark:bg-[#1E1E1E] rounded-2xl border border-[#E6E0D6] dark:border-[#2D3139] overflow-hidden shadow-xs">
               <div className="bg-[#F2EFE9] dark:bg-[#14161B] border-b border-[#E6E0D6] dark:border-[#2D3139] px-5 py-3.5 flex items-center justify-between gap-2">
                 <div>
                   <h3 className="font-bold text-sm text-[#1A1A1A] dark:text-[#E8E8E8]">
-                    Section {String.fromCharCode(65 + sIdx)}: {section.name}
+                    {section.name}
                   </h3>
                   {section.description && <p className="text-xs text-[#4A4A4A] dark:text-[#A0A0A0] mt-0.5">{section.description}</p>}
                 </div>
@@ -180,15 +213,45 @@ export const ExamPaperView: React.FC<ExamPaperViewProps> = ({
                     </p>
 
                     {q.options && q.options.length > 0 && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-                        {q.options.map((opt, oIdx) => (
-                          <div
-                            key={oIdx}
-                            className="p-3 rounded-xl bg-[#F8F6F2] dark:bg-[#16181D] border border-[#E6E0D6] dark:border-[#2D3139] text-sm text-[#1A1A1A] dark:text-[#E8E8E8] leading-relaxed"
-                          >
-                            {opt}
-                          </div>
-                        ))}
+                      <div className="space-y-2 pt-1">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {q.options.map((opt, oIdx) => {
+                            const hasAnswered = userAnswers[q.id] !== undefined;
+                            const isSelected = userAnswers[q.id] === oIdx;
+                            const isCorrect = q.correctOption !== undefined ? oIdx === q.correctOption : false;
+
+                            let optStyle = 'bg-[#F8F6F2] dark:bg-[#16181D] border-[#E6E0D6] dark:border-[#2D3139] text-[#1A1A1A] dark:text-[#E8E8E8] hover:border-blue-500/60';
+                            if (hasAnswered) {
+                              if (isCorrect) {
+                                optStyle = 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-900 dark:text-emerald-200 font-semibold';
+                              } else if (isSelected) {
+                                optStyle = 'bg-red-50 dark:bg-red-950/40 border-red-500 text-red-900 dark:text-red-200';
+                              } else {
+                                optStyle = 'bg-[#F8F6F2]/60 dark:bg-[#16181D]/60 border-[#E6E0D6]/50 dark:border-[#2D3139]/50 text-[#888888] dark:text-[#666666]';
+                              }
+                            }
+
+                            return (
+                              <button
+                                key={oIdx}
+                                type="button"
+                                onClick={() => {
+                                  if (q.correctOption !== undefined) {
+                                    setUserAnswers(prev => ({ ...prev, [q.id]: oIdx }));
+                                  }
+                                }}
+                                className={`p-3 rounded-xl border text-left text-sm leading-relaxed transition-all cursor-pointer flex items-center justify-between ${optStyle}`}
+                              >
+                                <span>{opt}</span>
+                                {hasAnswered && isCorrect && (
+                                  <span className="text-[11px] bg-emerald-600 text-white font-bold px-1.5 py-0.5 rounded ml-2 shrink-0">
+                                    Correct
+                                  </span>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
                       </div>
                     )}
 
@@ -249,11 +312,39 @@ export const ExamPaperView: React.FC<ExamPaperViewProps> = ({
             </button>
           </div>
 
-          {paper.sections.map((section, sIdx) => (
+          {paper.sections.length > 1 && (
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+              <button
+                onClick={() => setSelectedSectionId('all')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
+                  selectedSectionId === 'all'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-white dark:bg-[#1E1E1E] text-[#4A4A4A] dark:text-[#A0A0A0] border border-[#E6E0D6] dark:border-[#2D3139]'
+                }`}
+              >
+                All Sections ({totalPaperQuestions} Solutions)
+              </button>
+              {paper.sections.map((s, idx) => (
+                <button
+                  key={s.id}
+                  onClick={() => setSelectedSectionId(s.id)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
+                    selectedSectionId === s.id
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-white dark:bg-[#1E1E1E] text-[#4A4A4A] dark:text-[#A0A0A0] border border-[#E6E0D6] dark:border-[#2D3139]'
+                  }`}
+                >
+                  Part {String.fromCharCode(65 + idx)} ({s.questions.length} Qs)
+                </button>
+              ))}
+            </div>
+          )}
+
+          {displayedSections.map((section, sIdx) => (
             <div key={section.id} className="space-y-5">
               <div className="bg-[#F2EFE9] dark:bg-[#14161B] border border-[#E6E0D6] dark:border-[#2D3139] px-5 py-3.5 rounded-xl flex items-center justify-between">
                 <h3 className="font-bold text-sm text-[#1A1A1A] dark:text-[#E8E8E8]">
-                  Section {String.fromCharCode(65 + sIdx)} Model Solutions: {section.name}
+                  Model Solutions: {section.name}
                 </h3>
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 tabular-nums">{section.marks} Marks</span>
               </div>

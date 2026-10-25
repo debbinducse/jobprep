@@ -37,6 +37,7 @@ export const CategoryWiseExplorer: React.FC<CategoryWiseExplorerProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>(initialSearch);
   const [visibleCount, setVisibleCount] = useState<number>(60);
   const [activeQuestionSubTabs, setActiveQuestionSubTabs] = useState<{ [qId: string]: 'question' | 'answer' | 'code' }>({});
+  const [userAnswers, setUserAnswers] = useState<{ [qId: string]: number }>({});
 
   useEffect(() => {
     if (initialTopic) setSelectedTopic(initialTopic);
@@ -238,11 +239,11 @@ export const CategoryWiseExplorer: React.FC<CategoryWiseExplorerProps> = ({
               { id: 'Private Bank Assistant Programmer', label: 'Private Bank AP (4)' },
               { id: 'Private Bank Senior Officer (IT)', label: 'Private Bank SO (4)' },
               { id: 'Private Bank Officer (IT)', label: 'Private Bank Officer (4)' },
-              { id: 'All Assistant Programmer', label: 'All Assistant Programmer' },
-              { id: 'Bank Assistant Programmer', label: 'Govt Bank AP (3)' },
-              { id: 'Ministry Assistant Programmer', label: 'Ministry AP (BPSC) (5)' },
-              { id: 'Senior Officer (IT)', label: 'Govt Senior Officer IT (11)' },
-              { id: 'Officer (IT)', label: 'Govt Officer IT (11)' },
+              { id: 'All Assistant Programmer', label: 'All Assistant Programmer (100 MCQ & Written)' },
+              { id: 'Bank Assistant Programmer', label: 'Govt Bank AP (100 MCQ & Written)' },
+              { id: 'Ministry Assistant Programmer', label: 'Ministry AP BPSC (100 MCQ & Written)' },
+              { id: 'Senior Officer (IT)', label: 'Senior Officer IT (100 MCQ & Written Archive)' },
+              { id: 'Officer (IT)', label: 'Officer IT (100 MCQ & Written Archive)' },
               { id: 'Computer Operator', label: 'Computer Operator (2010–2026)' },
               { id: 'Data Entry / Control Operator', label: 'Data Entry / Control Operator (2010–2026)' }
             ].map(sec => (
@@ -459,15 +460,80 @@ export const CategoryWiseExplorer: React.FC<CategoryWiseExplorerProps> = ({
                       </div>
 
                       {q.options && q.options.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-                          {q.options.map((opt, oIdx) => (
-                            <div
-                              key={oIdx}
-                              className="p-3 rounded-lg bg-[#FAF8F5] dark:bg-[#16181D] border border-[#E6E0D6] dark:border-[#2D3139] text-[15px] sm:text-[16px] text-[#1A1A1A] dark:text-[#E8E8E8] min-h-[44px] flex items-center"
-                            >
-                              {opt}
+                        <div className="space-y-3 pt-2">
+                          <div className="text-xs text-[#4A4A4A] dark:text-[#A0A0A0] font-medium flex items-center justify-between">
+                            <span>Select an option to test your answer:</span>
+                            {userAnswers[q.id] !== undefined && (
+                              <button
+                                onClick={() => setUserAnswers(prev => {
+                                  const next = { ...prev };
+                                  delete next[q.id];
+                                  return next;
+                                })}
+                                className="text-[11px] text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+                              >
+                                Try Again / Reset
+                              </button>
+                            )}
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            {q.options.map((opt, oIdx) => {
+                              const hasAnswered = userAnswers[q.id] !== undefined;
+                              const isSelected = userAnswers[q.id] === oIdx;
+                              const isCorrect = q.correctOption !== undefined ? oIdx === q.correctOption : false;
+
+                              let cardStyle = 'bg-[#FAF8F5] dark:bg-[#16181D] border-[#E6E0D6] dark:border-[#2D3139] text-[#1A1A1A] dark:text-[#E8E8E8] hover:border-blue-500/60';
+                              if (hasAnswered) {
+                                if (isCorrect) {
+                                  cardStyle = 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-900 dark:text-emerald-200 font-semibold';
+                                } else if (isSelected) {
+                                  cardStyle = 'bg-red-50 dark:bg-red-950/40 border-red-500 text-red-900 dark:text-red-200';
+                                } else {
+                                  cardStyle = 'bg-[#FAF8F5]/60 dark:bg-[#16181D]/60 border-[#E6E0D6]/50 dark:border-[#2D3139]/50 text-[#888888] dark:text-[#666666]';
+                                }
+                              }
+
+                              return (
+                                <button
+                                  key={oIdx}
+                                  type="button"
+                                  onClick={() => {
+                                    if (q.correctOption !== undefined) {
+                                      setUserAnswers(prev => ({ ...prev, [q.id]: oIdx }));
+                                    }
+                                  }}
+                                  className={`p-3.5 rounded-xl border text-left text-[15px] sm:text-[16px] min-h-[46px] flex items-center justify-between transition-all cursor-pointer ${cardStyle}`}
+                                >
+                                  <span>{opt}</span>
+                                  {hasAnswered && isCorrect && (
+                                    <span className="text-xs bg-emerald-600 text-white font-bold px-2 py-0.5 rounded-md ml-2 shrink-0">
+                                      Correct
+                                    </span>
+                                  )}
+                                  {hasAnswered && isSelected && !isCorrect && (
+                                    <span className="text-xs bg-red-600 text-white font-bold px-2 py-0.5 rounded-md ml-2 shrink-0">
+                                      Your Choice
+                                    </span>
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
+                          {userAnswers[q.id] !== undefined && (
+                            <div className="p-2.5 rounded-lg bg-[#F2EFE9] dark:bg-[#16181D] border border-[#E6E0D6] dark:border-[#2D3139] flex items-center justify-between text-xs">
+                              <span className={userAnswers[q.id] === q.correctOption ? 'text-emerald-600 dark:text-emerald-400 font-bold' : 'text-amber-600 dark:text-amber-400 font-semibold'}>
+                                {userAnswers[q.id] === q.correctOption
+                                  ? '✓ Excellent! Your selected answer is correct.'
+                                  : `Notice: The verified answer is Option ${String.fromCharCode(65 + (q.correctOption ?? 0))}.`}
+                              </span>
+                              <button
+                                onClick={() => setSubTab(q.id, 'answer')}
+                                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline cursor-pointer shrink-0 ml-2"
+                              >
+                                Read Explanation →
+                              </button>
                             </div>
-                          ))}
+                          )}
                         </div>
                       )}
 

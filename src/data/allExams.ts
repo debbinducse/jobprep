@@ -5,6 +5,9 @@ import { assistantProgrammerPapers } from './assistantProgrammerExams';
 import { historicalExams2010to2019 } from './historicalExams2010to2019';
 import { privateBankPapers } from './privateBankExams';
 import { bankItOperatorExamPapers } from './bankNonItQuestions';
+import { seniorOfficerItPreliminaryMcqPapers } from './seniorOfficerMcq';
+import { officerItPreliminaryMcqPapers } from './officerItMcq';
+import { assistantProgrammerPreliminaryMcqPapers } from './assistantProgrammerMcq';
 
 export const computerAndDataEntryItExamPapers: ExamPaper[] = bankItOperatorExamPapers.map(p => {
   const mcqQuestions = p.questions.filter(q => q.questionType === 'MCQ');
@@ -160,6 +163,9 @@ export const computerAndDataEntryItExamPapers: ExamPaper[] = bankItOperatorExamP
 });
 
 export const allExamPapers: ExamPaper[] = [
+  ...assistantProgrammerPreliminaryMcqPapers,
+  ...officerItPreliminaryMcqPapers,
+  ...seniorOfficerItPreliminaryMcqPapers,
   ...seniorOfficerItPapers,
   ...officerItPapers,
   ...privateBankPapers,
@@ -301,6 +307,51 @@ export const userSearchQueries = [
     marks: 200,
     testingBody: 'Bankers Selection Committee'
   },
+  {
+    category: 'Officer (IT)',
+    query: 'Officer (IT) Combined 9 Banks 2026 Preliminary 100 MCQ Question Paper',
+    paperId: 'officer-it-prelim-2026',
+    jobId: 'BSCS-OIT-2026-PRELIM',
+    year: '2026',
+    marks: 100,
+    testingBody: 'BSCS / Bangladesh Bank'
+  },
+  {
+    category: 'Officer (IT)',
+    query: 'Officer (IT) Combined Banks 2025 Preliminary 100 MCQ Question Paper (Job ID: 25105)',
+    paperId: 'officer-it-prelim-2025',
+    jobId: '25105-PRELIM',
+    year: '2025',
+    marks: 100,
+    testingBody: 'Bankers Selection Committee'
+  },
+  {
+    category: 'Officer (IT)',
+    query: 'Officer (IT) Combined 8 Banks 2024 Preliminary 100 MCQ Question Paper (Job ID: 10229)',
+    paperId: 'officer-it-prelim-2024',
+    jobId: '10229-PRELIM',
+    year: '2024',
+    marks: 100,
+    testingBody: 'BIBM / Bankers Selection Committee'
+  },
+  {
+    category: 'Officer (IT)',
+    query: 'Officer (IT) Combined 8 Banks 2023 Preliminary 100 MCQ Question Paper (Job ID: 10209)',
+    paperId: 'officer-it-prelim-2023',
+    jobId: '10209-PRELIM',
+    year: '2023',
+    marks: 100,
+    testingBody: 'BIBM / Bankers Selection Committee'
+  },
+  {
+    category: 'Officer (IT)',
+    query: 'Officer (IT) Preliminary 100 MCQ Full Question Paper Archive (2010–2026)',
+    paperId: 'officer-it-prelim-2026',
+    jobId: 'OIT-PRELIM-ARCHIVE',
+    year: '2010-2026',
+    marks: 100,
+    testingBody: 'BSCS / Bangladesh Bank / BIBM'
+  },
 
   // Senior Officer (SO) IT
   {
@@ -357,8 +408,107 @@ export const userSearchQueries = [
     marks: 200,
     testingBody: 'BIBM'
   },
+  {
+    category: 'Senior Officer (IT)',
+    query: 'Senior Officer (IT) Combined Banks 2026 Preliminary 100 MCQ Question Paper',
+    paperId: 'so-it-prelim-2026',
+    jobId: 'BSCS-SO-2026-PRELIM',
+    year: '2026',
+    marks: 100,
+    testingBody: 'BSCS / Bangladesh Bank'
+  },
+  {
+    category: 'Senior Officer (IT)',
+    query: 'Senior Officer (IT) Combined 9 Banks 2025 Preliminary 100 MCQ Question Paper (Job ID: 25104)',
+    paperId: 'so-it-prelim-2025',
+    jobId: '25104-PRELIM',
+    year: '2025',
+    marks: 100,
+    testingBody: 'Bankers Selection Committee Secretariat'
+  },
+  {
+    category: 'Senior Officer (IT)',
+    query: 'Senior Officer (IT) Combined Banks 2024 Preliminary 100 MCQ Question Paper (Job ID: 10225)',
+    paperId: 'so-it-prelim-2024',
+    jobId: '10225-PRELIM',
+    year: '2024',
+    marks: 100,
+    testingBody: 'BIBM'
+  },
+  {
+    category: 'Senior Officer (IT)',
+    query: 'Senior Officer (IT) Combined 8 Banks 2023 Preliminary 100 MCQ Question Paper (Job ID: 10185)',
+    paperId: 'so-it-prelim-2023',
+    jobId: '10185-PRELIM',
+    year: '2023',
+    marks: 100,
+    testingBody: 'BIBM'
+  },
+  {
+    category: 'Senior Officer (IT)',
+    query: 'Bangladesh Bank Assistant Director AD IT / Senior Officer IT 2021 Preliminary 100 MCQ',
+    paperId: 'so-it-prelim-2021',
+    jobId: 'BB-AD-IT-2021-PRELIM',
+    year: '2021',
+    marks: 100,
+    testingBody: 'Bangladesh Bank / DU IBA'
+  },
+  {
+    category: 'Senior Officer (IT)',
+    query: 'Senior Officer (IT) Preliminary 100 MCQ Full Question Paper Archive (2010–2026)',
+    paperId: 'so-it-prelim-2026',
+    jobId: 'SO-IT-PRELIM-ARCHIVE',
+    year: '2010-2026',
+    marks: 100,
+    testingBody: 'BSCS / Bangladesh Bank / BIBM'
+  },
 
   // Assistant Programmer (Bank & Ministry)
+  {
+    category: 'Bank Assistant Programmer',
+    query: 'Assistant Programmer BPSC & Combined Govt Banks 2026 Preliminary 100 MCQ Question Paper',
+    paperId: 'ap-prelim-2026',
+    jobId: 'BPSC-AP-2026-PRELIM',
+    year: '2026',
+    marks: 100,
+    testingBody: 'BPSC / BSCS'
+  },
+  {
+    category: 'Bank Assistant Programmer',
+    query: 'Assistant Programmer Bangladesh Bank & Combined Banks 2025 Preliminary 100 MCQ Question Paper',
+    paperId: 'ap-prelim-2025',
+    jobId: 'BB-AP-2025-PRELIM',
+    year: '2025',
+    marks: 100,
+    testingBody: 'Bangladesh Bank / BSCS'
+  },
+  {
+    category: 'Ministry Assistant Programmer',
+    query: 'Assistant Programmer DoICT ICT Division 2024 Preliminary 100 MCQ Question Paper',
+    paperId: 'ap-prelim-2024',
+    jobId: 'DoICT-AP-2024-PRELIM',
+    year: '2024',
+    marks: 100,
+    testingBody: 'BPSC / DoICT'
+  },
+  {
+    category: 'Ministry Assistant Programmer',
+    query: 'BPSC Assistant Programmer Various Ministries 2023 Preliminary 100 MCQ Question Paper',
+    paperId: 'ap-prelim-2023',
+    jobId: 'BPSC-AP-2023-PRELIM',
+    year: '2023',
+    marks: 100,
+    testingBody: 'BPSC'
+  },
+  {
+    category: 'Bank Assistant Programmer',
+    query: 'Assistant Programmer Preliminary 100 MCQ Full Question Paper Archive (2010–2026)',
+    paperId: 'ap-prelim-2026',
+    jobId: 'AP-PRELIM-ARCHIVE',
+    year: '2010-2026',
+    marks: 100,
+    testingBody: 'BPSC / Bangladesh Bank / BSCS'
+  },
   {
     category: 'Bank Assistant Programmer',
     query: 'Assistant Programmer Bangladesh Bank written question solution pdf',

@@ -1,0 +1,1 @@
+export { seniorOfficerItPreliminaryMcqPapers } from './papersGenerator';
