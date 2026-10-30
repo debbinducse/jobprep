@@ -48,12 +48,12 @@ export const HomePage: React.FC<HomePageProps> = ({
     if (featuredGroup === 'ministry') {
       return allExamPapers.filter(p => p.category === 'Ministry Assistant Programmer').slice(0, 6);
     }
-    // Curated mix featuring the 2026 Combined Bank SO (IT) & Officer (IT) papers first
+    // Curated mix featuring the official BSCS Job ID-25104, 25105, 10225, 10229, DBBL & Bangladesh Bank papers
     return [
-      allExamPapers.find(p => p.id === 'so-it-combined-2026'),
-      allExamPapers.find(p => p.id === 'officer-it-combined-2026'),
       allExamPapers.find(p => p.id === 'so-it-25104'),
       allExamPapers.find(p => p.id === 'officer-it-25105'),
+      allExamPapers.find(p => p.id === 'so-it-10225'),
+      allExamPapers.find(p => p.id === 'officer-it-10229'),
       allExamPapers.find(p => p.id === 'pcb-dbbl-ap-2024'),
       allExamPapers.find(p => p.id === 'ap-bangladesh-bank')
     ].filter(Boolean) as typeof allExamPapers;

@@ -22,7 +22,6 @@ import {
   X,
   ShieldAlert,
   ChevronDown,
-  Lock,
   Terminal,
   Briefcase,
   Layers,
@@ -160,17 +159,6 @@ export function App() {
     parseParams();
     window.addEventListener('popstate', parseParams);
     return () => window.removeEventListener('popstate', parseParams);
-  }, []);
-
-  // Strict Read-Only Copy/Print/Save Protection
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && ['c', 'p', 's', 'u'].includes(e.key.toLowerCase())) {
-        e.preventDefault();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   // Unified Navigation Handler with URL History State (Technical SEO)
@@ -508,10 +496,7 @@ export function App() {
 
   return (
     <div
-      className="min-h-screen bg-[#F8F6F2] dark:bg-[#14171D] text-[#1A1A1A] dark:text-[#E8E8E8] flex flex-col select-none transition-colors duration-150"
-      onContextMenu={e => e.preventDefault()}
-      onCopy={e => e.preventDefault()}
-      onCut={e => e.preventDefault()}
+      className="min-h-screen bg-[#F8F6F2] dark:bg-[#14171D] text-[#1A1A1A] dark:text-[#E8E8E8] flex flex-col transition-colors duration-150"
     >
       {/* Dynamic SEO Meta Tags, Social Cards, and JSON-LD Structured Data */}
       <SEOHead {...seoConfig} />
@@ -1329,8 +1314,8 @@ export function App() {
                 National preparation repository for <strong>Bangladesh Bank IT job preparation</strong>, <strong>Combined Bank Officer IT questions</strong>, and <strong>Bank Non-IT exam solutions</strong> (2010–2026). Features step-by-step model answers, coding implementations, and official hall formats.
               </p>
               <div className="flex items-center gap-2 text-xs font-mono text-[#666666] dark:text-[#888888]">
-                <Lock className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
-                <span>Read-Only Study Archive · 2010–2026</span>
+                <BookOpen className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+                <span>Official Solved Question Archive · 2010–2026</span>
               </div>
             </div>
 

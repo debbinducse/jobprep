@@ -162,19 +162,48 @@ export const computerAndDataEntryItExamPapers: ExamPaper[] = bankItOperatorExamP
   };
 });
 
-export const allExamPapers: ExamPaper[] = [
-  ...assistantProgrammerPreliminaryMcqPapers,
-  ...officerItPreliminaryMcqPapers,
-  ...seniorOfficerItPreliminaryMcqPapers,
+const rawAllExamPapers: ExamPaper[] = [
   ...seniorOfficerItPapers,
   ...officerItPapers,
-  ...privateBankPapers,
   ...assistantProgrammerPapers,
+  ...privateBankPapers,
   ...historicalExams2010to2019,
+  ...seniorOfficerItPreliminaryMcqPapers,
+  ...officerItPreliminaryMcqPapers,
+  ...assistantProgrammerPreliminaryMcqPapers,
   ...computerAndDataEntryItExamPapers
 ];
 
-// Helper to get total question count
+// Deduplicate questions across all Bank IT papers so every question is 100% original and never repeated
+const seenGlobalItQuestions = new Set<string>();
+
+export const allExamPapers: ExamPaper[] = rawAllExamPapers
+  .map(paper => {
+    const deduplicatedSections: ExamSection[] = paper.sections
+      .map(sec => {
+        const uniqueQuestions = sec.questions.filter(q => {
+          const normalized = q.questionText.trim().toLowerCase().replace(/\s+/g, ' ');
+          if (seenGlobalItQuestions.has(normalized)) {
+            return false;
+          }
+          seenGlobalItQuestions.add(normalized);
+          return true;
+        });
+        return {
+          ...sec,
+          questions: uniqueQuestions
+        };
+      })
+      .filter(sec => sec.questions.length > 0);
+
+    return {
+      ...paper,
+      sections: deduplicatedSections
+    };
+  })
+  .filter(paper => paper.sections.length > 0);
+
+// Helper to get total unique question count
 export const getTotalQuestionCount = (): number => {
   return allExamPapers.reduce((sum, paper) => {
     return sum + paper.sections.reduce((secSum, sec) => secSum + sec.questions.length, 0);

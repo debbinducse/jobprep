@@ -16,7 +16,11 @@ export type TopicCategory =
   | 'Operating Systems & Linux'
   | 'Software Engineering & System Design'
   | 'E-Governance & ICT Laws'
-  | 'Non-Technical & Language';
+  | 'Non-Technical & Language'
+  | 'Focus Writing & Language'
+  | 'Hardware, OS & Architecture'
+  | 'Software Engineering'
+  | 'Computer Architecture & Digital Logic';
 
 export type QuestionType = 
   | 'descriptive' 
@@ -70,8 +74,9 @@ export interface ExamPaper {
   grade: 'Grade 10' | 'Grade 9';
   totalMarks: number;
   duration: string;
-  examType: 'Written Exam (Descriptive & Technical)' | 'MCQ Preliminary' | 'Full Combined Paper';
+  examType: 'Written Exam (Descriptive & Technical)' | 'MCQ Preliminary' | 'Full Combined Paper' | string;
   summary: string;
   keyTopics: string[];
+  originalPaperImages?: string[];
   sections: ExamSection[];
 }

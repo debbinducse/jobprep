@@ -1,318 +1,444 @@
 import { ExamPaper } from '../types/exam';
 
 export const officerItPapers: ExamPaper[] = [
-  // NEW: 2026 Combined 9 Banks Officer (IT)
+  // 1. Job ID: 25105 (Officer IT, Grade-10, 2026)
   {
-    id: 'officer-it-combined-2026',
-    title: 'Officer (IT), Combined 9 Banks & FIs (2026 Written Exam)',
-    searchQuery: '2026 Combined Bank Officer IT written question solution pdf BSCS Bangladesh Bank',
+    id: 'officer-it-25105',
+    title: 'Officer (IT), Grade-10 (Job ID-25105) — Bangladesh Bank (BSCS)',
+    searchQuery: 'Bangladesh Bank BSCS Officer IT Grade 10 Job ID 25105 written question paper solution',
     category: 'Officer (IT)',
-    jobId: 'BSCS-OIT-2026',
-    circularYear: '2026 (Combined 9 Banks)',
-    examDate: 'August 28, 2026',
-    examBody: 'Bankers Selection Committee Secretariat (BSCS) / Bangladesh Bank',
+    jobId: '25105',
+    circularYear: '2025 (Exam 2026)',
+    examDate: 'July 31, 2026',
+    examBody: 'Bangladesh Bank — Banker\'s Selection Committee Secretariat (BSCS)',
     participatingBanks: [
       'Sonali Bank PLC',
       'Janata Bank PLC',
       'Agrani Bank PLC',
       'Rupali Bank PLC',
-      'Bangladesh Krishi Bank (BKB)',
-      'Rajshahi Krishi Unnayan Bank (RAKUB)',
-      'Bangladesh Development Bank PLC (BDBL)',
-      'Probashi Kallyan Bank (PKB)',
-      'Bangladesh House Building Finance Corporation (BHBFC)'
+      'Bangladesh Krishi Bank',
+      'Bangladesh Development Bank PLC'
     ],
     grade: 'Grade 10',
     totalMarks: 200,
     duration: '2 Hours (120 Minutes)',
-    examType: 'Written Exam (Descriptive & Technical)',
-    summary: 'Complete 2026 BSCS Combined 9 Banks Officer (IT) 200-mark written examination paper. Covers Database Normalization (1NF to BCNF) & Non-Performing Loan (NPL) SQL Queries, Priority Queue Min-Heap for RTGS Transaction Scheduling, CIDR Subnetting & ARP/TLS Security, Software Testing Cyclomatic Complexity, Virtual Memory Page Replacement (LRU), e-KYC Biometric Architecture, and Data Privacy/AML Compliance Focus Writing.',
+    examType: 'Written Exam (Official BSCS Paper — 6 Questions)',
+    summary: 'Official Bangladesh Bank BSCS Written Question Paper for Officer (IT), Grade-10 (Job ID-25105). Structured in two official parts: Part 1 (Questions 1 to 5: Focus Writing in Bangla & English, Passage Translation, and 5 General Knowledge items — 50 Marks) and Part 2 (Question 6: Subject Related Questions 6.1 to 6.10 — 10 x 15 = 150 Marks).',
     keyTopics: [
-      'Database Normalization & NPL SQL',
-      'Priority Queue Heap for RTGS',
-      'CIDR /26 Branch Subnetting',
-      'Cyclomatic Complexity & Testing',
-      'LRU Page Replacement & Linux',
-      'Data Privacy & AML/KYC Compliance'
+      'RISC vs CISC Architecture',
+      'Symmetric vs Asymmetric Encryption',
+      'Page Fault & Thrashing in OS',
+      'SQL HAVING & Aggregate Query',
+      'Black-Box vs White-Box Testing',
+      'Stack vs Queue Operations',
+      'TCP vs UDP & Port Numbers',
+      'Boolean Algebra & De Morgan Theorem',
+      'NRZ-L, NRZ-I & Manchester Line Coding',
+      'IPv4 Subnetting (/26 Fixed-Length)',
+      'Java OOP Polymorphism & Output Trace',
+      'Binary Search Tree (BST) Insertion'
     ],
     sections: [
       {
-        id: 'sec-oit2026-tech',
-        name: 'Part A: Core IT & Computer Science (140 Marks)',
-        marks: 140,
-        description: 'DBMS & SQL, Programming & Data Structures, Networking & Security, Software Testing, Operating Systems, and Banking Technology',
+        id: 'sec-25105-general',
+        name: 'Part 1: Focus Writing, Translation & General Knowledge (Questions 1–5) — 50 Marks',
+        marks: 50,
+        description: 'There are 6 (six) questions in total. Questions 1 to 5 carry 10 marks each (5 x 10 = 50 Marks).',
         questions: [
           {
-            id: 'q-oit2026-1',
+            id: 'q-25105-1',
             questionNo: '1',
-            type: 'sql',
-            topicCategory: 'Database & SQL',
-            questionText: 'Consider the following unnormalized Bank Loan table:\nLoanRecord(LoanID, CustomerID, CustomerName, CustomerPhone_List, BranchCode, BranchName, BranchCity, SanctionAmount, OverdueMonths)\n(a) Normalize this relation step-by-step from 1NF to 2NF and 3NF/BCNF, clearly identifying primary and foreign keys.\n(b) Write an SQL query on the normalized tables to list each BranchName, total number of classified Non-Performing Loans (where OverdueMonths >= 6), and total SanctionAmount of those classified loans for branches where the classified loan total exceeds BDT 50,00,000.',
-            solution: `(a) Step-by-Step Normalization (1NF -> 2NF -> 3NF/BCNF):
-1. First Normal Form (1NF):
-   - Problem: \`CustomerPhone_List\` is a multi-valued attribute.
-   - Fix: Decompose multi-valued phone numbers into a separate table \`CustomerPhones(CustomerID, PhoneNumber)\` so all attributes are atomic.
-2. Second Normal Form (2NF):
-   - Problem: Partial dependencies on composite keys.
-   - Fix: Separate Customer attributes and Loan attributes:
-     * \`Customers(CustomerID [PK], CustomerName)\`
-     * \`CustomerPhones(CustomerID [FK], PhoneNumber, PRIMARY KEY(CustomerID, PhoneNumber))\`
-3. Third Normal Form (3NF / BCNF):
-   - Problem: Transitive dependency inside Loans: \`LoanID -> BranchCode -> (BranchName, BranchCity)\`.
-   - Final 3NF/BCNF Schema:
-     * \`Branches(BranchCode [PK], BranchName, BranchCity)\`
-     * \`Customers(CustomerID [PK], CustomerName)\`
-     * \`CustomerPhones(CustomerID [FK], PhoneNumber [PK])\`
-     * \`Loans(LoanID [PK], CustomerID [FK], BranchCode [FK], SanctionAmount, OverdueMonths)\`
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Focus Writing in Bangla (10 Marks):
+বাংলাদেশের অর্থনৈতিক উন্নয়নে ডিজিটাল ব্যাংকিং ও মোবাইল ফাইন্যান্সিয়াল সার্ভিসেস (MFS)-এর ভূমিকা: আর্থিক অন্তর্ভুক্তি, ক্যাশলেস লেনদেন এবং সাইবার নিরাপত্তা ঝুঁকি আলোচনা করুন।`,
+            solution: `ফোকাস রাইটিং: বাংলাদেশের অর্থনৈতিক উন্নয়নে ডিজিটাল ব্যাংকিং ও মোবাইল ফাইন্যান্সিয়াল সার্ভিসেস (MFS)-এর ভূমিকা
 
-(b) SQL Query for Classified Non-Performing Loans (NPL >= 6 Months Overdue):`,
-            codeSolution: `-- 2026 Combined Bank Officer (IT) - Normalized Schema & NPL Reporting Query
-SELECT 
-    b.BranchCode,
-    b.BranchName,
-    b.BranchCity,
-    COUNT(l.LoanID) AS Classified_NPL_Count,
-    SUM(l.SanctionAmount) AS Total_Classified_Amount_BDT
-FROM Branches b
-JOIN Loans l ON b.BranchCode = l.BranchCode
-WHERE l.OverdueMonths >= 6
-GROUP BY b.BranchCode, b.BranchName, b.BranchCity
-HAVING SUM(l.SanctionAmount) > 5000000
-ORDER BY Total_Classified_Amount_BDT DESC;`,
-            solutionLanguage: 'sql',
-            tags: ['DBMS', 'Normalization', 'BCNF', 'SQL', 'GROUP BY', 'HAVING', '2026 Exam'],
-            marks: 25,
+১. ভূমিকা:
+বিংশ শতাব্দীর প্রথাগত ব্যাংকিং ব্যবস্থা থেকে বেরিয়ে এসে একবিংশ শতাব্দীর বাংলাদেশে ডিজিটাল ব্যাংকিং এবং মোবাইল ফাইন্যান্সিয়াল সার্ভিসেস (MFS) এক নীরব অর্থনৈতিক বিপ্লব ঘটিয়েছে। বাংলাদেশ ব্যাংকের প্রত্যক্ষ তত্ত্বাবধানে বিকাশ, নগদ, রকেট এবং উপায়-এর মতো সেবাগুলো দেশের প্রান্তিক জনগোষ্ঠীকে আনুষ্ঠানিক আর্থিক খাতের আওতায় নিয়ে এসেছে।
+
+২. আর্থিক অন্তর্ভুক্তি (Financial Inclusion) ও গ্রামীণ অর্থনীতি:
+পূর্বে যেখানে একটি ব্যাংক হিসাব খোলার জন্য জেলা বা উপজেলা সদরের শাখায় যেতে হতো, বর্তমানে ই-কেওয়াইসি (e-KYC) প্রযুক্তির কল্যাণে মাত্র কয়েক মিনিটে ঘরে বসেই মোবাইল হিসাব খোলা সম্ভব হচ্ছে। গার্মেন্টস কর্মীদের বেতন ভাতা, প্রবাসীদের প্রেরিত রেমিট্যান্স, কৃষি ভর্তুকি এবং সামাজিক নিরাপত্তা বেষ্টনীর ভাতা সরাসরি উপকারভোগীর মোবাইল অ্যাকাউন্টে পৌঁছে যাচ্ছে।
+
+৩. ক্যাশলেস লেনদেন ও বাংলা কিউআর (Bangla QR):
+নগদ টাকার মুদ্রণ ও পরিবহন ব্যয় কমাতে বাংলাদেশ ব্যাংক 'ক্যাশলেস বাংলাদেশ' উদ্যোগ গ্রহণ করেছে। বাংলা কিউআর (Bangla QR), এনপিএসবি (NPSB), বিইএফটিএন (BEFTN), আরটিজিএস (RTGS) এবং বিনিময় (Binimoy) প্ল্যাটফর্মের মাধ্যমে আন্তঃব্যাংক ও আন্তঃএমএফএস লেনদেন তাৎক্ষণিক ও সহজতর হয়েছে।
+
+৪. সাইবার নিরাপত্তা ঝুঁকি ও চ্যালেঞ্জসমূহ:
+ডিজিটাল লেনদেন বৃদ্ধির সাথে সাথে ওটিপি (OTP) প্রতারণা, ফিশিং লিংক, সিম ক্লোনিং এবং ম্যালওয়্যার আক্রমণের ঝুঁকি বৃদ্ধি পেয়েছে। অনেক গ্রাহকের ডিজিটাল সাক্ষরতার অভাবকে কাজে লাগিয়ে প্রতারক চক্র অর্থ হাতিয়ে নিচ্ছে।
+
+৫. উত্তরণের উপায় ও উপসংহার:
+ডিজিটাল ব্যাংকিং ও এমএফএস খাতকে নিরাপদ রাখতে মাল্টি-ফ্যাক্টর অথেনটিকেশন (MFA), কৃত্রিম বুদ্ধিমত্তাভিত্তিক ফ্রড ডিটেকশন সিস্টেম এবং গ্রাহক সচেতনতা বৃদ্ধি অপরিহার্য। প্রযুক্তির সঠিক ব্যবহার ও কঠোর সাইবার নিরাপত্তা নিশ্চিত করা গেলে ডিজিটাল ব্যাংকিং বাংলাদেশের অর্থনৈতিক প্রবৃদ্ধিকে আরও গতিশীল করবে।`,
+            tags: ['Focus Writing Bangla', 'Digital Banking', 'MFS', 'Financial Inclusion'],
+            marks: 10,
             difficulty: 'Medium'
           },
           {
-            id: 'q-oit2026-2',
+            id: 'q-25105-2',
             questionNo: '2',
-            type: 'coding',
-            topicCategory: 'Programming & Algorithms',
-            questionText: 'In a Core Banking Payment Switch, interbank transactions are prioritized as follows: Priority 1 = RTGS High-Value Settlement, Priority 2 = NPSB Instant Retail Transfer, Priority 3 = BEFTN Regular Batch. Write a C++ or Python program using a Priority Queue (Min-Heap) to enqueue incoming transactions and process them in strict priority order (breaking ties by earliest arrival timestamp).',
-            solution: 'A Min-Heap stores tuples of (priority_level, arrival_sequence, transaction_id, amount_bdt). Enqueue (heappush) and Dequeue (heappop) each run in O(log N) time.',
-            codeSolution: `import heapq
-from dataclasses import dataclass, field
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Focus Writing in English (10 Marks):
+Cybersecurity Challenges in the Banking Sector of Bangladesh: Analyze the emerging threats to Core Banking Systems (CBS), the role of Security Operations Centers (SOC), and regulatory compliance frameworks.`,
+            solution: `Focus Writing: Cybersecurity Challenges in the Banking Sector of Bangladesh
 
-@dataclass(order=True)
-class BankTransaction:
-    priority: int              # 1 = RTGS, 2 = NPSB, 3 = BEFTN
-    arrival_seq: int           # Tie-breaker: FIFO order within same priority
-    txn_id: str = field(compare=False)
-    channel: str = field(compare=False)
-    amount_bdt: float = field(compare=False)
+1. Introduction:
+As the banking sector of Bangladesh rapidly transitions toward cloud-native Core Banking Systems (CBS), Open Banking APIs, and 24/7 real-time payment switches, the attack surface for cyber adversaries has expanded dramatically. Protecting critical financial infrastructure is no longer solely an IT issue—it is a matter of national economic security.
 
-class PaymentSwitchDispatcher:
-    def __init__(self):
-        self.min_heap: list[BankTransaction] = []
-        self.seq_counter = 0
+2. Emerging Threat Landscape:
+Modern financial institutions face sophisticated, multi-vector threats:
+- Advanced Persistent Threats (APTs) and state-sponsored attacks targeting SWIFT and RTGS gateways.
+- Ransomware campaigns capable of encrypting critical database clusters and halting branch operations.
+- Distributed Denial of Service (DDoS) attacks aimed at disrupting internet banking portals and mobile apps.
+- Insider threats and social engineering (spear-phishing, credential harvesting) targeting privileged IT administrators.
 
-    def enqueue_transaction(self, txn_id: str, channel: str, priority: int, amount_bdt: float):
-        self.seq_counter += 1
-        txn = BankTransaction(priority, self.seq_counter, txn_id, channel, amount_bdt)
-        heapq.heappush(self.min_heap, txn)
+3. Role of Security Operations Centers (SOC) and Zero-Trust Architecture:
+To combat these threats, commercial banks must establish 24/7 Security Operations Centers (SOC) equipped with Security Information and Event Management (SIEM) and Extended Detection and Response (XDR) tools. Adopting a Zero-Trust Architecture—enforcing strict Identity and Access Management (IAM), micro-segmentation, and Principle of Least Privilege (PoLP)—ensures that lateral movement within the bank's internal network is blocked.
 
-    def process_next(self) -> BankTransaction | None:
-        if not self.min_heap:
-            return None
-        return heapq.heappop(self.min_heap)
-
-# Demonstration
-switch = PaymentSwitchDispatcher()
-switch.enqueue_transaction("TXN-101", "BEFTN", priority=3, amount_bdt=45000)
-switch.enqueue_transaction("TXN-102", "RTGS",  priority=1, amount_bdt=2500000)
-switch.enqueue_transaction("TXN-103", "NPSB",  priority=2, amount_bdt=80000)
-switch.enqueue_transaction("TXN-104", "RTGS",  priority=1, amount_bdt=5000000)
-
-while (txn := switch.process_next()) is not None:
-    print(f"Dispatched [{txn.channel} | Priority {txn.priority}] {txn.txn_id}: BDT {txn.amount_bdt:,.2f}")`,
-            solutionLanguage: 'python',
-            tags: ['Data Structures', 'Priority Queue', 'Min-Heap', 'RTGS', 'Python', '2026 Exam'],
-            marks: 25,
+4. Regulatory Compliance and Conclusion:
+Strict adherence to Bangladesh Bank's ICT Security Guidelines (Version 4.0), ISO/IEC 27001, and PCI-DSS standards is mandatory. Regular Vulnerability Assessment and Penetration Testing (VAPT), automated Disaster Recovery (DR) drills, and continuous employee cybersecurity training will fortify Bangladesh's financial ecosystem against evolving cyber threats.`,
+            tags: ['Focus Writing English', 'Cybersecurity', 'Core Banking', 'SOC'],
+            marks: 10,
             difficulty: 'Medium'
           },
           {
-            id: 'q-oit2026-3',
+            id: 'q-25105-3',
             questionNo: '3',
-            type: 'math',
-            topicCategory: 'Networking & Security',
-            questionText: 'A newly opened regional bank branch is assigned the network address 192.168.50.0/24. The IT Officer needs to create 4 equal-sized subnets for: (1) Teller & Cash Counters, (2) Back-Office & Loan Desk, (3) ATM & POS Switch VLAN, and (4) Branch CCTV & IP Phones.\n(a) Calculate the new Subnet Mask in CIDR and dotted decimal format, total hosts per subnet, and usable hosts per subnet.\n(b) Write the complete Subnet Table (Network ID, First Usable IP, Last Usable IP, and Broadcast IP) for all 4 subnets.',
-            solution: `(a) Subnet Calculation:
-- Given network: 192.168.50.0/24
-- Required equal subnets: 4 -> Borrow s = 2 bits since 2^2 = 4 subnets.
-- New Prefix Length: /24 + 2 = /26
-- Dotted Decimal Subnet Mask: 255.255.255.192 (since 128 + 64 = 192).
-- Remaining host bits (h): 32 - 26 = 6 bits.
-- Total IP addresses per subnet (Block Size): 2^6 = 64 addresses.
-- Usable Host IPs per subnet: 2^6 - 2 = 62 usable hosts.
-
-(b) Complete 4-Subnet Allocation Table:
-1. Subnet 1 (Teller & Cash Counters):
-   - Network ID: 192.168.50.0/26
-   - Usable Host Range: 192.168.50.1 — 192.168.50.62
-   - Broadcast Address: 192.168.50.63
-2. Subnet 2 (Back-Office & Loan Desk):
-   - Network ID: 192.168.50.64/26
-   - Usable Host Range: 192.168.50.65 — 192.168.50.126
-   - Broadcast Address: 192.168.50.127
-3. Subnet 3 (ATM & POS Switch VLAN):
-   - Network ID: 192.168.50.128/26
-   - Usable Host Range: 192.168.50.129 — 192.168.50.190
-   - Broadcast Address: 192.168.50.191
-4. Subnet 4 (Branch CCTV & IP Phones):
-   - Network ID: 192.168.50.192/26
-   - Usable Host Range: 192.168.50.193 — 192.168.50.254
-   - Broadcast Address: 192.168.50.255`,
-            tags: ['Networking', 'Subnetting', 'CIDR', 'IPv4', 'VLAN', '2026 Exam'],
-            marks: 25,
-            difficulty: 'Medium'
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Translate the following passage into English (10 Marks):
+"তথ্যপ্রযুক্তির এই যুগে ডেটা বা উপাত্তকে বলা হয় আধুনিক অর্থনীতির নতুন জ্বালানি। ব্যাংকিং খাতে প্রতিদিন লক্ষ লক্ষ গ্রাহকের লেনদেনের যে বিশাল উপাত্ত তৈরি হয়, তা সঠিকভাবে বিশ্লেষণ করতে পারলে গ্রাহকসেবার মান বহুগুণ বৃদ্ধি করা সম্ভব। তবে গ্রাহকের ব্যক্তিগত তথ্যের গোপনীয়তা রক্ষা করা প্রতিটি আর্থিক প্রতিষ্ঠানের নৈতিক ও আইনি দায়িত্ব।"`,
+            solution: `English Translation:
+"In this era of information technology, data is called the new fuel of the modern economy. If the massive volume of transaction data generated daily by millions of customers in the banking sector can be analyzed properly, the quality of customer service can be enhanced manifold. However, protecting the privacy of customers' personal information is the moral and legal responsibility of every financial institution."`,
+            tags: ['Translation', 'Bangla to English', 'Data Privacy'],
+            marks: 10,
+            difficulty: 'Easy'
           },
           {
-            id: 'q-oit2026-4',
+            id: 'q-25105-4',
             questionNo: '4',
             type: 'descriptive',
-            topicCategory: 'Software Engineering & System Design',
-            questionText: 'Differentiate between Black-Box Testing and White-Box Testing in banking software QA. Given an ATM Cash Dispensing control flow graph with 11 edges (E = 11), 9 nodes (N = 9), and 1 connected component (P = 1), calculate McCabe’s Cyclomatic Complexity V(G) and state the minimum number of independent basis path test cases required.',
-            solution: `1. Black-Box Testing vs. White-Box Testing:
-- Black-Box Testing (Specification-Based):
-  * Tests software functionality without inspecting internal source code structure.
-  * Techniques: Equivalence Partitioning, Boundary Value Analysis (e.g. testing 4-digit PIN or minimum BDT 500 ATM withdrawal), Decision Table Testing.
-- White-Box Testing (Code/Structural-Based):
-  * Examines internal control flow, branches, loops, and SQL query construction.
-  * Techniques: Statement Coverage, Branch Coverage, Path Coverage, Cyclomatic Complexity Analysis.
-
-2. McCabe’s Cyclomatic Complexity Calculation:
-- Formula: V(G) = E - N + 2P
-- Given:
-  * Number of Edges (E) = 11
-  * Number of Nodes (N) = 9
-  * Connected Components (P) = 1
-- Calculation:
-  V(G) = 11 - 9 + (2 * 1) = 2 + 2 = 4.
-- Interpretation:
-  There are exactly 4 linearly independent basis paths through the ATM Cash Dispensing module. Therefore, at least 4 independent unit test cases are required to achieve 100% basis path coverage.`,
-            tags: ['Software Engineering', 'Software Testing', 'Cyclomatic Complexity', 'QA', '2026 Exam'],
-            marks: 25,
-            difficulty: 'Medium'
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Translate the following passage into Bangla (10 Marks):
+"Artificial intelligence is no longer a futuristic concept; it is actively transforming how banks assess credit risk and detect fraudulent transactions in real time. Nevertheless, over-reliance on automated algorithms without human oversight can lead to systemic bias and unexpected operational failures."`,
+            solution: `Bangla Translation:
+"কৃত্রিম বুদ্ধিমত্তা এখন আর কোনো ভবিষ্যৎ কল্পনা নয়; এটি ব্যাংকগুলো কীভাবে ঋণের ঝুঁকি মূল্যায়ন করে এবং তাৎক্ষণিকভাবে প্রতারণামূলক লেনদেন শনাক্ত করে, তাকে সক্রিয়ভাবে বদলে দিচ্ছে। তা সত্ত্বেও, মানবিক তদারকি ছাড়া স্বয়ংক্রিয় অ্যালগরিদমের ওপর অতিরিক্ত নির্ভরশীলতা প্রাতিষ্ঠানিক পক্ষপাতিত্ব এবং অপ্রত্যাশিত পরিচালনাগত ব্যর্থতার কারণ হতে পারে।"`,
+            tags: ['Translation', 'English to Bangla', 'Artificial Intelligence'],
+            marks: 10,
+            difficulty: 'Easy'
           },
           {
-            id: 'q-oit2026-5',
-            questionNo: '5',
-            type: 'math',
-            topicCategory: 'Operating Systems & Linux',
-            questionText: 'A database server uses Demand Paging with 3 physical page frames in RAM. Given the page reference string: 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, calculate the total number of Page Faults and Page Hit Ratio using the Least Recently Used (LRU) page replacement algorithm.',
-            solution: `Step-by-Step LRU Frame Trace (3 Frames, Initially Empty):
-Reference String: 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2 (Total references = 13)
-
-1. Ref 7 -> [7, -, -] (Fault #1)
-2. Ref 0 -> [7, 0, -] (Fault #2)
-3. Ref 1 -> [7, 0, 1] (Fault #3)
-4. Ref 2 -> Replace LRU (7) -> [2, 0, 1] (Fault #4)
-5. Ref 0 -> Already in frame [2, 0, 1] (HIT #1 - 0 becomes most recent)
-6. Ref 3 -> Replace LRU (1) -> [2, 0, 3] (Fault #5)
-7. Ref 0 -> Already in frame [2, 0, 3] (HIT #2 - 0 becomes most recent)
-8. Ref 4 -> Replace LRU (2) -> [4, 0, 3] (Fault #6)
-9. Ref 2 -> Replace LRU (3) -> [4, 0, 2] (Fault #7)
-10. Ref 3 -> Replace LRU (0) -> [4, 3, 2] (Fault #8)
-11. Ref 0 -> Replace LRU (4) -> [0, 3, 2] (Fault #9)
-12. Ref 3 -> Already in frame [0, 3, 2] (HIT #3)
-13. Ref 2 -> Already in frame [0, 3, 2] (HIT #4)
-
-Summary Results:
-- Total Page References = 13
-- Total Page Faults (LRU) = 9
-- Total Page Hits = 4
-- Page Hit Ratio = 4 / 13 = 30.77%
-- Page Fault Ratio = 9 / 13 = 69.23%`,
-            tags: ['Operating Systems', 'Virtual Memory', 'LRU', 'Page Replacement', '2026 Exam'],
-            marks: 20,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-oit2026-6',
-            questionNo: '6',
+            id: 'q-25105-5',
+            questionNo: '5.1 – 5.5',
             type: 'descriptive',
-            topicCategory: 'E-Governance & ICT Laws',
-            questionText: 'Explain the end-to-end architecture of Electronic Know Your Customer (e-KYC) in Bangladesh banks. How does a bank verify a customer’s NID and biometric fingerprint/facial data against the Election Commission (BEC) NID Server while complying with data privacy guidelines?',
-            solution: `1. e-KYC Architecture under BFIU / Bangladesh Bank Guidelines:
-- Step 1 (Data Capture): Customer provides 10-digit Smart NID / 17-digit NID number and Date of Birth via bank branch tablet or mobile app, along with live facial photograph (liveness detection) or fingerprint scan via ISO-certified biometric scanner.
-- Step 2 (Encrypted Gateway Transmission): The bank’s e-KYC middleware encrypts the payload using TLS 1.3 and digital signature certificates and transmits a verification request via a dedicated VPN/leased line to the Bangladesh Election Commission (BEC) Porichoy / NID Verification Gateway.
-- Step 3 (Identity Matching): The NID server matches demographic fields and biometric templates and returns a signed verification response (Verified / Not Matched) without exposing the raw national database.
-- Step 4 (AML & Sanctions Screening): The customer profile is automatically screened against UN/BFIU Domestic & International Sanctions Lists and PEP (Politically Exposed Persons) databases before instant account activation.
+            topicCategory: 'Focus Writing & Language',
+            questionText: `5. General Knowledge (5 x 2 = 10 Marks):
+5.1 What is the full form of BEFTN in the banking sector of Bangladesh?
+5.2 Which organization operates the National Data Center (Tier IV) of Bangladesh located in Kaliakoir, Gazipur?
+5.3 What is the name of the interoperable digital payment platform launched by Bangladesh Bank connecting banks and MFS providers?
+5.4 Which protocol is used to securely transfer files over an SSH connection?
+5.5 In which year was the Bangladesh Bank Order (President's Order No. 127) promulgated?`,
+            solution: `Answers to Question 5 (General Knowledge):
 
-2. Data Privacy Safeguards:
-- Biometric templates are never stored in raw image format on client devices.
-- Role-Based Access Control (RBAC) and immutable audit trails log every NID query to prevent unauthorized employee snooping.`,
-            tags: ['e-KYC', 'E-Governance', 'Data Privacy', 'Biometrics', 'Banking IT', '2026 Exam'],
-            marks: 20,
+5.1 BEFTN stands for: Bangladesh Electronic Funds Transfer Network.
+5.2 Bangladesh Data Center Company Limited (BDCCL) under the ICT Division.
+5.3 Binimoy (বিনিময়).
+5.4 SFTP (SSH File Transfer Protocol / Secure File Transfer Protocol) or SCP (Secure Copy Protocol).
+5.5 1972 (December 16, 1972).`,
+            tags: ['General Knowledge', 'BEFTN', 'Binimoy', 'Bangladesh Bank'],
+            marks: 10,
             difficulty: 'Easy'
           }
         ]
       },
       {
-        id: 'sec-oit2026-nontech',
-        name: 'Part B: Focus Writing, Banking Math & Translation (60 Marks)',
-        marks: 60,
-        description: 'English Focus Writing on Data Privacy & AML/KYC, Analytical Banking Math, and Bilingual Translation',
+        id: 'sec-25105-subject',
+        name: 'Part 2: 6. Subject Related Questions (6.1–6.10) — (15 x 10 = 150 Marks)',
+        marks: 150,
+        description: 'Official Subject Related CSE/IT Questions (10 Questions x 15 Marks = 150 Marks).',
         questions: [
           {
-            id: 'q-oit2026-7',
-            questionNo: '7',
+            id: 'q-25105-6-1',
+            questionNo: '6.1',
             type: 'descriptive',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Focus Writing in English (250 Words): "Why Data Privacy and Regulatory Compliance (AML & KYC) Are Vital for Banking Stability in the Digital Era."',
-            solution: `Model Essay Outline:
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Differentiate between RISC (Reduced Instruction Set Computer) and CISC (Complex Instruction Set Computer) architectures. Give two examples of processors for each architecture.',
+            solution: `Comparison between RISC and CISC Architectures:
 
-1. Introduction:
-In an era dominated by instant digital payments, cloud-hosted banking channels, and open-banking APIs, customer data has become the most valuable asset in financial services. Consequently, robust Data Privacy protection and strict adherence to Anti-Money Laundering (AML) and Know Your Customer (KYC) regulations are foundational pillars of national banking stability.
+1. Instruction Set & Format:
+- RISC: Uses a small, highly optimized set of simple instructions of fixed length (typically 32 bits) that execute in a single clock cycle.
+- CISC: Uses a large set of complex instructions of variable length (1 to 15 bytes) that may take multiple clock cycles to execute.
 
-2. Protecting Public Trust through Data Privacy:
-- Banking thrives entirely on depositor confidence. Data breaches exposing National ID details, account balances, or card credentials lead to identity theft, financial fraud, and systemic reputational damage.
-- Implementing end-to-end encryption (AES-256, TLS 1.3), data masking in non-production environments, and strict principle-of-least-privilege access protects customers from both external hackers and insider threats.
+2. Memory Access Model:
+- RISC: Follows a strict Load/Store architecture—only LOAD and STORE instructions access memory; all arithmetic and logical operations work solely on CPU registers.
+- CISC: Allows direct memory-to-memory and register-to-memory operations within a single arithmetic instruction.
 
-3. Safeguarding Macroeconomic Integrity via AML & KYC:
-- Rigorous e-KYC onboarding prevents shell accounts, synthetic identity fraud, and illicit terror financing.
-- Real-time AML transaction monitoring protects Bangladeshi banks from correspondent banking de-risking, international SWIFT sanctions, and illicit capital flight.
+3. Hardware vs Compiler Complexity:
+- RISC: Hardware control unit is hardwired and simple; complexity lies in the compiler to optimize instruction scheduling and pipelining.
+- CISC: Uses a complex microprogrammed control unit in hardware to decode multi-step instructions.
 
-4. Conclusion:
-Data privacy and regulatory compliance are not merely legal checkboxes; they are strategic imperatives that safeguard depositor wealth and ensure the resilience of Bangladesh's financial sector.`,
-            tags: ['Focus Writing', 'Data Privacy', 'AML', 'KYC', 'Banking Stability', '2026 Exam'],
-            marks: 20,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-oit2026-8',
-            questionNo: '8',
-            type: 'math',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'A bank grants an SME IT hardware loan of BDT 5,00,000 at an annual interest rate of 10% compounded annually for 3 years. (a) What is the total compound amount after 3 years if paid as a lump sum? (b) If the bank deducts a 1% processing fee upfront on the principal, what is the net disbursed amount?',
-            solution: `(a) Compound Amount after 3 Years:
-- Principal (P) = BDT 5,00,000
-- Rate (r) = 10% = 0.10 per annum
-- Time (n) = 3 years
-- Formula: A = P * (1 + r)^n
-  A = 5,00,000 * (1 + 0.10)^3
-  A = 5,00,000 * 1.331
-  A = BDT 6,65,500
-- Total Compound Interest = 6,65,500 - 5,00,000 = BDT 1,65,500.
+4. Registers & Pipelining:
+- RISC: Contains a large number of general-purpose registers (32+) and achieves high instruction pipeline throughput (CPI close to 1).
+- CISC: Contains fewer general-purpose registers (8–16) and pipelining is more complex due to variable instruction lengths.
 
-(b) Net Disbursed Amount after 1% Upfront Processing Fee:
-- Processing Fee = 1% of 5,00,000 = BDT 5,000
-- Net Disbursed Amount = 5,00,000 - 5,000 = BDT 4,95,000.`,
-            tags: ['Mathematics', 'Compound Interest', 'Banking Math', '2026 Exam'],
-            marks: 20,
+5. Real-World Processor Examples:
+- RISC Examples: ARM Cortex series (Apple M1/M2/M3), RISC-V, MIPS, IBM PowerPC.
+- CISC Examples: Intel x86/x86-64 (Core i7/i9, Xeon), AMD Ryzen/EPYC, Motorola 68000.`,
+            tags: ['Computer Architecture', 'RISC vs CISC', 'Processors'],
+            marks: 15,
             difficulty: 'Easy'
           },
           {
-            id: 'q-oit2026-9',
-            questionNo: '9',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate into English: "কৃত্রিম বুদ্ধিমত্তা বা এআই ব্যাংকিং খাতে গ্রাহক সেবার মান উন্নয়ন এবং জালিয়াতি শনাক্তকরণে নতুন দিগন্ত উন্মোচন করেছে। তবে প্রযুক্তির এই সুফল ধরে রাখতে হলে সাইবার নিরাপত্তা জোরদার করা এবং গ্রাহকের তথ্যের গোপনীয়তা নিশ্চিত করা অপরিহার্য।"',
-            solution: `Standard Model English Translation:
-"Artificial Intelligence (AI) has opened a new horizon in the banking sector for improving customer service quality and detecting fraud. However, to sustain the benefits of this technology, strengthening cybersecurity and ensuring the privacy of customer data are indispensable."`,
-            tags: ['Translation', 'Bangla to English', 'AI in Banking', '2026 Exam'],
-            marks: 20,
+            id: 'q-25105-6-2',
+            questionNo: '6.2',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'Explain the key operational differences between Symmetric Key Encryption and Asymmetric Key Encryption. Why do modern TLS/HTTPS connections use a hybrid combination of both?',
+            solution: `1. Operational Differences:
+- Key Usage: Symmetric encryption uses a single shared secret key for both encryption and decryption (e.g., AES-256, ChaCha20, 3DES). Asymmetric encryption uses a mathematically related key pair: a Public Key for encryption and a Private Key for decryption (e.g., RSA, ECC).
+- Computational Speed: Symmetric algorithms rely on fast bitwise XOR, substitution, and permutation operations, making them 100 to 1,000 times faster than asymmetric algorithms, which rely on modular exponentiation or elliptic curve point multiplication.
+- Key Exchange Problem: Symmetric encryption requires a secure pre-existing channel to share the secret key (requires N(N-1)/2 keys for N parties). Asymmetric encryption solves key distribution publicly (requires only 2N keys for N parties).
+
+2. Why TLS/HTTPS Uses a Hybrid Approach:
+- During the TLS Handshake, Asymmetric Cryptography (RSA or ECDHE) is used to authenticate the bank server's digital certificate and securely exchange/establish an ephemeral shared session key over an untrusted public network.
+- Once the session key is established, TLS switches to Symmetric Encryption (such as AES-GCM) for all bulk application data transfer to achieve high throughput and low latency.`,
+            tags: ['Cryptography', 'Symmetric vs Asymmetric', 'TLS', 'Security'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-25105-6-3',
+            questionNo: '6.3',
+            type: 'descriptive',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'What is a "Page Fault" in virtual memory management? Explain the concept of "Thrashing" in an operating system and how the Working-Set Model helps prevent it.',
+            solution: `1. Page Fault:
+A Page Fault occurs when a running process attempts to access a virtual memory page that is currently not mapped to any physical RAM frame (its valid/invalid bit in the Page Table is set to 'invalid'). The MMU triggers a trap to the OS kernel, which locates the page on secondary storage (swap space/disk), loads it into a free physical frame, updates the page table, and restarts the instruction.
+
+2. Thrashing:
+Thrashing is a severe performance degradation state where a process (or the entire system) spends more time paging (swapping pages in and out between RAM and disk) than executing actual CPU instructions.
+- Cause: When the degree of multiprogramming is too high, each process receives fewer physical frames than its minimum locality requirement. Processes continuously fault and steal frames from one another, causing CPU utilization to plummet while disk I/O saturates at 100%.
+
+3. Prevention via the Working-Set Model:
+- Peter Denning's Working-Set Model defines a process's Working Set W(t, Delta) as the set of distinct pages referenced by the process during the most recent Delta virtual time window.
+- The OS monitors the size of each process's working set |W_i|. If the sum of all working sets exceeds total available physical frames (Sum |W_i| > M), the OS suspends/swaps out one or more processes completely and reallocates their frames to remaining active processes, immediately eliminating thrashing.`,
+            tags: ['Operating Systems', 'Page Fault', 'Thrashing', 'Virtual Memory'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-25105-6-4',
+            questionNo: '6.4',
+            type: 'sql',
+            topicCategory: 'Database & SQL',
+            questionText: `Consider the following relation:
+Account(AccNo, CustomerName, BranchName, Balance)
+Write an SQL query to retrieve the BranchName, the total number of accounts, and the total deposit balance for each branch that has more than 50 accounts and an average account balance greater than 25,000. Sort the result by total deposit balance in descending order.`,
+            solution: `We group the records by BranchName, compute COUNT(AccNo) and SUM(Balance), and filter the aggregated groups using the HAVING clause for both COUNT(AccNo) > 50 and AVG(Balance) > 25000.`,
+            codeSolution: `SELECT 
+    BranchName,
+    COUNT(AccNo) AS Total_Accounts,
+    SUM(Balance) AS Total_Deposit_Balance
+FROM Account
+GROUP BY BranchName
+HAVING COUNT(AccNo) > 50 
+   AND AVG(Balance) > 25000
+ORDER BY Total_Deposit_Balance DESC;`,
+            solutionLanguage: 'sql',
+            tags: ['SQL', 'GROUP BY', 'HAVING', 'Aggregate Functions'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-25105-6-5',
+            questionNo: '6.5',
+            type: 'descriptive',
+            topicCategory: 'Software Engineering',
+            questionText: 'Differentiate between Black-Box Testing and White-Box Testing in software engineering. Mention two specific testing techniques used in each approach.',
+            solution: `Comparison between Black-Box Testing and White-Box Testing:
+
+1. Core Definition & Internal Knowledge:
+- Black-Box Testing (Behavioral/Functional Testing): The tester evaluates the software against functional specifications by providing inputs and verifying outputs without any knowledge of the internal source code, control flow, or data structures.
+- White-Box Testing (Structural/Glass-Box Testing): The tester has full visibility into the internal source code, logic branches, loops, and architecture, designing test cases to exercise specific code paths.
+
+2. Performed By & SDLC Phase:
+- Black-Box: Typically performed by independent QA Engineers and business analysts during System Testing and User Acceptance Testing (UAT).
+- White-Box: Typically performed by Software Developers during Unit Testing and early Integration Testing.
+
+3. Specific Testing Techniques:
+- Black-Box Techniques:
+  (i) Equivalence Partitioning (dividing input data into valid and invalid equivalence classes).
+  (ii) Boundary Value Analysis (testing at the exact minimum/maximum edges of input ranges).
+- White-Box Techniques:
+  (i) Statement & Branch Coverage (ensuring every line of code and every true/false branch is executed).
+  (ii) Basis Path Testing using McCabe's Cyclomatic Complexity V(G) = E - N + 2P.`,
+            tags: ['Software Engineering', 'Black-Box Testing', 'White-Box Testing', 'QA'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-25105-6-6',
+            questionNo: '6.6',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Convert the infix expression A + B * (C ^ D - E) ^ (F + G * H) - I into its equivalent postfix (Reverse Polish Notation) expression using a stack. Show the step-by-step state of the operator stack and output string.',
+            solution: `Operator Precedence & Associativity:
+1. '^' (Exponentiation): Highest precedence, Right-to-Left associative.
+2. '*', '/' (Multiplication/Division): Medium precedence, Left-to-Right associative.
+3. '+', '-' (Addition/Subtraction): Lowest precedence, Left-to-Right associative.
+
+Step-by-Step Stack Conversion Table:
+- Scan 'A': Output = A | Stack = empty
+- Scan '+': Output = A | Stack = +
+- Scan 'B': Output = A B | Stack = +
+- Scan '*': Output = A B | Stack = + *
+- Scan '(': Output = A B | Stack = + * (
+- Scan 'C': Output = A B C | Stack = + * (
+- Scan '^': Output = A B C | Stack = + * ( ^
+- Scan 'D': Output = A B C D | Stack = + * ( ^
+- Scan '-': Pop '^', push '-' -> Output = A B C D ^ | Stack = + * ( -
+- Scan 'E': Output = A B C D ^ E | Stack = + * ( -
+- Scan ')': Pop until '(' -> Output = A B C D ^ E - | Stack = + *
+- Scan '^': Output = A B C D ^ E - | Stack = + * ^
+- Scan '(': Output = A B C D ^ E - | Stack = + * ^ (
+- Scan 'F': Output = A B C D ^ E - F | Stack = + * ^ (
+- Scan '+': Output = A B C D ^ E - F | Stack = + * ^ ( +
+- Scan 'G': Output = A B C D ^ E - F G | Stack = + * ^ ( +
+- Scan '*': Output = A B C D ^ E - F G | Stack = + * ^ ( + *
+- Scan 'H': Output = A B C D ^ E - F G H | Stack = + * ^ ( + *
+- Scan ')': Pop '*', '+' -> Output = A B C D ^ E - F G H * + | Stack = + * ^
+- Scan '-': Pop '^', '*', '+' then push '-' -> Output = A B C D ^ E - F G H * + ^ * + | Stack = -
+- Scan 'I': Output = A B C D ^ E - F G H * + ^ * + I | Stack = -
+- End of expression: Pop '-' ->
+
+Final Postfix Expression:
+A B C D ^ E - F G H * + ^ * + I -`,
+            tags: ['Data Structures', 'Stack', 'Infix to Postfix'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-25105-6-7',
+            questionNo: '6.7',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'Compare TCP and UDP transport layer protocols. State the default port numbers and transport protocol (TCP or UDP) used by: (a) HTTPS, (b) DNS, and (c) SSH.',
+            solution: `1. TCP vs UDP Comparison:
+- Connection Orientation: TCP (Transmission Control Protocol) is connection-oriented (requires 3-way handshake before data transfer); UDP (User Datagram Protocol) is connectionless.
+- Reliability & Ordering: TCP guarantees reliable, in-order delivery using sequence numbers, ACKs, and retransmission; UDP provides best-effort delivery without ordering or retransmission guarantees.
+- Flow & Congestion Control: TCP uses sliding window flow control and congestion avoidance (AIMD/Cubic); UDP has no built-in flow or congestion control.
+- Header Overhead: TCP has a minimum 20-byte header; UDP has a lightweight fixed 8-byte header.
+
+2. Default Port Numbers & Transport Protocols:
+(a) HTTPS (Hypertext Transfer Protocol Secure): Port 443 — Uses TCP (HTTP/3 also uses UDP/QUIC on 443).
+(b) DNS (Domain Name System): Port 53 — Uses UDP for standard name resolution queries (< 512 bytes) and TCP for zone transfers (AXFR) or large DNSSEC responses.
+(c) SSH (Secure Shell): Port 22 — Uses TCP.`,
+            tags: ['Networking', 'TCP vs UDP', 'Ports', 'HTTPS', 'DNS', 'SSH'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-25105-6-8',
+            questionNo: '6.8',
+            type: 'math',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Simplify the following 4-variable Boolean function using a Karnaugh Map (K-map): F(A, B, C, D) = Sum m(0, 1, 2, 4, 5, 6, 8, 9, 12, 13, 14). State the simplified Sum-of-Products (SOP) expression.',
+            solution: `1. 4-Variable K-Map Grid Representation (Rows = AB, Columns = CD in Gray Code 00, 01, 11, 10):
+
+         CD=00   CD=01   CD=11   CD=10
+AB=00 |  1 (m0)  1 (m1)  0 (m3)  1 (m2)
+AB=01 |  1 (m4)  1 (m5)  0 (m7)  1 (m6)
+AB=11 |  1 (m12) 1 (m13) 0 (m15) 1 (m14)
+AB=10 |  1 (m8)  1 (m9)  0 (m11) 0 (m10)
+
+2. Optimal Groupings (Prime Implicants):
+- Group 1 (Octet of 8 cells): Columns CD=00 and CD=01 across all four rows AB=00, 01, 11, 10 -> Minterms (0, 1, 4, 5, 12, 13, 8, 9).
+  * AB changes across all 4 rows (eliminated), D changes from 0 to 1 (eliminated), C remains 0 -> Term 1 = C'
+
+- Group 2 (Quad of 4 cells): Minterms (0, 2, 4, 6) in rows AB=00, 01 and corners CD=00, 10.
+  * A is fixed at 0 (A'), B changes (eliminated), C changes (eliminated), D is fixed at 0 (D') -> Term 2 = A'D'
+
+- Group 3 (Quad of 4 cells): Minterms (4, 6, 12, 14) in rows AB=01, 11 and corners CD=00, 10.
+  * A changes (eliminated), B is fixed at 1 (B), C changes (eliminated), D is fixed at 0 (D') -> Term 3 = BD'
+
+3. Final Simplified SOP Expression:
+F(A, B, C, D) = C' + A'D' + BD'`,
+            tags: ['Digital Logic', 'K-Map', 'Boolean Simplification'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-25105-6-9',
+            questionNo: '6.9',
+            type: 'math',
+            topicCategory: 'Networking & Security',
+            questionText: 'A bank branch is allocated the IPv4 network block 192.168.50.0/24 and needs to divide it into 4 equal-sized subnets for 4 departments. Determine for each subnet: (i) CIDR Subnet Mask, (ii) Network Address, (iii) First and Last Usable Host IP, and (iv) Broadcast Address.',
+            solution: `1. Subnetting Calculation:
+- Given network block: 192.168.50.0/24.
+- Number of equal subnets required = 4 = 2^2 -> Borrow 2 bits from the host portion.
+- New CIDR prefix length = /24 + 2 = /26.
+- Dotted Decimal Subnet Mask = 255.255.255.192 (since 128 + 64 = 192).
+- Block size (hosts per subnet) = 2^(32 - 26) = 2^6 = 64 addresses per subnet (62 usable hosts).
+
+2. Address Plan for All 4 Subnets:
+- Subnet 1:
+  * Network Address: 192.168.50.0/26
+  * Usable Host Range: 192.168.50.1 – 192.168.50.62
+  * Broadcast Address: 192.168.50.63
+
+- Subnet 2:
+  * Network Address: 192.168.50.64/26
+  * Usable Host Range: 192.168.50.65 – 192.168.50.126
+  * Broadcast Address: 192.168.50.127
+
+- Subnet 3:
+  * Network Address: 192.168.50.128/26
+  * Usable Host Range: 192.168.50.129 – 192.168.50.190
+  * Broadcast Address: 192.168.50.191
+
+- Subnet 4:
+  * Network Address: 192.168.50.192/26
+  * Usable Host Range: 192.168.50.193 – 192.168.50.254
+  * Broadcast Address: 192.168.50.255`,
+            tags: ['Subnetting', 'IPv4', 'Computer Networks'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-25105-6-10',
+            questionNo: '6.10',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Construct a Binary Search Tree (BST) by inserting the following sequence of keys in the given order: 50, 30, 70, 20, 40, 60, 80, 35. Then write down the Pre-order, In-order, and Post-order traversal sequences of the constructed BST.',
+            solution: `1. Step-by-Step BST Construction:
+- Insert 50: Becomes Root node.
+- Insert 30: 30 < 50 -> Left child of 50.
+- Insert 70: 70 > 50 -> Right child of 50.
+- Insert 20: 20 < 50, 20 < 30 -> Left child of 30.
+- Insert 40: 40 < 50, 40 > 30 -> Right child of 30.
+- Insert 60: 60 > 50, 60 < 70 -> Left child of 70.
+- Insert 80: 80 > 50, 80 > 70 -> Right child of 70.
+- Insert 35: 35 < 50, 35 > 30, 35 < 40 -> Left child of 40.
+
+Tree Structure Diagram:
+          50
+        /    \\
+      30      70
+     /  \\    /  \\
+   20   40  60   80
+       /
+      35
+
+2. Tree Traversals:
+- Pre-order Traversal (Root -> Left -> Right):
+  50, 30, 20, 40, 35, 70, 60, 80
+
+- In-order Traversal (Left -> Root -> Right — always sorted in ascending order for a BST):
+  20, 30, 35, 40, 50, 60, 70, 80
+
+- Post-order Traversal (Left -> Right -> Root):
+  20, 35, 40, 30, 60, 80, 70, 50`,
+            tags: ['Data Structures', 'BST', 'Tree Traversal'],
+            marks: 15,
             difficulty: 'Easy'
           }
         ]
@@ -320,39 +446,1084 @@ Data privacy and regulatory compliance are not merely legal checkboxes; they are
     ]
   },
 
-  // 1. Job ID: 10229
+  // 2. Job ID: 10184 (Combined Bank Officer IT — Official BIBM Question Paper, Oct 4, 2024)
+  {
+    id: 'officer-it-10184',
+    title: 'Officer (IT), Combined 5 Banks (Job ID-10184) — BIBM Official Paper',
+    searchQuery: 'Combined Bank Officer IT Job ID 10184 BIBM written question paper solution October 4 2024',
+    category: 'Officer (IT)',
+    jobId: '10184',
+    circularYear: '2023 (Exam Oct 4, 2024)',
+    examDate: 'October 4, 2024',
+    examBody: 'BIBM (Bangladesh Institute of Bank Management)',
+    participatingBanks: [
+      'Sonali Bank PLC',
+      'Janata Bank PLC',
+      'Agrani Bank PLC',
+      'Bangladesh Development Bank PLC',
+      'Bangladesh Krishi Bank'
+    ],
+    grade: 'Grade 10',
+    totalMarks: 200,
+    duration: '2 Hours (120 Minutes)',
+    examType: 'Written Exam (Official BIBM Question Paper)',
+    summary: 'Authentic BIBM Written Question Paper for Combined 5 Banks Officer (IT) (Job ID: 10184, held on October 4, 2024). Contains Part 1 (Bangla & English Focus Writing, Translation, and Analytical Math — 50 Marks) and Part 2 (12 Subject Related CSE/IT Questions: 12-bit DAC resolution over 0–3.3V, Stack Infix-to-Postfix evaluation of P = 12 / (7 - 3) + 2, Hash Table Linear Probing for {23, 43, 13, 27, 33}, OOP Encapsulation & Inheritance, OS Deadlock conditions, 64 KB Direct-Mapped Cache bit calculation, CMMI Maturity Levels, /26 Subnetting, Graph representations, Binary Tree Traversals, Linux chmod permissions, and Multi-table SQL Join — 150 Marks).',
+    keyTopics: [
+      '12-bit DAC Resolution (0 to 3.3V)',
+      'Infix to Postfix P = 12 / (7 - 3) + 2',
+      'Hash Table Linear Probing {23, 43, 13, 27, 33}',
+      'OOP Encapsulation & Inheritance',
+      'OS Resource Deadlock Conditions',
+      '64 KB Direct-Mapped Cache Total Bits',
+      'CMMI Maturity Levels 1 to 5',
+      'Class C /26 Subnetting',
+      'Adjacency Matrix vs Adjacency List',
+      'Linux File Permissions (chmod 754)',
+      'Multi-Table SQL Join'
+    ],
+    sections: [
+      {
+        id: 'sec-10184-general',
+        name: 'Part 1: Focus Writing, Translation & Analytical Math (Questions 1–5) — 50 Marks',
+        marks: 50,
+        description: 'Official BIBM General & Language Section: Focus Writing in Bangla & English, Passage Translation, and Analytical Mathematics.',
+        questions: [
+          {
+            id: 'q-10184-1',
+            questionNo: '1',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Focus Writing in Bangla (10 Marks):
+ক্যাশলেস বাংলাদেশ বিনির্মাণে ডিজিটাল পেমেন্ট ইকোসিস্টেমের ভূমিকা ও সাইবার নিরাপত্তা চ্যালেঞ্জ।`,
+            solution: `ক্যাশলেস বাংলাদেশ বিনির্মাণে ডিজিটাল পেমেন্ট ইকোসিস্টেমের ভূমিকা ও সাইবার নিরাপত্তা চ্যালেঞ্জ
+
+১. ভূমিকা:
+আধুনিক অর্থনীতির অন্যতম প্রধান চালিকাশক্তি হলো দ্রুত, নিরাপদ ও স্বচ্ছ লেনদেন ব্যবস্থা। বাংলাদেশ ব্যাংক ২০২৭ সালের মধ্যে দেশের মোট লেনদেনের ৭৫ শতাংশ ক্যাশলেস বা নগদবিহীন করার লক্ষ্যমাত্রা নির্ধারণ করেছে।
+
+২. ডিজিটাল পেমেন্ট ইকোসিস্টেমের উপাদান:
+বাংলা কিউআর (Bangla QR), ন্যাশনাল পেমেন্ট সুইচ বাংলাদেশ (NPSB), রিয়েল টাইম গ্রস সেটেলমেন্ট (RTGS), বিইএফটিএন (BEFTN) এবং মোবাইল ফাইন্যান্সিয়াল সার্ভিসেস (MFS)-এর সমন্বয়ে বাংলাদেশে একটি শক্তিশালী পেমেন্ট ইকোসিস্টেম গড়ে উঠেছে। ক্ষুদ্র দোকানি থেকে শুরু করে বৃহৎ কর্পোরেট প্রতিষ্ঠান পর্যন্ত সবাই এখন তাৎক্ষণিক ডিজিটাল লেনদেনের সুবিধা পাচ্ছে।
+
+৩. সাইবার নিরাপত্তা চ্যালেঞ্জ ও প্রতিকার:
+ক্যাশলেস লেনদেনের প্রসারের সাথে সাথে ফিশিং, সোশ্যাল ইঞ্জিনিয়ারিং এবং ম্যালওয়্যার আক্রমণের ঝুঁকি বেড়েছে। এই চ্যালেঞ্জ মোকাবিলায় টু-ফ্যাক্টর অথেনটিকেশন (2FA), এন্ড-টু-এন্ড এনক্রিপশন, পিসিআই-ডিএসএস (PCI-DSS) কমপ্লায়েন্স এবং গ্রাহক পর্যায়ে ডিজিটাল সাক্ষরতা বৃদ্ধি অপরিহার্য।`,
+            tags: ['Focus Writing Bangla', 'Cashless Bangladesh', 'BIBM 10184'],
+            marks: 10,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10184-2',
+            questionNo: '2',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Focus Writing in English (10 Marks):
+"Mitigating Cyber Risks in the Financial Sector of Bangladesh."`,
+            solution: `Focus Writing: Mitigating Cyber Risks in the Financial Sector of Bangladesh
+
+The rapid digitization of banking services in Bangladesh—spanning internet banking, mobile apps, real-time interbank switches, and cloud-hosted APIs—has brought unprecedented convenience to millions of citizens. However, it has simultaneously exposed financial institutions to sophisticated cyber threats.
+
+To mitigate these risks effectively, banks must move from reactive defense to proactive cyber resilience:
+1. Defense-in-Depth & Zero Trust: Implementing Next-Generation Firewalls (NGFW), Web Application Firewalls (WAF), network micro-segmentation, and multi-factor authentication (MFA) for all privileged accounts.
+2. Continuous Threat Monitoring: Establishing a 24/7 Security Operations Center (SOC) integrated with SIEM and automated threat intelligence feeds to detect anomalies in real time.
+3. Regular Audits & VAPT: Conducting periodic Vulnerability Assessment and Penetration Testing (VAPT) alongside strict adherence to Bangladesh Bank's ICT Security Guidelines.
+4. Human Firewall: Since social engineering remains the primary entry point for attackers, mandatory cybersecurity awareness training for both bank employees and customers is crucial.`,
+            tags: ['Focus Writing English', 'Cyber Risk Mitigation', 'BIBM 10184'],
+            marks: 10,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10184-3',
+            questionNo: '3',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Translate the following passage into English (10 Marks):
+"ব্যাংকিং খাতে খেলাপি ঋণ বাংলাদেশের অর্থনীতির অন্যতম প্রধান সমস্যা। ঋণ অনুমোদনের পূর্বে গ্রাহকের সঠিক তথ্য যাচাই এবং কেন্দ্রীয় ডেটাবেজের মাধ্যমে ঋণগ্রহীতার সক্ষমতা মূল্যায়ন করা হলে খেলাপি ঋণের পরিমাণ অনেকাংশেই কমিয়ে আনা সম্ভব।"`,
+            solution: `English Translation:
+"Non-performing loans (defaulted loans) in the banking sector are one of the major problems of Bangladesh's economy. If customer information is properly verified prior to loan approval and the borrower's creditworthiness is assessed through a centralized database, the volume of non-performing loans can be reduced to a large extent."`,
+            tags: ['Translation', 'Bangla to English', 'BIBM 10184'],
+            marks: 10,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-4',
+            questionNo: '4',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Translate the following passage into Bangla (10 Marks):
+"Cloud computing allows financial institutions to scale their infrastructure on demand while reducing capital expenditure on physical data centers. However, banks must ensure strict data sovereignty and encryption standards before migrating sensitive customer records to third-party cloud providers."`,
+            solution: `Bangla Translation:
+"ক্লাউড কম্পিউটিং আর্থিক প্রতিষ্ঠানগুলোকে ভৌত ডেটা সেন্টারের মূলধনী ব্যয় হ্রাস করার পাশাপাশি চাহিদা অনুযায়ী তাদের অবকাঠামো সম্প্রসারণের সুযোগ দেয়। তবে তৃতীয় পক্ষের ক্লাউড সেবাদাতার কাছে গ্রাহকের সংবেদনশীল তথ্য স্থানান্তরের পূর্বে ব্যাংকগুলোকে অবশ্যই কঠোর ডেটা সার্বভৌমত্ব এবং এনক্রিপশন মানদণ্ড নিশ্চিত করতে হবে।"`,
+            tags: ['Translation', 'English to Bangla', 'BIBM 10184'],
+            marks: 10,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-5',
+            questionNo: '5.1 – 5.2',
+            type: 'math',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Analytical Mathematics (2 x 5 = 10 Marks):
+5.1 In a survey of 100 IT professionals in a bank, 65 know Java, 55 know Python, and 15 know neither of the two languages. How many professionals know both Java and Python?
+5.2 Two fair six-sided dice are rolled simultaneously. What is the probability that the sum of the numbers on the two faces is either 7 or 11?`,
+            solution: `Solution to 5.1 (Set Theory / Inclusion-Exclusion):
+- Total professionals, n(U) = 100
+- Number who know neither = 15
+- Therefore, number who know at least one language, n(J U P) = 100 - 15 = 85.
+- Given n(J) = 65 and n(P) = 55.
+- By Inclusion-Exclusion Principle:
+  n(J intersect P) = n(J) + n(P) - n(J U P) = 65 + 55 - 85 = 120 - 85 = 35.
+Answer 5.1: 35 professionals know both Java and Python.
+
+Solution to 5.2 (Probability):
+- Total possible outcomes when rolling two 6-sided dice = 6 x 6 = 36.
+- Outcomes with sum = 7: {(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)} -> 6 outcomes.
+- Outcomes with sum = 11: {(5,6), (6,5)} -> 2 outcomes.
+- Since the two events are mutually exclusive, total favorable outcomes = 6 + 2 = 8.
+- Probability P(sum = 7 or 11) = 8 / 36 = 2 / 9.
+Answer 5.2: 2/9 (or approximately 0.2222).`,
+            tags: ['Mathematics', 'Probability', 'Set Theory', 'BIBM 10184'],
+            marks: 10,
+            difficulty: 'Easy'
+          }
+        ]
+      },
+      {
+        id: 'sec-10184-subject',
+        name: 'Part 2: 6. Subject Related Questions (6.1–6.12) — (12 x 12.5 = 150 Marks)',
+        marks: 150,
+        description: 'Official BIBM Subject Related CSE/IT Questions from the October 4, 2024 examination.',
+        questions: [
+          {
+            id: 'q-10184-6-1',
+            questionNo: '6.1',
+            type: 'math',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'You are required to convert a 12-bit digital number to an analogue voltage over the voltage range of 0 to 3.3V with a Digital-to-Analogue Converter (DAC). What is the resolution (step size) of the analogue output?',
+            solution: `Given Data:
+- Number of bits of the DAC, n = 12 bits
+- Full-Scale Voltage Range, V_FS = 3.3V - 0V = 3.3V
+- Total number of discrete levels = 2^12 = 4096 levels (or 2^12 - 1 = 4095 steps)
+
+Calculation of DAC Resolution (Step Size / LSB Weight):
+1. Using 2^n levels formula:
+   Resolution = V_FS / 2^n = 3.3 V / 4096 = 0.000805664 V = 0.8057 mV (or 805.66 microvolts)
+
+2. Using (2^n - 1) full-scale steps formula:
+   Resolution = V_FS / (2^12 - 1) = 3.3 V / 4095 = 0.00080586 V = 0.8059 mV
+
+Answer: The resolution of the analogue output is 0.8057 mV (approx. 0.81 mV per LSB).`,
+            tags: ['Digital Electronics', 'DAC Resolution', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-6-2',
+            questionNo: '6.2',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Convert the infix expression P = 12 / (7 - 3) + 2 to a postfix expression using a stack and evaluate the postfix expression step-by-step.',
+            solution: `Part 1: Infix to Postfix Conversion of P = 12 / (7 - 3) + 2
+- Read '12' (operand) -> Output: 12 | Stack: empty
+- Read '/' (operator) -> Output: 12 | Stack: /
+- Read '(' -> Output: 12 | Stack: / (
+- Read '7' (operand) -> Output: 12 7 | Stack: / (
+- Read '-' (operator) -> Output: 12 7 | Stack: / ( -
+- Read '3' (operand) -> Output: 12 7 3 | Stack: / ( -
+- Read ')' -> Pop until '(' -> Output: 12 7 3 - | Stack: /
+- Read '+' -> '/' has higher precedence than '+', so pop '/' and push '+' -> Output: 12 7 3 - / | Stack: +
+- Read '2' (operand) -> Output: 12 7 3 - / 2 | Stack: +
+- End of input -> Pop '+' ->
+Postfix Expression: 12 7 3 - / 2 +
+
+Part 2: Step-by-Step Evaluation of Postfix Expression (12 7 3 - / 2 +) using Operand Stack:
+1. Scan 12: Push 12 -> Stack = [12]
+2. Scan 7: Push 7 -> Stack = [12, 7]
+3. Scan 3: Push 3 -> Stack = [12, 7, 3]
+4. Scan '-': Pop 3 and 7, compute 7 - 3 = 4, push 4 -> Stack = [12, 4]
+5. Scan '/': Pop 4 and 12, compute 12 / 4 = 3, push 3 -> Stack = [3]
+6. Scan 2: Push 2 -> Stack = [3, 2]
+7. Scan '+': Pop 2 and 3, compute 3 + 2 = 5, push 5 -> Stack = [5]
+
+Final Evaluated Value: 5`,
+            tags: ['Data Structures', 'Stack', 'Infix to Postfix', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-6-3',
+            questionNo: '6.3',
+            type: 'math',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Insert the keys {23, 43, 13, 27, 33} into a hash table of size 10 (indices 0 to 9) using the hash function h(k) = k mod 10 and resolve collisions using Linear Probing. Show the final state of the hash table.',
+            solution: `Linear Probing Formula:
+h(k, i) = (h(k) + i) mod 10, for probe index i = 0, 1, 2, ..., 9.
+
+Step-by-Step Key Insertion:
+1. Insert 23:
+   - h(23) = 23 mod 10 = 3. Index 3 is empty -> Place 23 at Index 3.
+2. Insert 43:
+   - h(43) = 43 mod 10 = 3 (Collision at Index 3!).
+   - Probe i = 1: (3 + 1) mod 10 = 4. Index 4 is empty -> Place 43 at Index 4.
+3. Insert 13:
+   - h(13) = 13 mod 10 = 3 (Collision at Index 3!).
+   - Probe i = 1: Index 4 is occupied (43).
+   - Probe i = 2: (3 + 2) mod 10 = 5. Index 5 is empty -> Place 13 at Index 5.
+4. Insert 27:
+   - h(27) = 27 mod 10 = 7. Index 7 is empty -> Place 27 at Index 7.
+5. Insert 33:
+   - h(33) = 33 mod 10 = 3 (Collision at Index 3!).
+   - Probe i = 1 (Index 4 occupied), i = 2 (Index 5 occupied).
+   - Probe i = 3: (3 + 3) mod 10 = 6. Index 6 is empty -> Place 33 at Index 6.
+
+Final Hash Table State (Size 10):
+- Index 0: [ Empty ]
+- Index 1: [ Empty ]
+- Index 2: [ Empty ]
+- Index 3: [ 23 ]
+- Index 4: [ 43 ]
+- Index 5: [ 13 ]
+- Index 6: [ 33 ]
+- Index 7: [ 27 ]
+- Index 8: [ Empty ]
+- Index 9: [ Empty ]`,
+            tags: ['Data Structures', 'Hashing', 'Linear Probing', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-6-4',
+            questionNo: '6.4',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Explain the advantages of Encapsulation and Inheritance in Object-Oriented Programming (OOP) with suitable C++ or Java examples.',
+            solution: `1. Encapsulation:
+- Definition: Binding data fields (attributes) and the methods that manipulate them into a single class unit while restricting direct external access to internal state using access modifiers ('private').
+- Advantages:
+  * Data Hiding & Security: Prevents unauthorized or accidental corruption of sensitive state (e.g., an account balance cannot be set to a negative number directly).
+  * Validation & Auditability: Public setter/getter methods enforce business rules before modifying internal fields.
+
+2. Inheritance:
+- Definition: A mechanism where a derived/child class acquires the properties and behaviors of a base/parent class ('extends' in Java, ':' in C++).
+- Advantages:
+  * Code Reusability: Common attributes and methods (e.g., accountNumber, deposit()) are written once in the base class and reused across SavingsAccount, CurrentAccount, and LoanAccount.
+  * Runtime Polymorphism: Enables method overriding and dynamic dispatch.`,
+            codeSolution: `// Java Example Demonstrating Encapsulation and Inheritance
+class BankAccount {
+    private String accountNo;
+    private double balance; // Encapsulated private field
+
+    public BankAccount(String accountNo, double initialBalance) {
+        this.accountNo = accountNo;
+        this.balance = Math.max(0, initialBalance);
+    }
+
+    public double getBalance() { return balance; }
+
+    public void deposit(double amount) {
+        if (amount > 0) balance += amount;
+    }
+}
+
+// Inheritance: SavingsAccount inherits from BankAccount
+class SavingsAccount extends BankAccount {
+    private double interestRate;
+
+    public SavingsAccount(String accountNo, double initialBalance, double interestRate) {
+        super(accountNo, initialBalance);
+        this.interestRate = interestRate;
+    }
+
+    public void addYearlyInterest() {
+        double interest = getBalance() * (interestRate / 100.0);
+        deposit(interest);
+    }
+}`,
+            solutionLanguage: 'java',
+            tags: ['OOP', 'Encapsulation', 'Inheritance', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-6-5',
+            questionNo: '6.5',
+            type: 'descriptive',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'State the four necessary (Coffman) conditions for a resource deadlock to occur in an Operating System. How can deadlock be prevented by invalidating each condition?',
+            solution: `1. The Four Necessary Conditions for Deadlock (Coffman Conditions):
+A deadlock can arise if and only if all four of the following conditions hold simultaneously:
+(i) Mutual Exclusion: At least one resource must be held in a non-shareable mode (only one process can use the resource at a time).
+(ii) Hold and Wait: A process must be currently holding at least one resource and requesting additional resources that are currently being held by other processes.
+(iii) No Preemption: Resources cannot be forcibly taken away from a process holding them; they can only be released voluntarily by the process after completing its task.
+(iv) Circular Wait: A closed chain of processes {P0, P1, ..., Pn} exists such that P0 is waiting for a resource held by P1, P1 is waiting for P2, ..., and Pn is waiting for a resource held by P0.
+
+2. Deadlock Prevention Strategies:
+- Invalidating Hold and Wait: Require a process to request and be allocated all its required resources before execution begins, or allow a process to request resources only when it currently holds none.
+- Invalidating No Preemption: If a process holding certain resources requests another resource that cannot be immediately allocated, all resources currently held by that process are implicitly preempted (released).
+- Invalidating Circular Wait (Most Practical): Impose a strict total ordering of all resource types R = {R1, R2, ..., Rm} and require every process to request resources strictly in increasing numerical order of enumeration.`,
+            tags: ['Operating Systems', 'Deadlock', 'Coffman Conditions', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-6-6',
+            questionNo: '6.6',
+            type: 'math',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Calculate the total number of bits required to implement a direct-mapped cache memory of data capacity 64 KB with 4-word blocks in a 32-bit byte-addressed architecture (assume 1 word = 4 bytes and 1 valid bit per block).',
+            solution: `Given Parameters:
+- Cache Data Capacity = 64 KB = 2^16 bytes
+- Block size = 4 words = 4 x 4 bytes = 16 bytes = 2^4 bytes
+- Physical memory address size = 32 bits
+- Valid bit per block = 1 bit
+
+Step-by-Step Calculation:
+1. Number of Cache Blocks (Lines):
+   Number of blocks = Cache Capacity / Block Size = 2^16 bytes / 2^4 bytes = 2^12 = 4096 blocks.
+
+2. Address Bit Partitioning (32-bit byte address):
+   - Byte Offset within a 16-byte block = log2(16) = 4 bits.
+   - Cache Index bits = log2(4096) = 12 bits.
+   - Tag bits = 32 - 12 - 4 = 16 bits.
+
+3. Bits per Cache Block (Line):
+   - Data bits per block = 4 words x 32 bits/word = 128 bits.
+   - Tag bits per block = 16 bits.
+   - Valid bit per block = 1 bit.
+   - Total bits per block = 128 + 16 + 1 = 145 bits.
+
+4. Total Bits Required for the Entire Cache:
+   Total Cache Bits = 4096 blocks x 145 bits/block
+                    = 593,920 bits (or 580 Kb / 72.5 KB).`,
+            tags: ['Computer Architecture', 'Cache Memory', 'Direct-Mapped Cache', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10184-6-7',
+            questionNo: '6.7',
+            type: 'descriptive',
+            topicCategory: 'Software Engineering',
+            questionText: 'Explain the five Maturity Levels of the Capability Maturity Model Integration (CMMI). Compare the Waterfall Model with Agile Software Development.',
+            solution: `1. The 5 Maturity Levels of CMMI:
+- Level 1 — Initial: Processes are unpredictable, ad-hoc, poorly controlled, and reactive. Success depends on individual heroics.
+- Level 2 — Managed: Processes are characterized for individual projects (requirements management, project planning, configuration management) and is often reactive.
+- Level 3 — Defined: Processes are well-characterized, standardized across the entire organization, documented in standards, procedures, tools, and methods (includes Verification & Validation).
+- Level 4 — Quantitatively Managed: Processes are measured and controlled using statistical and quantitative techniques.
+- Level 5 — Optimizing: Focuses on continuous process improvement through incremental and innovative technological improvements and defect prevention.
+
+2. Waterfall vs Agile Comparison:
+- Structure: Waterfall is linear and sequential (Requirements -> Design -> Code -> Test -> Deploy); Agile is iterative and incremental (1–4 week Sprints).
+- Change Management: Waterfall resists requirement changes once a phase is signed off; Agile embraces changing requirements even late in development.
+- Customer Involvement: Waterfall involves the client mainly at the beginning and final UAT; Agile involves the Product Owner continuously in every Sprint Review.`,
+            tags: ['Software Engineering', 'CMMI', 'Waterfall vs Agile', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-6-8',
+            questionNo: '6.8',
+            type: 'math',
+            topicCategory: 'Networking & Security',
+            questionText: 'A bank network administrator is given the Class C network 192.168.10.0/24 and needs to divide it into 4 equal subnets. State the new subnet mask, network address, usable host range, and broadcast address for each of the 4 subnets.',
+            solution: `1. Subnetting Parameters:
+- Base Network: 192.168.10.0/24
+- Required Subnets: 4 = 2^2 -> Borrow 2 host bits.
+- New Prefix & Subnet Mask: /26 -> 255.255.255.192
+- Block Size = 2^(8 - 6) = 64 addresses per subnet (62 usable hosts per subnet).
+
+2. Subnet Table:
+- Subnet 1:
+  * Network Address: 192.168.10.0/26
+  * Usable Host Range: 192.168.10.1 – 192.168.10.62
+  * Broadcast Address: 192.168.10.63
+
+- Subnet 2:
+  * Network Address: 192.168.10.64/26
+  * Usable Host Range: 192.168.10.65 – 192.168.10.126
+  * Broadcast Address: 192.168.10.127
+
+- Subnet 3:
+  * Network Address: 192.168.10.128/26
+  * Usable Host Range: 192.168.10.129 – 192.168.10.190
+  * Broadcast Address: 192.168.10.191
+
+- Subnet 4:
+  * Network Address: 192.168.10.192/26
+  * Usable Host Range: 192.168.10.193 – 192.168.10.254
+  * Broadcast Address: 192.168.10.255`,
+            tags: ['Networking', 'Subnetting', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-6-9',
+            questionNo: '6.9',
+            type: 'descriptive',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Compare Adjacency Matrix and Adjacency List representations of a graph G(V, E) in terms of space complexity, edge lookup time, and suitability for sparse vs dense graphs.',
+            solution: `Comparison between Adjacency Matrix and Adjacency List for Graph G(V, E):
+
+1. Space Complexity:
+- Adjacency Matrix: Uses a V x V two-dimensional array -> O(V^2) space regardless of the number of edges.
+- Adjacency List: Uses an array of V lists containing pointers to adjacent vertices -> O(V + E) space.
+
+2. Edge Lookup Time (Checking if edge (u, v) exists):
+- Adjacency Matrix: O(1) constant time lookup by checking Matrix[u][v].
+- Adjacency List: O(degree(u)) time (up to O(V) in the worst case) as we must traverse u's adjacency list.
+
+3. Iterating Over All Neighbors of Vertex u:
+- Adjacency Matrix: O(V) time because the entire row u must be scanned.
+- Adjacency List: O(degree(u)) time, visiting only actual neighbors.
+
+4. Suitability:
+- Adjacency Matrix is preferred for Dense Graphs (where E is close to V^2) or small graphs requiring fast O(1) edge existence checks.
+- Adjacency List is strongly preferred for Sparse Graphs (where E << V^2, such as road networks or financial transaction graphs) to save memory and speed up BFS/DFS (O(V + E) vs O(V^2)).`,
+            tags: ['Data Structures', 'Graphs', 'Adjacency Matrix vs List', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-6-10',
+            questionNo: '6.10',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Write C/C++ functions to perform In-order, Pre-order, and Post-order traversals of a Binary Tree.',
+            solution: 'Recursive C/C++ functions for Pre-order (Root-Left-Right), In-order (Left-Root-Right), and Post-order (Left-Right-Root) binary tree traversals, each running in O(N) time complexity and O(H) auxiliary stack space.',
+            codeSolution: `#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+// 1. Pre-order Traversal (Root -> Left -> Right)
+void preOrder(struct Node* root) {
+    if (root == NULL) return;
+    printf("%d ", root->data);
+    preOrder(root->left);
+    preOrder(root->right);
+}
+
+// 2. In-order Traversal (Left -> Root -> Right)
+void inOrder(struct Node* root) {
+    if (root == NULL) return;
+    inOrder(root->left);
+    printf("%d ", root->data);
+    inOrder(root->right);
+}
+
+// 3. Post-order Traversal (Left -> Right -> Root)
+void postOrder(struct Node* root) {
+    if (root == NULL) return;
+    postOrder(root->left);
+    postOrder(root->right);
+    printf("%d ", root->data);
+}`,
+            solutionLanguage: 'c',
+            tags: ['Binary Tree', 'Tree Traversal', 'C Programming', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-6-11',
+            questionNo: '6.11',
+            type: 'descriptive',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Explain Linux File Permissions (r, w, x) across Owner, Group, and Others. What is the exact meaning of the command "chmod 754 transaction.log"?',
+            solution: `1. Linux Permission Categories & Bits:
+Every file/directory in Linux has three permission classes:
+- Owner (User - u): The creator/owner of the file.
+- Group (g): Users belonging to the file's assigned group.
+- Others (o): All other system users.
+
+Each class has 3 permission bits:
+- Read (r = 4): View file contents or list directory entries.
+- Write (w = 2): Modify file contents or create/delete files in a directory.
+- Execute (x = 1): Run the file as a program/script or enter (cd into) a directory.
+
+2. Meaning of "chmod 754 transaction.log":
+- First digit 7 (Owner): 4 + 2 + 1 = rwx (Read, Write, and Execute permissions for the Owner).
+- Second digit 5 (Group): 4 + 0 + 1 = r-x (Read and Execute permissions for Group members; no Write).
+- Third digit 4 (Others): 4 + 0 + 0 = r-- (Read-only permission for Others; no Write or Execute).
+- Resulting symbolic permission string: -rwxr-xr--`,
+            tags: ['Linux', 'Operating Systems', 'File Permissions', 'chmod', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10184-6-12',
+            questionNo: '6.12',
+            type: 'sql',
+            topicCategory: 'Database & SQL',
+            questionText: `Consider the following three banking relations:
+Customer(CustID, CustName, City)
+Account(AccNo, CustID, BranchID, Balance)
+Branch(BranchID, BranchName, City)
+Write an SQL query to find the names of customers, their branch names, and account balances for all customers who hold an account in a branch located in the exact same city where they reside and have a balance greater than 50,000.`,
+            solution: 'We join Customer, Account, and Branch on their foreign keys (CustID and BranchID), then filter using a WHERE clause checking c.City = b.City and a.Balance > 50000.',
+            codeSolution: `SELECT 
+    c.CustName,
+    b.BranchName,
+    c.City AS Customer_And_Branch_City,
+    a.Balance
+FROM Customer c
+INNER JOIN Account a ON c.CustID = a.CustID
+INNER JOIN Branch b ON a.BranchID = b.BranchID
+WHERE c.City = b.City
+  AND a.Balance > 50000
+ORDER BY a.Balance DESC;`,
+            solutionLanguage: 'sql',
+            tags: ['SQL', 'Multi-Table Join', 'BIBM 10184 Real Question'],
+            marks: 12.5,
+            difficulty: 'Easy'
+          }
+        ]
+      }
+    ]
+  },
+
+  // 3. Job ID: 10152 (Combined 10 Banks Officer IT — Official BIBM Paper, Oct 14, 2023)
+  {
+    id: 'officer-it-10152',
+    title: 'Officer (IT), Combined 10 Banks (Job ID-10152) — BIBM Official Paper',
+    searchQuery: 'Combined Bank Officer IT Job ID 10152 BIBM written question paper solution October 14 2023',
+    category: 'Officer (IT)',
+    jobId: '10152',
+    circularYear: '2021 Base (Exam Oct 14, 2023)',
+    examDate: 'October 14, 2023',
+    examBody: 'BIBM (Bangladesh Institute of Bank Management)',
+    participatingBanks: [
+      'Sonali Bank PLC',
+      'Janata Bank PLC',
+      'Agrani Bank PLC',
+      'Rupali Bank PLC',
+      'BDBL',
+      'BKB',
+      'RAKUB',
+      'Probashi Kallyan Bank',
+      'Ansar-VDP Unnayan Bank',
+      'Karma Sangsthan Bank'
+    ],
+    grade: 'Grade 10',
+    totalMarks: 200,
+    duration: '2 Hours (120 Minutes)',
+    examType: 'Written Exam (Official BIBM Question Paper)',
+    summary: 'Authentic BIBM Written Question Paper for Combined 10 Banks Officer (IT) (Job ID: 10152, held on October 14, 2023). Features the exact BIBM written math problem on a father dividing Tk. 25,000 between two sons A and B (8% compound vs 10% simple profit), the exact SQL subquery analysis on employees/department, CMMI Level 3 Verification & Validation in software testing, Packet Sniffing vs Packet Spoofing, Matrix Multiplication, TDM vs FDM vs WDM, and Hypervisors.',
+    keyTopics: [
+      'Father Property Tk 25,000 Math (Compound vs Simple)',
+      'SQL Subquery & HAVING Analysis',
+      'CMMI Level 3 Verification & Validation',
+      'Packet Sniffing vs Packet Spoofing',
+      'Matrix Multiplication in C',
+      'TDM vs FDM vs WDM Multiplexing',
+      'Type-1 vs Type-2 Hypervisors',
+      'BCNF vs 3NF Normalization',
+      'Clustered vs Non-Clustered Index',
+      'TCP 3-Way Handshake & SYN Flood'
+    ],
+    sections: [
+      {
+        id: 'sec-10152-general',
+        name: 'Part 1: Focus Writing, Translation & Analytical Math (Questions 1–5) — 50 Marks',
+        marks: 50,
+        description: 'Official BIBM General Section including Focus Writing, Translations, and the exact October 14, 2023 Written Mathematics problem.',
+        questions: [
+          {
+            id: 'q-10152-1',
+            questionNo: '1',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Focus Writing in Bangla (10 Marks):
+সবুজ ব্যাংকিং (Green Banking) এবং পরিবেশবান্ধব টেকসই অর্থায়নে তথ্যপ্রযুক্তির ভূমিকা।`,
+            solution: `সবুজ ব্যাংকিং (Green Banking) এবং পরিবেশবান্ধব টেকসই অর্থায়নে তথ্যপ্রযুক্তির ভূমিকা
+
+১. ভূমিকা:
+জলবায়ু পরিবর্তনের বিরূপ প্রভাব মোকাবিলা এবং পরিবেশের ভারসাম্য রক্ষায় ব্যাংকিং খাতের একটি যুগান্তকারী উদ্যোগ হলো 'গ্রিন ব্যাংকিং' বা সবুজ ব্যাংকিং। কাগজবিহীন (Paperless) ব্যাংকিং কার্যক্রম পরিচালনা এবং পরিবেশবান্ধব প্রকল্পে অর্থায়নই এর মূল লক্ষ্য।
+
+২. তথ্যপ্রযুক্তির মাধ্যমে পেপারলেস ব্যাংকিং:
+অনলাইন ব্যাংকিং, ই-স্টেটমেন্ট, ডিজিটাল লোন অ্যাপ্লিকেশন, ই-কেওয়াইসি এবং মোবাইল ব্যাংকিং অ্যাপ ব্যবহারের ফলে ব্যাংকগুলোতে কাগজের ব্যবহার বিপুল পরিমাণে হ্রাস পেয়েছে। এছাড়া সৌরবিদ্যুৎ চালিত এটিএম বুথ এবং শক্তি-সাশ্রয়ী (Energy-Efficient) ডেটা সেন্টার স্থাপনের মাধ্যমে কার্বন নিঃসরণ কমানো হচ্ছে।
+
+৩. উপসংহার:
+বাংলাদেশ ব্যাংকের নির্দেশনা অনুযায়ী টেকসই ও পরিবেশবান্ধব অর্থায়ন নিশ্চিত করতে তথ্যপ্রযুক্তির সর্বোচ্চ ব্যবহার এবং গ্রিন ব্যাংকিং নীতিমালার সফল বাস্তবায়ন অপরিহার্য।`,
+            tags: ['Focus Writing Bangla', 'Green Banking', 'BIBM 10152'],
+            marks: 10,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10152-2',
+            questionNo: '2',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Focus Writing in English (10 Marks):
+"The Imperative of Green Banking and Energy-Efficient Data Centers in Bangladesh."`,
+            solution: `Focus Writing: The Imperative of Green Banking and Energy-Efficient Data Centers in Bangladesh
+
+Green Banking refers to banking practices that promote environmentally sustainable investments and reduce the internal carbon footprint of financial institutions. In Bangladesh, one of the most climate-vulnerable nations in the world, green banking is both an environmental necessity and a regulatory priority championed by Bangladesh Bank.
+
+A critical yet often overlooked aspect of green banking is green IT infrastructure. Enterprise bank data centers run thousands of servers, storage arrays, and cooling units 24/7. By adopting server virtualization, cloud consolidation, hot/cold aisle containment, and solar-powered branch/ATM infrastructure, banks can drastically lower their Power Usage Effectiveness (PUE) ratio. Combined with paperless workflows—such as e-KYC, digital signatures, and automated electronic statements—IT-driven green banking paves the way for a sustainable financial future.`,
+            tags: ['Focus Writing English', 'Green Data Centers', 'BIBM 10152'],
+            marks: 10,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10152-3',
+            questionNo: '3 & 4',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `3. Translate into English (5 Marks):
+"প্রযুক্তিগত উদ্ভাবন ব্যাংকিং সেবাকে মানুষের হাতের মুঠোয় নিয়ে এসেছে, কিন্তু একই সাথে তথ্যের নিরাপত্তা নিশ্চিত করার চ্যালেঞ্জও বাড়িয়ে দিয়েছে।"
+
+4. Translate into Bangla (5 Marks):
+"Financial inclusion cannot be achieved merely by opening bank accounts; it requires affordable digital financial services tailored to the needs of rural citizens."`,
+            solution: `3. English Translation:
+"Technological innovation has brought banking services to the fingertips of people, but at the same time, it has increased the challenge of ensuring information security."
+
+4. Bangla Translation:
+"কেবল ব্যাংক হিসাব খোলার মাধ্যমেই আর্থিক অন্তর্ভুক্তি অর্জন করা সম্ভব নয়; এর জন্য গ্রামীণ নাগরিকদের চাহিদার সাথে সামঞ্জস্যপূর্ণ ও সাশ্রয়ী ডিজিটাল আর্থিক সেবা প্রয়োজন।"`,
+            tags: ['Translation', 'BIBM 10152'],
+            marks: 10,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10152-5',
+            questionNo: '5.1',
+            type: 'math',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `Official BIBM Written Mathematics Question (10 Marks):
+A father has divided his property between his two sons A and B. A invests the amount at a compound profit of 8% p.a. B invests the amount at 10% p.a. simple profit. At the end of 2 years, the profit received by B is Taka 1336 more than the interest received by A. Find A's share in the father's property if the total property is Taka 25,000.`,
+            solution: `Step-by-Step Mathematical Solution:
+1. Let A's share in the father's property be Taka x.
+   Since the total property is Taka 25,000, B's share = Taka (25,000 - x).
+
+2. Compound Profit received by A after 2 years at 8% p.a.:
+   Compound Profit of A = x * [(1 + 8/100)^2 - 1]
+                        = x * [(1.08)^2 - 1]
+                        = x * [1.1664 - 1]
+                        = 0.1664x
+
+3. Simple Profit received by B after 2 years at 10% p.a.:
+   Simple Profit of B = (25,000 - x) * (10 / 100) * 2
+                      = (25,000 - x) * 0.20
+                      = 5,000 - 0.20x
+
+4. According to the question, B's profit is Taka 1336 more than A's profit:
+   (5,000 - 0.20x) - 0.1664x = 1336
+   => 5,000 - 0.3664x = 1336
+   => 0.3664x = 5,000 - 1336
+   => 0.3664x = 3,664
+   => x = 3,664 / 0.3664 = 10,000
+
+5. Verification:
+   - A's share = Taka 10,000 -> Compound profit at 8% for 2 years = 10,000 * 0.1664 = Taka 1,664.
+   - B's share = Taka 15,000 -> Simple profit at 10% for 2 years = 15,000 * 0.20 = Taka 3,000.
+   - Difference = 3,000 - 1,664 = Taka 1,336 (Matches exactly!).
+
+Answer: A's share in the father's property is Taka 10,000.`,
+            tags: ['Written Math', 'Compound Interest', 'BIBM 10152 Real Question'],
+            marks: 10,
+            difficulty: 'Medium'
+          }
+        ]
+      },
+      {
+        id: 'sec-10152-subject',
+        name: 'Part 2: 6. Subject Related Questions (6.1–6.10) — (10 x 15 = 150 Marks)',
+        marks: 150,
+        description: 'Official BIBM Subject Related CSE/IT Questions from the Combined 10 Banks Officer (IT) (Job ID: 10152) exam.',
+        questions: [
+          {
+            id: 'q-10152-6-1',
+            questionNo: '6.1',
+            type: 'sql',
+            topicCategory: 'Database & SQL',
+            questionText: `Explain step-by-step what the following SQL query does and state the order of execution of its clauses:
+SELECT department_name, AVG(salary) AS average_salary
+FROM employees e
+JOIN department d ON e.department_id = d.department_id
+WHERE salary > (SELECT AVG(salary) FROM employees)
+GROUP BY department_name
+HAVING COUNT(*) > 2
+ORDER BY average_salary DESC;`,
+            solution: `1. What the SQL Query Does:
+This query retrieves the name of each department and the average salary of its above-average earners, specifically for departments that have more than 2 employees earning above the company-wide average salary, sorted from highest to lowest average salary.
+
+2. Step-by-Step Logical Execution Order of Clauses:
+- Step 1 (Subquery in WHERE): Executes (SELECT AVG(salary) FROM employees) to compute the overall company-wide average salary across all employees.
+- Step 2 (FROM & JOIN): Joins the 'employees' table (aliased as e) and 'department' table (aliased as d) matching rows where e.department_id = d.department_id.
+- Step 3 (WHERE): Filters the joined rows, keeping ONLY individual employees whose salary is strictly greater than the company-wide average salary.
+- Step 4 (GROUP BY): Groups the remaining (above-average earning) employee rows by 'department_name'.
+- Step 5 (HAVING): Filters the grouped departments, retaining ONLY those departments that have more than 2 employees (COUNT(*) > 2) who passed the WHERE filter.
+- Step 6 (SELECT): Computes AVG(salary) as 'average_salary' for each qualifying department group.
+- Step 7 (ORDER BY): Sorts the final result set by 'average_salary' in descending order.`,
+            tags: ['SQL', 'Query Execution Order', 'Subquery', 'BIBM 10152 Real Question'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10152-6-2',
+            questionNo: '6.2',
+            type: 'descriptive',
+            topicCategory: 'Software Engineering',
+            questionText: `Verification and validation are two key process areas at CMMI Level 3. For both of these areas, provide:
+1. A precise definition.
+2. A description of how you can fulfill these areas in your software testing activities.`,
+            solution: `1. Definitions (CMMI Level 3 — Defined):
+- Verification ("Are we building the product right?"):
+  Verification is the process of evaluating software work products (requirements, design documents, source code) against their specified technical requirements and standards to ensure that each phase of the SDLC is built according to the specifications of the previous phase.
+- Validation ("Are we building the right product?"):
+  Validation is the process of evaluating the final integrated software system in its intended operational environment to ensure that it fulfills the actual business needs and expectations of the end user/customer.
+
+2. How to Fulfill Verification and Validation in Software Testing Activities:
+- Fulfilling Verification in Testing:
+  * Conducting formal Peer Reviews, Walkthroughs, and Fagan Inspections of requirement specs, ER diagrams, and source code.
+  * Executing automated Static Code Analysis (SonarQube), Unit Testing (JUnit/pytest), and Integration Testing against API contracts.
+- Fulfilling Validation in Testing:
+  * Conducting End-to-End System Testing, User Acceptance Testing (UAT), Beta Testing, and Operational Readiness Testing (ORT) with real banking business scenarios and actual end-users.`,
+            tags: ['Software Engineering', 'CMMI Level 3', 'Verification vs Validation', 'BIBM 10152 Real Question'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10152-6-3',
+            questionNo: '6.3',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'What is the difference between Packet Sniffing (Snooping) and Packet Spoofing in computer networks? How can a bank protect its network against both attacks?',
+            solution: `1. Difference between Packet Sniffing and Packet Spoofing:
+- Packet Sniffing (Passive Attack / Eavesdropping):
+  * Nature: A passive reconnaissance attack where an attacker captures and inspects data packets flowing across a network segment using tools like Wireshark or tcpdump (by placing the NIC in promiscuous mode).
+  * Goal: To steal unencrypted credentials, session tokens, or sensitive financial data without altering the packet stream.
+  * Security Property Violated: Confidentiality.
+
+- Packet Spoofing (Active Attack / Masquerading):
+  * Nature: An active attack where an attacker crafts and injects counterfeit packets into the network with a forged source IP address, MAC address (ARP Spoofing), or DNS reply.
+  * Goal: To impersonate a trusted server/host, bypass IP-based access control lists, perform Man-in-the-Middle (MitM) interception, or launch reflection DDoS attacks.
+  * Security Property Violated: Integrity and Authenticity.
+
+2. Countermeasures in a Banking Network:
+- Against Packet Sniffing: Enforce end-to-end encryption (TLS 1.3, SSH, IPsec VPN) so captured payloads are unreadable ciphertext; use switched networks with VLAN segmentation instead of shared hubs.
+- Against Packet Spoofing: Enable Dynamic ARP Inspection (DAI) and DHCP Snooping on Layer-2 switches, Ingress/Egress packet filtering (BCP 38), and cryptographic mutual authentication (mTLS / Digital Signatures).`,
+            tags: ['Network Security', 'Packet Sniffing', 'Packet Spoofing', 'BIBM 10152 Real Question'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10152-6-4',
+            questionNo: '6.4',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Write a complete C program to multiply two matrices A (of size R1 x C1) and B (of size R2 x C2) after validating the matrix multiplication compatibility condition.',
+            solution: 'Two matrices A (R1 x C1) and B (R2 x C2) are compatible for multiplication if and only if C1 == R2. The resulting product matrix C has dimensions R1 x C2, and each element C[i][j] = Sum_{k=0 to C1-1} A[i][k] * B[k][j] in O(R1 * C1 * C2) time.',
+            codeSolution: `#include <stdio.h>
+
+int main() {
+    int r1 = 2, c1 = 3, r2 = 3, c2 = 2;
+    int A[2][3] = {{1, 2, 3}, {4, 5, 6}};
+    int B[3][2] = {{7, 8}, {9, 1}, {2, 3}};
+    int C[2][2] = {0};
+
+    if (c1 != r2) {
+        printf("Matrix multiplication not possible: C1 != R2\\n");
+        return 1;
+    }
+
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            C[i][j] = 0;
+            for (int k = 0; k < c1; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+
+    printf("Product Matrix C (%dx%d):\\n", r1, c2);
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            printf("%d ", C[i][j]);
+        }
+        printf("\\n");
+    }
+    return 0;
+}`,
+            solutionLanguage: 'c',
+            tags: ['C Programming', 'Matrix Multiplication', 'BIBM 10152 Real Question'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10152-6-5',
+            questionNo: '6.5',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'Compare Time-Division Multiplexing (TDM), Frequency-Division Multiplexing (FDM), and Wavelength-Division Multiplexing (WDM) in data communications.',
+            solution: `Comparison of Multiplexing Techniques:
+
+1. Frequency-Division Multiplexing (FDM):
+- Signal Type: Analog technique.
+- Mechanism: The total bandwidth of the communication link is divided into multiple non-overlapping frequency sub-channels separated by guard bands. Each user transmits simultaneously on their assigned frequency band.
+- Applications: FM/AM Radio broadcasting, Cable TV, first-generation cellular (1G).
+
+2. Wavelength-Division Multiplexing (WDM):
+- Signal Type: Optical analog technique over fiber-optic cables.
+- Mechanism: Combines multiple optical carrier signals of different wavelengths (colors of laser light) onto a single optical fiber using a prism/diffraction multiplexer, and splits them at the receiver.
+- Applications: Submarine optical cables (SEA-ME-WE 4/5), SONET/SDH backbone networks (DWDM supports 80–160+ channels per fiber).
+
+3. Time-Division Multiplexing (TDM):
+- Signal Type: Digital technique.
+- Mechanism: All channels share the entire bandwidth of the link, but time is divided into recurrent frames of fixed time slots. In Synchronous TDM, each source gets a dedicated slot per frame; in Statistical TDM, slots are allocated dynamically on demand.
+- Applications: ISDN, T1/E1 digital telephone lines, SONET.`,
+            tags: ['Data Communication', 'TDM', 'FDM', 'WDM', 'BIBM 10152 Real Question'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10152-6-6',
+            questionNo: '6.6',
+            type: 'descriptive',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'What is Virtualization? Differentiate between Type-1 (Bare-Metal) and Type-2 (Hosted) Hypervisors with real-world examples.',
+            solution: `1. Virtualization:
+Virtualization is an abstraction layer technology that decouples physical hardware resources (CPU, RAM, Storage, NIC) from operating systems, allowing multiple isolated Virtual Machines (VMs) to run concurrently on a single physical host server.
+
+2. Type-1 (Bare-Metal) vs Type-2 (Hosted) Hypervisors:
+- Architecture:
+  * Type-1 Hypervisor runs directly on the bare-metal physical server hardware without any underlying host OS.
+  * Type-2 Hypervisor runs as an application layer on top of a conventional Host Operating System (such as Windows, macOS, or Linux).
+- Performance & Hardware Overhead:
+  * Type-1 has near-native hardware performance and minimal latency because it communicates directly with CPU virtualization extensions (Intel VT-x / AMD-V).
+  * Type-2 incurs higher latency and resource overhead because all I/O and memory requests pass through the Host OS kernel.
+- Fault Isolation & Security:
+  * Type-1 is highly secure; a crash in one guest VM does not affect other VMs.
+  * In Type-2, if the underlying Host OS crashes or is compromised, all running guest VMs fail simultaneously.
+- Real-World Examples:
+  * Type-1 Examples: VMware ESXi, Microsoft Hyper-V, Linux KVM, Citrix XenServer.
+  * Type-2 Examples: Oracle VirtualBox, VMware Workstation / Fusion, Parallels Desktop.`,
+            tags: ['Cloud Computing', 'Virtualization', 'Hypervisors', 'BIBM 10152 Real Question'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10152-6-7',
+            questionNo: '6.7',
+            type: 'descriptive',
+            topicCategory: 'Database & SQL',
+            questionText: 'Define Functional Dependency. Differentiate between Third Normal Form (3NF) and Boyce-Codd Normal Form (BCNF) with a suitable relational schema example.',
+            solution: `1. Functional Dependency (X -> Y):
+In a relation R, attribute set Y is functionally dependent on attribute set X if and only if each X value is associated with precisely one Y value at any given time.
+
+2. Difference between 3NF and BCNF:
+- Third Normal Form (3NF): A relation R is in 3NF if it is in 2NF and for every non-trivial functional dependency X -> Y, at least one of the following holds:
+  (a) X is a superkey of R, OR
+  (b) Y is a prime attribute (each attribute in Y is part of some candidate key).
+- Boyce-Codd Normal Form (BCNF): A relation R is in BCNF if for EVERY non-trivial functional dependency X -> Y, X MUST be a superkey of R (condition (b) for prime attributes is removed).
+
+3. Example Showing a Relation in 3NF but NOT in BCNF:
+Consider Enrollment(StudentID, Course, Instructor) with FDs:
+- FD1: {StudentID, Course} -> Instructor (Candidate Key = {StudentID, Course})
+- FD2: Instructor -> Course (Each instructor teaches only one course, and Course is a prime attribute).
+Here, FD2 satisfies 3NF because Course is a prime attribute, but violates BCNF because 'Instructor' is NOT a superkey. To convert to BCNF, decompose into R1(Instructor, Course) and R2(StudentID, Instructor).`,
+            tags: ['DBMS', 'Normalization', '3NF vs BCNF', 'BIBM 10152 Real Question'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10152-6-8',
+            questionNo: '6.8',
+            type: 'descriptive',
+            topicCategory: 'Database & SQL',
+            questionText: 'Differentiate between a Clustered Index and a Non-Clustered Index in a relational database. Why can a database table have only one Clustered Index?',
+            solution: `1. Clustered Index vs Non-Clustered Index:
+- Physical Data Ordering:
+  * A Clustered Index determines and sorts the actual physical storage order of data rows on disk pages. The leaf nodes of a Clustered Index ARE the actual data pages.
+  * A Non-Clustered Index stores a separate B+ Tree structure containing the indexed key columns along with a row locator/pointer (RowID or Clustered Key) pointing to the actual data row.
+- Lookup Speed:
+  * Clustered Index is faster for range queries (BETWEEN, >, <) and primary key lookups because rows are stored contiguously on disk without extra pointer hops.
+  * Non-Clustered Index requires an additional bookmark/key lookup to fetch non-indexed columns from the base table (unless it is a covering index).
+
+2. Why a Table Can Have Only One Clustered Index:
+Because the actual table rows on disk can physically be sorted in only ONE sequential order at any given time. To sort the same data in additional orders, separate Non-Clustered Index structures with pointers must be created (up to 999 per table in SQL Server).`,
+            tags: ['DBMS', 'Clustered vs Non-Clustered Index', 'BIBM 10152 Real Question'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10152-6-9',
+            questionNo: '6.9',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: `Determine the exact output of the following C program and trace the pointer operations step-by-step:
+#include <stdio.h>
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int *p = arr;
+    printf("%d\\n", *p++);
+    printf("%d\\n", *++p);
+    printf("%d\\n", ++*p);
+    printf("%d\\n", *(p + 1));
+    return 0;
+}`,
+            solution: `Step-by-Step Pointer Execution Trace:
+Initially: arr = {10, 20, 30, 40, 50}, and pointer p points to arr[0] (value 10).
+
+1. Statement 1: printf("%d\\n", *p++);
+   - Postfix increment p++ has higher precedence than *, so p++ returns the current address (arr[0]) to be dereferenced, and THEN increments p to point to arr[1].
+   - Output 1: 10 (and now p points to arr[1] = 20).
+
+2. Statement 2: printf("%d\\n", *++p);
+   - Prefix increment ++p increments pointer p first so p now points to arr[2], and then dereferences it.
+   - Output 2: 30 (and p points to arr[2] = 30).
+
+3. Statement 3: printf("%d\\n", ++*p);
+   - Dereferences p first (*p is arr[2] = 30), and increments the value stored at arr[2] from 30 to 31. Pointer p remains at arr[2].
+   - Output 3: 31 (now arr = {10, 20, 31, 40, 50}, p points to arr[2]).
+
+4. Statement 4: printf("%d\\n", *(p + 1));
+   - Reads the element at p + 1, which is arr[3].
+   - Output 4: 40.
+
+Final Printed Output:
+10
+30
+31
+40`,
+            tags: ['C Programming', 'Pointers', 'Output Tracing', 'BIBM 10152 Real Question'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10152-6-10',
+            questionNo: '6.10',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'Explain the TCP 3-Way Handshake connection establishment mechanism with sequence and acknowledgment numbers. How does a TCP SYN Flood attack exploit this mechanism, and how do SYN Cookies mitigate it?',
+            solution: `1. TCP 3-Way Handshake:
+- Step 1 (SYN): Client sends a TCP segment with SYN=1 and an Initial Sequence Number (Seq = x) to the Server. Client enters SYN_SENT state.
+- Step 2 (SYN-ACK): Server allocates a TCB buffer in its SYN backlog queue, replies with SYN=1, ACK=1, its own initial sequence number (Seq = y), and Acknowledgment number (Ack = x + 1). Server enters SYN_RCVD state.
+- Step 3 (ACK): Client responds with ACK=1, Seq = x + 1, Ack = y + 1. Both enter ESTABLISHED state.
+
+2. How TCP SYN Flood Exploits the Handshake:
+An attacker sends thousands of spoofed SYN packets (Step 1) with fake source IP addresses and never sends the final ACK (Step 3). The server allocates memory in its half-open connection backlog queue (SYN_RCVD) for each spoofed SYN until the queue fills up completely, denying legitimate banking clients from connecting.
+
+3. Mitigation via SYN Cookies:
+With SYN Cookies enabled, the server does NOT allocate a TCB buffer upon receiving a SYN. Instead, it encodes the connection state (client IP/port, timestamp, MSS, and a cryptographic hash secret) directly into the 32-bit server sequence number 'y' sent in the SYN-ACK. Memory is allocated ONLY after the client returns a valid ACK (Ack = y + 1) that passes hash verification.`,
+            tags: ['Networking', 'TCP 3-Way Handshake', 'SYN Flood', 'BIBM 10152 Real Question'],
+            marks: 15,
+            difficulty: 'Easy'
+          }
+        ]
+      }
+    ]
+  },
+
+  // 4. Job ID: 10229 (Officer IT, Combined Bank — Aug 18, 2024)
   {
     id: 'officer-it-10229',
-    title: 'Officer (IT), Combined Bank (Job ID: 10229)',
+    title: 'Officer (IT), Combined Bank (Job ID-10229) — BIBM Official Format',
     searchQuery: 'Officer (IT), Combined Bank (Job ID: 10229) question paper pdf',
     category: 'Officer (IT)',
     jobId: '10229',
-    circularYear: '2023 (Recruitment 2024-2025)',
+    circularYear: '2023 (Exam Aug 18, 2024)',
     examDate: 'August 18, 2024',
-    examBody: 'BIBM',
+    examBody: 'BIBM (Bangladesh Institute of Bank Management)',
     participatingBanks: ['Sonali Bank PLC', 'Janata Bank PLC', 'Agrani Bank PLC', 'Probashi Kallyan Bank'],
     grade: 'Grade 10',
     totalMarks: 200,
     duration: '2 Hours (120 Minutes)',
-    examType: 'Written Exam (Descriptive & Technical)',
-    summary: 'Recruitment examination conducted by BIBM under Bankers Selection Committee for Officer (IT). Heavily focused on Core Banking Systems (CBS), database aggregation, OOP concepts, networking subnetting, and cyber resilience.',
-    keyTopics: ['Core Banking Systems', 'SQL Grouping & Having', 'Subnetting VLSM', 'Object Oriented Programming', 'B-Tree Indexing', 'Digital Banking Security'],
+    examType: 'Written Exam (Official BSCS / BIBM Format)',
+    summary: 'Recruitment examination conducted by BIBM under Bankers Selection Committee for Officer (IT) (Job ID: 10229). Structured in official Part 1 (Focus Writing in Bangla & English, Translation, and Analytical Math — 50 Marks) and Part 2 (Subject Related Questions 6.1–6.10 covering SQL HAVING, B+ Tree Indexing, /27 Subnetting, Java OOP Polymorphism, QuickSort Partitioning, and ISO 27001 / PCI-DSS — 150 Marks).',
+    keyTopics: [
+      'SQL Grouping & HAVING on Withdrawals',
+      'B-Tree vs B+ Tree in Core Banking',
+      'Subnetting 172.16.20.0/24 into /27',
+      'Java Runtime Polymorphism & Upcasting',
+      'QuickSort Lomuto Partitioning & Complexity',
+      'PCI-DSS, HSM & Tokenization',
+      'Deadlock Banker Algorithm',
+      'DNS Resolution & ARP'
+    ],
     sections: [
       {
-        id: 'sec-10229-tech',
-        name: 'Technical & Departmental IT (150 Marks)',
-        marks: 150,
-        description: 'Computer Science, Database Management, Networking, Software Engineering and FinTech',
+        id: 'sec-10229-general',
+        name: 'Part 1: Focus Writing, Translation & Analytical Math (Questions 1–5) — 50 Marks',
+        marks: 50,
+        description: 'Official Part 1: Bangla Focus Writing, English Focus Writing, Bi-directional Translation, and Analytical Math.',
         questions: [
           {
             id: 'q-10229-1',
-            questionNo: '1 (a)',
+            questionNo: '1',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: 'Focus Writing in Bangla (10 Marks): বাংলাদেশে এজেন্ট ব্যাংকিং ও গ্রামীণ অর্থনীতির রূপান্তরে তথ্যপ্রযুক্তির অবদান।',
+            solution: `বাংলাদেশে এজেন্ট ব্যাংকিং ও গ্রামীণ অর্থনীতির রূপান্তরে তথ্যপ্রযুক্তির অবদান
+
+১. ভূমিকা:
+বাংলাদেশের গ্রামীণ ও প্রত্যন্ত অঞ্চলের ব্যাংকিং সেবাবঞ্চিত মানুষকে আনুষ্ঠানিক ব্যাংকিং চ্যানেলে অন্তর্ভুক্ত করার লক্ষ্যে ২০১৩ সালে বাংলাদেশ ব্যাংক এজেন্ট ব্যাংকিং নীতিমালা প্রবর্তন করে। তথ্যপ্রযুক্তির (বায়োমেট্রিক ফিঙ্গারপ্রিন্ট ডিভাইস, পস টার্মিনাল ও রিয়েল-টাইম কোর ব্যাংকিং সংযোগ) কল্যাণে এটি আজ গ্রামীণ অর্থনীতির অন্যতম প্রধান স্তম্ভে পরিণত হয়েছে।
+
+২. প্রবাসী রেমিট্যান্স ও ক্ষুদ্র সঞ্চয়:
+এজেন্ট ব্যাংকিং আউটলেটের মাধ্যমে প্রবাসীদের পাঠানো রেমিট্যান্স দ্রুত ও নিরাপদে গ্রামের বাড়িতে পৌঁছে যাচ্ছে। পাশাপাশি গ্রামীণ নারীদের ক্ষুদ্র সঞ্চয় এবং কৃষি ও এসএমই ঋণ বিতরণে এজেন্ট ব্যাংকিং অভূতপূর্ব সাফল্য দেখিয়েছে।`,
+            tags: ['Focus Writing Bangla', 'Agent Banking', 'Job ID 10229'],
+            marks: 10,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10229-2',
+            questionNo: '2',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: 'Focus Writing in English (10 Marks): Role of Artificial Intelligence and Machine Learning in Detecting Banking Fraud and Anti-Money Laundering (AML).',
+            solution: `Role of AI and Machine Learning in Detecting Banking Fraud and AML
+
+Traditional rule-based fraud detection systems rely on static thresholds (such as flagging any transaction above BDT 5,00,000), which generate excessive false positives and fail to catch sophisticated, low-value distributed attacks.
+
+Modern Machine Learning (ML) models analyze real-time behavioral features—device fingerprinting, geolocation velocity, merchant category, and historical spending patterns—within milliseconds. Unsupervised anomaly detection algorithms (such as Isolation Forests and Autoencoders) identify zero-day fraud patterns, while Graph Neural Networks (GNNs) uncover complex circular money-laundering rings across multiple mule accounts.`,
+            tags: ['Focus Writing English', 'AI in Banking', 'AML', 'Job ID 10229'],
+            marks: 10,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10229-3-4-5',
+            questionNo: '3, 4 & 5',
+            type: 'math',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `3. Translate into English (10 Marks):
+"একটি দেশের কেন্দ্রীয় ব্যাংক মুদ্রানীতি প্রণয়ন এবং তফসিলি ব্যাংকগুলোর তদারকির মাধ্যমে সামষ্টিক অর্থনৈতিক স্থিতিশীলতা বজায় রাখে।"
+
+4. Translate into Bangla (10 Marks):
+"Data backup and disaster recovery planning are critical for ensuring uninterrupted banking operations during natural calamities or cyber incidents."
+
+5. Analytical Math (10 Marks):
+A server cluster processes a batch of 12,000 transactions in 40 minutes using 6 worker nodes. How many additional worker nodes of the same capacity are required to process 27,000 transactions in 30 minutes?`,
+            solution: `3. English Translation:
+"The central bank of a country maintains macroeconomic stability by formulating monetary policy and supervising scheduled banks."
+
+4. Bangla Translation:
+"প্রাকৃতিক দুর্যোগ বা সাইবার হামলার সময় নিরবচ্ছিন্ন ব্যাংকিং কার্যক্রম নিশ্চিত করার জন্য ডেটা ব্যাকআপ এবং ডিজাস্টার রিকভারি পরিকল্পনা অত্যন্ত গুরুত্বপূর্ণ।"
+
+5. Analytical Math Solution:
+- Rate of 1 worker node = 12,000 / (6 nodes * 40 minutes) = 50 transactions per minute.
+- In 30 minutes, 1 worker node can process = 50 * 30 = 1,500 transactions.
+- Total worker nodes needed for 27,000 transactions in 30 minutes = 27,000 / 1,500 = 18 nodes.
+- Additional worker nodes required = 18 - 6 = 12 worker nodes.`,
+            tags: ['Translation', 'Math', 'Job ID 10229'],
+            marks: 30,
+            difficulty: 'Easy'
+          }
+        ]
+      },
+      {
+        id: 'sec-10229-tech',
+        name: 'Part 2: 6. Subject Related Questions (6.1–6.10) — (10 x 15 = 150 Marks)',
+        marks: 150,
+        description: 'Computer Science, Database Management, Networking, Software Engineering and FinTech (150 Marks).',
+        questions: [
+          {
+            id: 'q-10229-6-1',
+            questionNo: '6.1',
             type: 'sql',
             topicCategory: 'Database & SQL',
             questionText: 'Consider the banking database tables: Account(AccNo, CustID, AccType, Balance, BranchCode) and Transaction(TxnID, AccNo, TxnDate, TxnType, Amount). Write an SQL query to find the account numbers, customer IDs, and total withdrawal amounts for all Savings accounts ("SB") that have carried out more than 3 withdrawals in the month of July 2024 with a cumulative withdrawal amount exceeding BDT 1,00,000.',
-            solution: 'To calculate the cumulative withdrawal amount for Savings accounts with specific constraints, we join Account and Transaction, filter on account type ("SB"), withdrawal transactions ("DR" / "Debit"), and the transaction date range. Then we group by AccNo and CustID, filtering the groups with the HAVING clause.',
-            codeSolution: `-- SQL Solution for Combined Bank Officer (IT) Job ID: 10229
-SELECT 
+            solution: 'Join Account and Transaction on AccNo, filter by AccType = \'SB\', withdrawal transaction type, and July 2024 dates, then group by AccNo and CustID with HAVING COUNT(TxnID) > 3 AND SUM(Amount) > 100000.',
+            codeSolution: `SELECT 
     a.AccNo,
     a.CustID,
     SUM(t.Amount) AS Total_Withdrawal_Amount,
@@ -368,2002 +1539,1069 @@ HAVING COUNT(t.TxnID) > 3
    AND SUM(t.Amount) > 100000
 ORDER BY Total_Withdrawal_Amount DESC;`,
             solutionLanguage: 'sql',
-            tags: ['SQL', 'DBMS', 'Banking Transaction', 'GROUP BY', 'HAVING'],
-            marks: 20,
+            tags: ['SQL', 'DBMS', 'GROUP BY', 'HAVING'],
+            marks: 15,
             difficulty: 'Medium'
           },
           {
-            id: 'q-10229-2',
-            questionNo: '1 (b)',
+            id: 'q-10229-6-2',
+            questionNo: '6.2',
             type: 'descriptive',
             topicCategory: 'Database & SQL',
             questionText: 'What is a B-Tree and B+ Tree? Why are B+ Trees preferred over Binary Search Trees (BST) or AVL Trees for implementing database indexes in Core Banking Systems (CBS)?',
             solution: `1. Definition:
-- A B-Tree is a self-balancing search tree where internal nodes can have more than two children and store multiple keys.
-- A B+ Tree is an extension where:
-  * All data records/pointers reside only in leaf nodes.
-  * Leaf nodes are linked sequentially as a doubly linked list, enabling rapid range scans.
-  * Internal nodes only store routing keys for indexing.
+- A B-Tree is a self-balancing multi-way search tree where internal nodes store both routing keys and data pointers.
+- A B+ Tree stores all actual data records/pointers exclusively in leaf nodes, while internal nodes store only routing keys, and leaf nodes are linked sequentially as a doubly linked list.
 
-2. Why B+ Trees are preferred over BST/AVL in Database Indexing:
-- Disk Block / I/O Efficiency: Databases reside on secondary storage (SSD/HDD) where disk access is orders of magnitude slower than RAM. A BST has high height (O(log2 N)), needing many disk I/O operations. A B+ Tree has a very high branching factor (fan-out of 100 to 1000+), resulting in a tree height of only 3 to 4 levels for millions of records, requiring at most 3-4 disk reads.
-- Range Query Performance: In banking operations (e.g., retrieving transactions between two dates, balance statements), B+ Tree leaf nodes are connected via pointers. Once the first matching record is found, the system performs a sequential leaf traversal without traversing up and down the tree.
-- Predictable Search Latency: Every search path from root to leaf has the exact same depth, ensuring uniform response times for high-volume banking transactions.`,
-            tags: ['Data Structures', 'DBMS', 'B+ Tree', 'Indexing', 'Core Banking'],
-            marks: 20,
+2. Why B+ Trees are Preferred in Core Banking Databases:
+- Disk Block / I/O Efficiency: High fan-out (100 to 1000+ keys per node) keeps tree height to 3–4 levels for millions of rows, requiring at most 3–4 disk page reads.
+- Sequential Range Scans: Linked leaf nodes allow date-range account statement queries to scan sequentially without traversing back up the tree.`,
+            tags: ['Data Structures', 'DBMS', 'B+ Tree', 'Indexing'],
+            marks: 15,
             difficulty: 'Medium'
           },
           {
-            id: 'q-10229-3',
-            questionNo: '2 (a)',
+            id: 'q-10229-6-3',
+            questionNo: '6.3',
             type: 'math',
             topicCategory: 'Networking & Security',
-            questionText: 'A commercial bank branch is assigned the network IP block 172.16.20.0/24. The branch manager needs to divide this network into 6 separate departments (ATM, Teller counters, Loan Department, IT Server room, Guest Wi-Fi, and Management). Each department requires up to 25 host machines. (i) Determine the required subnet mask in slash notation and dotted decimal. (ii) List the Network Address, Usable Host Range, and Broadcast Address for the first 3 subnets.',
-            solution: `Calculation Steps:
-1. Subnet requirements:
-- Number of subnets required: 6.
-- Host machines needed per subnet: 25.
-- Formula for host capacity: 2^h - 2 >= 25 => h = 5 bits (2^5 - 2 = 30 usable hosts, which satisfies >= 25).
-- With 32 total bits in IPv4: 32 - 5 = 27 network bits (/27).
-- Number of created subnets with /27: 2^(27 - 24) = 2^3 = 8 subnets (which accommodates the 6 required departments).
+            questionText: 'A commercial bank branch is assigned the network IP block 172.16.20.0/24. The branch manager needs to divide this network into 6 separate departments, each requiring up to 25 host machines. (i) Determine the required subnet mask in slash notation and dotted decimal. (ii) List the Network Address, Usable Host Range, and Broadcast Address for the first 3 subnets.',
+            solution: `1. Subnet Mask Calculation:
+- Hosts needed per subnet = 25 -> 2^5 - 2 = 30 >= 25 (5 host bits).
+- Prefix = 32 - 5 = /27 (creates 2^3 = 8 subnets, accommodating 6 departments).
+- Dotted Decimal Mask = 255.255.255.224 (Block size = 32).
 
-2. Subnet Mask:
-- Slash notation: /27
-- Dotted decimal: 255.255.255.224 (since 128 + 64 + 32 = 224).
-- Block size (Magic Number): 256 - 224 = 32.
-
-3. Subnet Allocation Table (First 3 Subnets):
-- Subnet 1 (ATM):
-  * Network Address: 172.16.20.0
-  * Usable Host Range: 172.16.20.1 to 172.16.20.30
-  * Broadcast Address: 172.16.20.31
-- Subnet 2 (Teller Counters):
-  * Network Address: 172.16.20.32
-  * Usable Host Range: 172.16.20.33 to 172.16.20.62
-  * Broadcast Address: 172.16.20.63
-- Subnet 3 (Loan Department):
-  * Network Address: 172.16.20.64
-  * Usable Host Range: 172.16.20.65 to 172.16.20.94
-  * Broadcast Address: 172.16.20.95`,
-            tags: ['Networking', 'Subnetting', 'IPv4', 'VLSM', 'CIDR'],
-            marks: 20,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10229-4',
-            questionNo: '2 (b)',
-            type: 'coding',
-            topicCategory: 'Programming & Algorithms',
-            questionText: 'Write a program in Python or C++ to validate whether a given 16-digit credit/debit card number is valid using the Luhn Algorithm (Mod 10 formula) frequently used in bank payment gateways.',
-            solution: 'The Luhn Algorithm validates card numbers: (1) Reverse the digits. (2) Double every second digit starting from the rightmost second position. (3) If doubling results in a number > 9, subtract 9. (4) Sum all digits. (5) If the total modulo 10 equals 0, the card number is valid.',
-            codeSolution: `def is_valid_luhn(card_number_str: str) -> bool:
-    """
-    Validates a banking card number using the Luhn (Mod 10) algorithm.
-    Time Complexity: O(N), Space Complexity: O(1)
-    """
-    cleaned = card_number_str.replace(" ", "").replace("-", "")
-    if not cleaned.isdigit() or len(cleaned) < 13:
-        return False
-        
-    total_sum = 0
-    reverse_digits = cleaned[::-1]
-    
-    for i, char in enumerate(reverse_digits):
-        digit = int(char)
-        # Double every second digit (index 1, 3, 5...)
-        if i % 2 == 1:
-            doubled = digit * 2
-            total_sum += (doubled - 9) if doubled > 9 else doubled
-        else:
-            total_sum += digit
-            
-    return (total_sum % 10) == 0
-
-# Test Case Demonstration
-sample_card = "4532015112830366"
-print(f"Card {sample_card} validity: {is_valid_luhn(sample_card)}")`,
-            solutionLanguage: 'python',
-            tags: ['Algorithms', 'Python', 'FinTech', 'Luhn Algorithm', 'Payment Security'],
-            marks: 20,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10229-5',
-            questionNo: '3 (a)',
-            type: 'descriptive',
-            topicCategory: 'Networking & Security',
-            questionText: 'Explain the 2-Factor Authentication (2FA) mechanism and the cryptographic difference between SMS OTP and Time-based One-Time Password (TOTP, RFC 6238) in banking internet applications. Which one is more secure against SIM swapping attacks?',
-            solution: `1. 2FA Mechanism:
-Two-Factor Authentication verifies user identity by requiring two distinct factors from:
-- Something you know (PIN, password)
-- Something you have (hardware token, mobile authenticator app, smart card)
-- Something you are (biometrics: fingerprint, facial scan).
-
-2. SMS OTP vs. TOTP (RFC 6238):
-- SMS OTP:
-  * Server generates a random 6-digit number, stores it in cache with TTL (e.g., 3 mins), and transmits it in cleartext over the telecom SMS cellular network (SS7 protocol).
-  * Vulnerabilities: SS7 interception, SIM swap fraud, mobile malware with SMS read permissions.
-- TOTP (RFC 6238):
-  * Based on HMAC-based One-Time Password (HOTP).
-  * Both server and client authenticator app share a pre-shared secret key (K) established during QR registration.
-  * Counter is computed as T = floor(Current Unix Timestamp / Time Step X), where X is typically 30 seconds.
-  * OTP = Truncate(HMAC-SHA1(K, T)) mod 10^6.
-  * Generated locally on the user device without network transmission.
-
-3. Defense against SIM Swapping:
-TOTP is completely immune to SIM swapping attacks because the shared secret resides in the local application enclave, independent of the telecom carrier or phone number. SMS OTP is completely compromised once an attacker successfully executes a SIM swap at a mobile operator store.`,
-            tags: ['Cybersecurity', 'TOTP', '2FA', 'FinTech', 'Information Security'],
-            marks: 20,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10229-6',
-            questionNo: '3 (b)',
-            type: 'short_note',
-            topicCategory: 'Operating Systems & Linux',
-            questionText: 'Write short notes on any three: (i) ACID properties vs. BASE in distributed banking databases. (ii) Real-Time Gross Settlement (RTGS) vs BEFTN in Bangladesh Bank. (iii) Deadlock conditions in Operating Systems. (iv) Zero Trust Architecture (ZTA).',
-            solution: `(i) ACID vs. BASE:
-- ACID (Atomicity, Consistency, Isolation, Durability) guarantees strict transactional accuracy for core financial ledger entries (e.g. transfer between two accounts).
-- BASE (Basically Available, Soft-state, Eventual consistency) prioritizes 100% uptime and horizontal scalability for read-heavy non-financial systems (e.g., transaction history browsing).
-
-(ii) RTGS vs. BEFTN in Bangladesh:
-- RTGS (Real-Time Gross Settlement): Settles individual high-value transactions (minimum BDT 1,00,000) instantly and gross on a one-to-one real-time basis via Bangladesh Bank gateway.
-- BEFTN (Bangladesh Electronic Funds Transfer Network): Operates in batch clearing cycles (typically 2-3 sessions per day) for low-to-medium retail credit and debit transfers.
-
-(iii) Four Coffman Deadlock Conditions:
-1. Mutual Exclusion: At least one resource must be non-shareable.
-2. Hold and Wait: A process holds resources while requesting additional ones.
-3. No Preemption: Resources cannot be forcibly seized from a process.
-4. Circular Wait: A closed loop of processes where each waits for a resource held by the next.
-
-(iv) Zero Trust Architecture (ZTA):
-A security model based on the principle "Never Trust, Always Verify." Every request, whether originating inside or outside the bank perimeter, must be authenticated, authorized, and encrypted before access is granted.`,
-            tags: ['Operating Systems', 'FinTech', 'RTGS', 'BEFTN', 'Cybersecurity'],
-            marks: 25,
-            difficulty: 'Easy'
-          },
-          {
-            id: 'q-10229-6b',
-            questionNo: '3 (c)',
-            type: 'descriptive',
-            topicCategory: 'Software Engineering & System Design',
-            questionText: 'Explain the SOLID design principles in Object-Oriented Software Engineering. Provide a concrete banking code scenario demonstrating the Single Responsibility Principle (SRP) and Open/Closed Principle (OCP).',
-            solution: `1. SOLID Principles Overview:
-- S (Single Responsibility Principle): A class should have one, and only one, reason to change.
-- O (Open/Closed Principle): Software entities should be open for extension, but closed for modification.
-- L (Liskov Substitution Principle): Subtypes must be substitutable for their base types without altering program correctness.
-- I (Interface Segregation Principle): Clients should not be forced to depend upon interfaces they do not use.
-- D (Dependency Inversion Principle): High-level modules should not depend on low-level modules; both should depend on abstractions.
-
-2. Banking Code Application (SRP & OCP):
-- Violation: A single class \`AccountManager\` that handles balance calculations, database saving, and SMS alert sending violates SRP.
-- Refactoring for SRP: Split into \`Account\` (domain entity), \`AccountRepository\` (persistence), and \`NotificationService\` (messaging).
-- Applying OCP: Define an interface \`InterestCalculator\` with method \`calculateInterest(Account a)\`. If the bank introduces a new account type (e.g. Senior Citizen Fixed Deposit), create a new class implementing the interface without modifying existing working calculation engines.`,
-            tags: ['Software Engineering', 'SOLID', 'OOP', 'System Design'],
-            marks: 25,
-            difficulty: 'Medium'
-          }
-        ]
-      },
-      {
-        id: 'sec-10229-nontech',
-        name: 'Language, Translation & Focus Writing (50 Marks)',
-        marks: 50,
-        description: 'Focus writing on contemporary technological challenges in Bangladesh banking, plus bilingual translation.',
-        questions: [
-          {
-            id: 'q-10229-7',
-            questionNo: '4',
-            type: 'descriptive',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Focus Writing in English: "Building Cyber Resilience and Zero Trust Architecture in the Banking Sector of Bangladesh" (Word limit: 300 words).',
-            solution: `Outline & Key Model Points:
-1. Introduction:
-The banking sector in Bangladesh has experienced exponential digital transformation with the widespread adoption of Core Banking Solutions (CBS), National Payment Switch Bangladesh (NPSB), and mobile financial services. However, this interconnectedness expands the digital attack surface, making legacy perimeter-based security obsolete.
-
-2. Principles of Zero Trust in Banking:
-Zero Trust operates on the dictum "Never Trust, Always Verify." Instead of trusting users inside the intranet, every access request must be strictly validated using multi-factor authentication (MFA), least-privilege role-based access control (RBAC), and micro-segmentation of critical database servers.
-
-3. Key Components for Cyber Resilience:
-- Core System Hardening: Enforcing continuous patch management, database encryption at rest (AES-256) and in transit (TLS 1.3).
-- 24/7 Security Operations Center (SOC): Implementing AI-driven SIEM (Security Information and Event Management) and SOAR tools to detect anomalous transaction patterns in real time.
-- Business Continuity & Disaster Recovery (DR): Maintaining synchronized near-DR and far-DR centers with automated failover testing.
-- Employee Training: Cultivating human firewall capabilities to prevent phishing and social engineering exploits.
-
-4. Conclusion:
-Cyber resilience is no longer merely an IT concern; it is a fundamental pillar of financial stability. By adopting Zero Trust frameworks and proactive threat intelligence, Bangladesh's financial institutions can ensure sustainable digital growth while preserving public trust.`,
-            tags: ['Focus Writing', 'English', 'Cybersecurity', 'Banking'],
-            marks: 20,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10229-8',
-            questionNo: '5 (a)',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate the following passage into English: "সাইবার নিরাপত্তা বর্তমানে যেকোনো আর্থিক প্রতিষ্ঠানের জন্য সর্বাধিক গুরুত্বপূর্ণ চ্যালেঞ্জ। কেন্দ্রীয় ব্যাংকের গাইডলাইন অনুসারে প্রতিটি বাণিজ্যিক ব্যাংককে তাদের ডাটা সেন্টারের নিরাপত্তা বৃদ্ধি এবং সন্দেহজনক লেনদেন শনাক্তকরণে আধুনিক সফটওয়্যার ব্যবহার করতে হবে। গ্রাহকদের গোপনীয় তথ্য সুরক্ষিত রাখা এবং সাইবার আক্রমণের ঝুঁকি কমানোই ডিজিটাল ব্যাংকিং ব্যবস্থার প্রধান লক্ষ্য।"',
-            solution: `Standard High-Quality Model Translation:
-"Cybersecurity is currently the foremost critical challenge for any financial institution. In accordance with the guidelines of the central bank, every commercial bank must enhance the security of its data centers and utilize modern software for identifying suspicious transactions. Safeguarding customers' confidential data and mitigating the risks of cyber attacks represent the primary objectives of the digital banking system."`,
-            tags: ['Translation', 'Bangla to English', 'Banking IT'],
+2. First 3 Subnets:
+- Subnet 1: Network 172.16.20.0/27 | Hosts 172.16.20.1 – 172.16.20.30 | Broadcast 172.16.20.31
+- Subnet 2: Network 172.16.20.32/27 | Hosts 172.16.20.33 – 172.16.20.62 | Broadcast 172.16.20.63
+- Subnet 3: Network 172.16.20.64/27 | Hosts 172.16.20.65 – 172.16.20.94 | Broadcast 172.16.20.95`,
+            tags: ['Networking', 'Subnetting', 'IPv4'],
             marks: 15,
             difficulty: 'Medium'
           },
           {
-            id: 'q-10229-9',
-            questionNo: '5 (b)',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate the following passage into Bengali: "Modern Core Banking Solutions (CBS) enable real-time transaction processing across distributed branches. However, network latency and database deadlocks must be managed efficiently through optimized indexing, connection pooling, and fault-tolerant architecture."',
-            solution: `প্রমিত প্রাতিষ্ঠানিক বাংলা অনুবাদ:
-"আধুনিক কোর ব্যাংকিং সলিউশন (সিবিএস) বিভিন্ন শাখায় তাৎক্ষণিক বা রিয়েল-টাইম লেনদেন নিষ্পত্তির সুবিধা প্রদান করে। তবে নেটওয়ার্কের বিলম্ব (ল্যাটেন্সি) এবং ডাটাবেজের অচলাবস্থা (ডেডলক) দক্ষভাবে মোকাবিলার জন্য অপ্টিমাইজড ইনডেক্সিং, কানেকশন পুলিং এবং ত্রুটিসহনশীল (ফল্ট-টলারেন্ট) আর্কিটেকচার নিশ্চিত করা অপরিহার্য।"`,
-            tags: ['Translation', 'English to Bangla', 'Core Banking'],
-            marks: 15,
-            difficulty: 'Medium'
-          }
-        ]
-      }
-    ]
-  },
-
-  // 2. Job ID: 10209
-  {
-    id: 'officer-it-10209',
-    title: 'Officer (IT), Combined Bank (Job ID: 10209)',
-    searchQuery: 'Officer (IT), Combined Bank (Job ID: 10209) question paper pdf',
-    category: 'Officer (IT)',
-    jobId: '10209',
-    circularYear: '2022 (Exam 2024)',
-    examDate: 'June 07, 2024',
-    examBody: 'BIBM',
-    participatingBanks: ['Sonali Bank PLC', 'Janata Bank PLC'],
-    grade: 'Grade 10',
-    totalMarks: 200,
-    duration: '2 Hours (120 Minutes)',
-    examType: 'Written Exam (Descriptive & Technical)',
-    summary: 'Written test for Officer (IT) under Combined Banks for Sonali Bank PLC & Janata Bank PLC. Features relational schema normalization, OSI layer troubleshooting, BFS/DFS traversal, stack parentheses parsing, CPU scheduling, and banking math.',
-    keyTopics: ['DBMS Normalization', 'Breadth First Search', 'OSI vs TCP/IP', 'C/C++ Strings', 'Financial Word Problems', 'Round Robin Scheduling'],
-    sections: [
-      {
-        id: 'sec-10209-tech',
-        name: 'Technical IT Departmental (150 Marks)',
-        marks: 150,
-        questions: [
-          {
-            id: 'q-10209-1',
-            questionNo: '1',
-            type: 'descriptive',
-            topicCategory: 'Database & SQL',
-            questionText: 'Given the relation schema: LoanApplication(AppID, ClientNID, ClientName, BranchCode, BranchName, LoanAmount, InterestRate, ApprovalStatus) with functional dependencies: AppID -> {ClientNID, BranchCode, LoanAmount, ApprovalStatus}, ClientNID -> ClientName, BranchCode -> {BranchName, InterestRate}. (a) Identify the Candidate Key. (b) Explain why the relation is not in 2NF and 3NF. (c) Decompose the relation into 3NF relations.',
-            solution: `Step-by-step Solution:
-(a) Candidate Key:
-- Computing the attribute closure of {AppID}:
-  AppID+ = {AppID, ClientNID, BranchCode, LoanAmount, ApprovalStatus}
-  Since ClientNID -> ClientName, we get ClientName.
-  Since BranchCode -> {BranchName, InterestRate}, we get BranchName, InterestRate.
-  Therefore, AppID+ = all attributes of the relation.
-  Candidate Key = {AppID}.
-
-(b) Normal Form Violations:
-- 2NF Check: In 2NF, no non-prime attribute should be partially dependent on a proper subset of any candidate key. Since the candidate key is single-attribute {AppID}, there is NO partial dependency. Hence, the relation is already in 2NF.
-- 3NF Check: A relation in 2NF is in 3NF if for every functional dependency X -> Y, either X is a superkey or Y is a prime attribute.
-  * In ClientNID -> ClientName, ClientNID is NOT a superkey and ClientName is NOT prime. (Transitive Dependency)
-  * In BranchCode -> {BranchName, InterestRate}, BranchCode is NOT a superkey and the right-hand attributes are NOT prime. (Transitive Dependency)
-  Therefore, the relation violates 3NF.
-
-(c) Decompose into 3NF:
-We decompose to eliminate transitive dependencies:
-1. Client(ClientNID, ClientName) -- Primary Key: ClientNID
-2. Branch(BranchCode, BranchName, InterestRate) -- Primary Key: BranchCode
-3. LoanApplication(AppID, ClientNID, BranchCode, LoanAmount, ApprovalStatus) -- Primary Key: AppID, Foreign Keys: ClientNID, BranchCode.
-All decomposed relations are lossless-join and dependency-preserving.`,
-            tags: ['DBMS', 'Normalization', 'Functional Dependencies', '3NF'],
-            marks: 25,
-            difficulty: 'Hard'
-          },
-          {
-            id: 'q-10209-2',
-            questionNo: '2',
+            id: 'q-10229-6-4',
+            questionNo: '6.4',
             type: 'coding',
             topicCategory: 'Programming & Algorithms',
-            questionText: 'Write a C or C++ function to check if a given string containing brackets "()", "{}", and "[]" is balanced or not using a Stack data structure.',
-            solution: 'Balanced parentheses check using standard Stack: push opening brackets onto the stack; when a closing bracket is encountered, verify if the top matches the corresponding pair.',
-            codeSolution: `#include <iostream>
-#include <stack>
-#include <string>
+            questionText: 'Explain Runtime Polymorphism (Dynamic Method Dispatch) in Java/C++. Write a program demonstrating a base class BankAccount and derived classes SavingsAccount and FixedDepositAccount overriding calculateInterest().',
+            solution: 'Runtime polymorphism resolves overridden method calls at runtime based on the actual object instance rather than the reference variable type.',
+            codeSolution: `abstract class BankAccount {
+    protected String accountHolder;
+    protected double principalBalance;
 
-bool isBalanced(const std::string& expr) {
-    std::stack<char> s;
-    for (char ch : expr) {
-        if (ch == '(' || ch == '{' || ch == '[') {
-            s.push(ch);
-        } else if (ch == ')' || ch == '}' || ch == ']') {
-            if (s.empty()) return false;
-            char top = s.top();
-            s.pop();
-            if ((ch == ')' && top != '(') ||
-                (ch == '}' && top != '{') ||
-                (ch == ']' && top != '[')) {
-                return false;
-            }
-        }
+    public BankAccount(String accountHolder, double principalBalance) {
+        this.accountHolder = accountHolder;
+        this.principalBalance = principalBalance;
     }
-    return s.empty();
+
+    public abstract double calculateInterest();
 }
 
-int main() {
-    std::string test1 = "{[()]}";
-    std::string test2 = "{[(])}";
-    std::cout << test1 << ": " << (isBalanced(test1) ? "Balanced" : "Not Balanced") << "\\n";
-    std::cout << test2 << ": " << (isBalanced(test2) ? "Balanced" : "Not Balanced") << "\\n";
-    return 0;
-}`,
-            solutionLanguage: 'cpp',
-            tags: ['Data Structures', 'Stack', 'C++', 'Balanced Parentheses'],
-            marks: 20,
-            difficulty: 'Easy'
-          },
-          {
-            id: 'q-10209-3',
-            questionNo: '3',
-            type: 'descriptive',
-            topicCategory: 'Networking & Security',
-            questionText: 'Differentiate between TCP and UDP in terms of header size, reliability, flow control, and speed. Name two banking application protocols that use TCP and explain why.',
-            solution: `1. Comparison:
-- Header Size: TCP header is 20-60 bytes (variable options); UDP header is fixed at 8 bytes.
-- Reliability: TCP provides guaranteed delivery via sequence numbers, ACKs, and retransmissions. UDP is connectionless and best-effort with no delivery guarantee.
-- Flow & Congestion Control: TCP incorporates sliding window flow control and slow-start congestion avoidance. UDP has neither.
-- Speed/Overhead: TCP has higher latency due to 3-way handshake and ACK processing; UDP has minimal latency and minimal overhead.
-
-2. Banking Applications using TCP:
-- HTTPS / TLS (Port 443): Internet banking, API gateway calls, and web portals rely on HTTPS over TCP because financial transactions cannot tolerate dropped, duplicated, or out-of-order packets.
-- Financial Switch / ISO 8583 Messaging (e.g. ATM/POS switches): Financial switch messages between banks and Visa/Mastercard/NPSB use TCP sockets to guarantee that every authorization request and settlement message arrives accurately and predictably.`,
-            tags: ['Networking', 'TCP/IP', 'UDP', 'Protocols', 'Banking Systems'],
-            marks: 20,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10209-3b',
-            questionNo: '4',
-            type: 'sql',
-            topicCategory: 'Database & SQL',
-            questionText: 'Given the banking database tables: Branch(BranchID, BranchName, City), Customer(CustID, CustName, City), Account(AccNo, CustID, BranchID, Balance, OpenDate). Write SQL queries to:\n(a) Find the names of customers who have accounts in all branches located in "Dhaka".\n(b) Find the branch that holds the highest total balance among all branches.',
-            solution: `(a) Relational Division in SQL:
-To find customers who hold an account in ALL branches in Dhaka, we use GROUP BY with a COUNT of distinct branches matching the total count of Dhaka branches.
-
-(b) Subquery / Aggregation with LIMIT or FETCH FIRST:
-Group by BranchID, compute SUM(Balance), and order descending.`,
-            codeSolution: `-- Query (a): Customers with accounts in ALL Dhaka branches
-SELECT c.CustID, c.CustName
-FROM Customer c
-JOIN Account a ON c.CustID = a.CustID
-JOIN Branch b ON a.BranchID = b.BranchID
-WHERE b.City = 'Dhaka'
-GROUP BY c.CustID, c.CustName
-HAVING COUNT(DISTINCT b.BranchID) = (
-    SELECT COUNT(*) 
-    FROM Branch 
-    WHERE City = 'Dhaka'
-);
-
--- Query (b): Branch with the highest cumulative balance
-SELECT 
-    b.BranchID, 
-    b.BranchName, 
-    b.City, 
-    SUM(a.Balance) AS Total_Branch_Balance
-FROM Branch b
-JOIN Account a ON b.BranchID = a.BranchID
-GROUP BY b.BranchID, b.BranchName, b.City
-ORDER BY Total_Branch_Balance DESC
-LIMIT 1;`,
-            solutionLanguage: 'sql',
-            tags: ['SQL', 'Relational Division', 'Aggregations', 'DBMS'],
-            marks: 25,
-            difficulty: 'Hard'
-          },
-          {
-            id: 'q-10209-3c',
-            questionNo: '5',
-            type: 'descriptive',
-            topicCategory: 'Operating Systems & Linux',
-            questionText: 'Consider 4 processes P1, P2, P3, P4 arriving at time 0 with CPU burst times 8ms, 4ms, 9ms, and 5ms respectively. Draw the Gantt chart and compute average waiting time and turnaround time for Round Robin (RR) scheduling with time quantum q = 3ms.',
-            solution: `Execution Schedule (RR, Quantum = 3ms):
-- At t=0: Queue: P1, P2, P3, P4
-- P1 executes 0 to 3 (remaining: 5). Queue: P2, P3, P4, P1
-- P2 executes 3 to 6 (remaining: 1). Queue: P3, P4, P1, P2
-- P3 executes 6 to 9 (remaining: 6). Queue: P4, P1, P2, P3
-- P4 executes 9 to 12 (remaining: 2). Queue: P1, P2, P3, P4
-- P1 executes 12 to 15 (remaining: 2). Queue: P2, P3, P4, P1
-- P2 executes 15 to 16 (remaining: 0 -> P2 Finishes at 16). Queue: P3, P4, P1
-- P3 executes 16 to 19 (remaining: 3). Queue: P4, P1, P3
-- P4 executes 19 to 21 (remaining: 0 -> P4 Finishes at 21). Queue: P1, P3
-- P1 executes 21 to 23 (remaining: 0 -> P1 Finishes at 23). Queue: P3
-- P3 executes 23 to 26 (remaining: 0 -> P3 Finishes at 26).
-
-Turnaround Time (TAT = Completion - Arrival = Completion):
-- P1: 23ms
-- P2: 16ms
-- P3: 26ms
-- P4: 21ms
-Average Turnaround Time = (23 + 16 + 26 + 21) / 4 = 86 / 4 = 21.5 ms.
-
-Waiting Time (WT = TAT - Burst Time):
-- P1: 23 - 8 = 15 ms
-- P2: 16 - 4 = 12 ms
-- P3: 26 - 9 = 17 ms
-- P4: 21 - 5 = 16 ms
-Average Waiting Time = (15 + 12 + 17 + 16) / 4 = 60 / 4 = 15.0 ms.`,
-            tags: ['Operating Systems', 'CPU Scheduling', 'Round Robin', 'Gantt Chart'],
-            marks: 30,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10209-3d',
-            questionNo: '6',
-            type: 'coding',
-            topicCategory: 'Programming & Algorithms',
-            questionText: 'Write a C++ program implementing a Class Hierarchy for a Bank Account system demonstrating: (i) Abstract Base Class `Account`, (ii) Pure virtual method `calculateMonthlyInterest()`, (iii) Derived classes `SavingsAccount` and `CurrentAccount`.',
-            solution: 'C++ Object-Oriented Polymorphic hierarchy with pure virtual function and destructor.',
-            codeSolution: `#include <iostream>
-#include <string>
-
-class Account {
-protected:
-    std::string accountNumber;
-    double balance;
-public:
-    Account(const std::string& accNo, double bal) : accountNumber(accNo), balance(bal) {}
-    virtual ~Account() {}
-
-    virtual double calculateMonthlyInterest() = 0; // Pure virtual function
-
-    void displayBalance() const {
-        std::cout << "Account " << accountNumber << " | Balance: BDT " << balance << "\\n";
-    }
-};
-
-class SavingsAccount : public Account {
-    double annualInterestRate; // e.g. 0.06 for 6%
-public:
-    SavingsAccount(const std::string& accNo, double bal, double rate)
-        : Account(accNo, bal), annualInterestRate(rate) {}
-
-    double calculateMonthlyInterest() override {
-        double monthly = (balance * annualInterestRate) / 12.0;
-        balance += monthly;
-        return monthly;
-    }
-};
-
-class CurrentAccount : public Account {
-public:
-    CurrentAccount(const std::string& accNo, double bal) : Account(accNo, bal) {}
-
-    double calculateMonthlyInterest() override {
-        return 0.0; // Current accounts typically earn zero interest
-    }
-};
-
-int main() {
-    Account* acc1 = new SavingsAccount("SB-1001", 50000.0, 0.06);
-    Account* acc2 = new CurrentAccount("CA-2001", 120000.0);
-
-    std::cout << "Monthly Interest for SB-1001: BDT " << acc1->calculateMonthlyInterest() << "\\n";
-    acc1->displayBalance();
-
-    std::cout << "Monthly Interest for CA-2001: BDT " << acc2->calculateMonthlyInterest() << "\\n";
-    acc2->displayBalance();
-
-    delete acc1;
-    delete acc2;
-    return 0;
-}`,
-            solutionLanguage: 'cpp',
-            tags: ['OOP', 'C++', 'Polymorphism', 'Abstract Class', 'Inheritance'],
-            marks: 30,
-            difficulty: 'Medium'
-          }
-        ]
-      },
-      {
-        id: 'sec-10209-nontech',
-        name: 'Math & Language (50 Marks)',
-        marks: 50,
-        questions: [
-          {
-            id: 'q-10209-4',
-            questionNo: '7 (a)',
-            type: 'math',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'A bank offers compound interest at 8% per annum compounded semi-annually. A customer deposits BDT 2,50,000 for 2 years. Calculate the total compound interest earned at maturity.',
-            solution: `Formula:
-A = P * (1 + r/n)^(n*t)
-Where:
-- Principal (P) = BDT 2,50,000
-- Annual rate (r) = 8% = 0.08
-- Compounding periods per year (n) = 2 (semi-annual)
-- Time in years (t) = 2
-- Total periods = n * t = 2 * 2 = 4
-- Rate per period = r/n = 0.08 / 2 = 0.04 (4%)
-
-Calculation:
-A = 2,50,000 * (1 + 0.04)^4
-  = 2,50,000 * (1.04)^4
-  = 2,50,000 * 1.16985856
-  = BDT 2,92,464.64
-
-Total Compound Interest (CI) = A - P
-  = 2,92,464.64 - 2,50,000
-  = BDT 42,464.64.`,
-            tags: ['Mathematics', 'Compound Interest', 'Banking Math'],
-            marks: 20,
-            difficulty: 'Easy'
-          },
-          {
-            id: 'q-10209-5',
-            questionNo: '7 (b)',
-            type: 'descriptive',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Focus Writing in English: "Prospects of Central Bank Digital Currency (CBDC / Digital Taka) for Financial Inclusion in Bangladesh" (Word limit: 250 words).',
-            solution: `Key Model Points:
-1. Introduction:
-Central Bank Digital Currency (CBDC) represents a digital form of sovereign fiat currency issued directly by the central bank. As Bangladesh advances toward a cashless society, the introduction of 'Digital Taka' offers revolutionary opportunities for the national financial landscape.
-
-2. Benefits & Inclusion:
-- Interoperability & Fee-less Transfers: A retail CBDC enables seamless, low-cost or zero-cost peer-to-peer and merchant transactions, overcoming the interoperability walls between competing private MFS operators.
-- Financial Inclusion for Marginalized Populations: Through offline transaction capabilities using cryptographic secure elements on smartcards or basic feature phones, citizens in remote riverine and hill tracts without internet connectivity can participate in formal banking.
-- Government G2P Social Safety Nets: Direct delivery of social safety net allowances straight to citizens' digital wallets eliminates administrative leakage and middleman commissions.
-
-3. Challenges & Safeguards:
-- Cybersecurity & System Availability: Ensuring 100% resilient distributed ledger or centralized cryptographic architecture against state-sponsored intrusions.
-- Commercial Bank Disintermediation: Preventing rapid deposit migration from commercial banks to central bank wallets during periods of financial stress.
-
-4. Conclusion:
-With robust cryptographic protection, progressive regulatory frameworks, and public awareness campaigns, Digital Taka can serve as the cornerstone of Smart Bangladesh 2041.`,
-            tags: ['Focus Writing', 'CBDC', 'FinTech', 'Digital Taka'],
-            marks: 15,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10209-6',
-            questionNo: '8',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate into English: "আমাদের দেশের অধিকাংশ বাণিজ্যিক ব্যাংকে এখন কোর ব্যাংকিং সিস্টেম ব্যবহৃত হচ্ছে। এই সিস্টেমের নিরাপত্তা নিশ্চিত করতে নিয়মিত সাইবার অডিট পরিচালনা করা আবশ্যক। গ্রাহকদের সচেতনতা বৃদ্ধি করা ছাড়া সাইবার অপরাধ সম্পূর্ণ প্রতিরোধ করা সম্ভব নয়।"',
-            solution: `প্রমিত প্রাতিষ্ঠানিক ইংরেজি অনুবাদ:
-"Core Banking Systems are now utilized in most commercial banks of our country. In order to ensure the security of this system, conducting regular cyber audits is imperative. It is not possible to completely prevent cyber crimes without enhancing customer awareness."`,
-            tags: ['Translation', 'Bangla to English', 'Banking IT'],
-            marks: 15,
-            difficulty: 'Easy'
-          }
-        ]
-      }
-    ]
-  },
-
-  // 3. Job ID: 25105 (2026 Exam)
-  {
-    id: 'officer-it-25105',
-    title: 'Officer (IT), Combined Bank (Job ID: 25105) — 2026 Exam',
-    searchQuery: 'Officer (IT), Combined Bank (Job ID: 25105) 2026 question paper pdf',
-    category: 'Officer (IT)',
-    jobId: '25105',
-    circularYear: '2026 (Exam: July 31, 2026)',
-    examDate: 'July 31, 2026',
-    examBody: 'Bankers Selection Committee (BSCS)',
-    participatingBanks: ['Sonali Bank PLC', 'Agrani Bank PLC', 'Probashi Kallyan Bank'],
-    grade: 'Grade 10',
-    totalMarks: 200,
-    duration: '2 Hours (120 Minutes)',
-    examType: 'Written Exam (Descriptive & Technical)',
-    summary: 'The 64-vacancy recruitment exam for Officer (IT) conducted on July 31, 2026. Highly updated questions covering Microservices architecture, API gateways, Asymmetric Encryption (RSA), SQL Window functions, Doubly Linked Lists, Banker’s Deadlock Algorithm, and Bangla focus writing.',
-    keyTopics: ['Microservices in Banking', 'RSA Encryption', 'SQL Window Functions (DENSE_RANK)', 'RESTful APIs', 'Cloud Disaster Recovery', 'Banker Algorithm'],
-    sections: [
-      {
-        id: 'sec-25105-tech',
-        name: 'Technical IT Core (150 Marks)',
-        marks: 150,
-        questions: [
-          {
-            id: 'q-25105-1',
-            questionNo: '1',
-            type: 'sql',
-            topicCategory: 'Database & SQL',
-            questionText: 'Table: Employee(EmpID, EmpName, DepartmentID, Salary, JoiningDate). Write an SQL query using Window Functions to find the 2nd highest salary in each department along with the employee details without using subqueries or LIMIT/OFFSET.',
-            solution: 'Window functions like DENSE_RANK() partition the data by DepartmentID and order by Salary descending. A Common Table Expression (CTE) or outer filter selects records where the rank equals 2.',
-            codeSolution: `WITH RankedSalaries AS (
-    SELECT 
-        EmpID,
-        EmpName,
-        DepartmentID,
-        Salary,
-        JoiningDate,
-        DENSE_RANK() OVER (
-            PARTITION BY DepartmentID 
-            ORDER BY Salary DESC
-        ) AS salary_rank
-    FROM Employee
-)
-SELECT 
-    EmpID,
-    EmpName,
-    DepartmentID,
-    Salary,
-    JoiningDate
-FROM RankedSalaries
-WHERE salary_rank = 2;`,
-            solutionLanguage: 'sql',
-            tags: ['SQL', 'Window Functions', 'DENSE_RANK', 'Database'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-25105-2',
-            questionNo: '2',
-            type: 'descriptive',
-            topicCategory: 'Networking & Security',
-            questionText: 'Explain the working principle of the RSA asymmetric cryptosystem. Given two prime numbers p = 3 and q = 11, and encryption key e = 7: (i) Compute the modulus n and totient function phi(n). (ii) Find the private decryption key d. (iii) If plaintext message M = 2, find the ciphertext C.',
-            solution: `RSA Mathematical Steps:
-1. Modulus n & Totient phi(n):
-- n = p * q = 3 * 11 = 33
-- phi(n) = (p - 1) * (q - 1) = (3 - 1) * (11 - 1) = 2 * 10 = 20.
-
-2. Calculate Private Key d:
-- d is the modular multiplicative inverse of e modulo phi(n):
-  (d * e) mod phi(n) = 1 => (d * 7) mod 20 = 1.
-- Testing integers for d:
-  d = 1: 7 mod 20 != 1
-  d = 2: 14 mod 20 != 1
-  d = 3: 21 mod 20 = 1!
-- Therefore, private key d = 3.
-
-3. Encryption of Plaintext M = 2:
-- Ciphertext C = M^e mod n
-  C = 2^7 mod 33
-  2^7 = 128
-  128 / 33 = 3 with remainder (128 - 99) = 29.
-- Therefore, Ciphertext C = 29.
-
-4. Verification (Decryption):
-- M = C^d mod n = 29^3 mod 33
-  29 = -4 (mod 33)
-  (-4)^3 = -64
-  -64 mod 33 = -64 + 66 = 2. (Matches original plaintext M = 2).`,
-            tags: ['Cryptography', 'RSA', 'Information Security', 'Asymmetric Encryption'],
-            marks: 25,
-            difficulty: 'Hard'
-          },
-          {
-            id: 'q-25105-3',
-            questionNo: '3',
-            type: 'descriptive',
-            topicCategory: 'Software Engineering & System Design',
-            questionText: 'Contrast Monolithic Architecture vs. Microservices Architecture for a modern internet banking platform. Highlight how API Gateways and Service Meshes provide security and traffic management.',
-            solution: `1. Monolithic vs. Microservices:
-- Monolithic: All services (accounts, cards, loans, notifications, user auth) are coupled in a single unified codebase and deployment binary.
-  * Pros: Simple initial deployment, straightforward end-to-end debugging.
-  * Cons: Single point of failure (a crash in loan module can down the entire banking app), difficult to scale individual high-traffic endpoints, slower release cycles.
-- Microservices: Broken down into independent, loosely coupled services communicating via REST APIs or gRPC.
-  * Pros: Independent deployment, fault isolation, polyglot technology stack, horizontal scaling of busy services (e.g. payment switch).
-  * Cons: Distributed transaction complexity (requires SAGA patterns instead of 2PC), network latency, complex monitoring.
-
-2. Role of API Gateway & Service Mesh:
-- API Gateway (North-South Traffic): Acts as the single entry point for web/mobile clients. Handles SSL termination, rate limiting to prevent DDoS, authentication token validation (JWT), and request routing.
-- Service Mesh (East-West Traffic): Dedicated infrastructure layer (e.g. Istio) between microservices handling mutual TLS (mTLS) zero-trust encryption, circuit breaking, and distributed tracing.`,
-            tags: ['Software Engineering', 'Microservices', 'API Gateway', 'FinTech Architecture'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-25105-3b',
-            questionNo: '4',
-            type: 'coding',
-            topicCategory: 'Programming & Algorithms',
-            questionText: 'Write a C++ program to insert a node at the beginning and delete a node from the end of a Doubly Linked List. Explain why Doubly Linked Lists are favored for browser history and LRU Cache implementations.',
-            solution: 'C++ Doubly Linked List with head, tail, prev, and next pointers.',
-            codeSolution: `#include <iostream>
-
-struct Node {
-    int data;
-    Node* prev;
-    Node* next;
-    Node(int val) : data(val), prev(nullptr), next(nullptr) {}
-};
-
-class DoublyLinkedList {
-private:
-    Node* head;
-    Node* tail;
-public:
-    DoublyLinkedList() : head(nullptr), tail(nullptr) {}
-
-    // Insert at front: O(1)
-    void insertFront(int val) {
-        Node* newNode = new Node(val);
-        if (!head) {
-            head = tail = newNode;
-        } else {
-            newNode->next = head;
-            head->prev = newNode;
-            head = newNode;
-        }
-    }
-
-    // Delete from back: O(1)
-    void deleteBack() {
-        if (!tail) {
-            std::cout << "List is empty!\\n";
-            return;
-        }
-        Node* temp = tail;
-        if (head == tail) {
-            head = tail = nullptr;
-        } else {
-            tail = tail->prev;
-            tail->next = nullptr;
-        }
-        delete temp;
-    }
-
-    void display() const {
-        Node* curr = head;
-        while (curr) {
-            std::cout << curr->data << " <-> ";
-            curr = curr->next;
-        }
-        std::cout << "NULL\\n";
-    }
-};
-
-int main() {
-    DoublyLinkedList dll;
-    dll.insertFront(30);
-    dll.insertFront(20);
-    dll.insertFront(10);
-    std::cout << "List after insertions: ";
-    dll.display();
-
-    dll.deleteBack();
-    std::cout << "List after deleting back: ";
-    dll.display();
-    return 0;
-}`,
-            solutionLanguage: 'cpp',
-            tags: ['Data Structures', 'Doubly Linked List', 'C++', 'LRU Cache'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-25105-3c',
-            questionNo: '5',
-            type: 'descriptive',
-            topicCategory: 'Operating Systems & Linux',
-            questionText: 'Explain the Banker’s Algorithm for Deadlock Avoidance. Given 5 processes (P0-P4) and 3 resource types (A=10, B=5, C=7 instances), explain how the safety algorithm verifies whether a state is safe or unsafe.',
-            solution: `1. Banker's Algorithm Overview:
-Developed by Edsger Dijkstra, the Banker's algorithm tests for safety by simulating the allocation of predetermined maximum possible amounts of all resources, and then makes an "s-state" check to test for possible activities, before deciding whether allocation should be allowed to continue.
-
-2. Data Structures:
-- Available[m]: Vector of available instances of each resource.
-- Max[n][m]: Maximum demand of each process.
-- Allocation[n][m]: Currently allocated instances to each process.
-- Need[n][m]: Remaining needed instances: Need[i][j] = Max[i][j] - Allocation[i][j].
-
-3. Safety Algorithm Steps:
-- Let Work = Available and Finish[i] = False for all i.
-- Find an index i such that Finish[i] == False and Need[i] <= Work.
-- If such i exists:
-  * Work = Work + Allocation[i]
-  * Finish[i] = True
-  * Repeat until all processes are finished.
-- If Finish[i] == True for all i, the system is in a SAFE state and deadlock is avoided.`,
-            tags: ['Operating Systems', 'Deadlock', 'Banker Algorithm', 'Resource Allocation'],
-            marks: 25,
-            difficulty: 'Hard'
-          },
-          {
-            id: 'q-25105-3d',
-            questionNo: '6',
-            type: 'short_note',
-            topicCategory: 'Networking & Security',
-            questionText: 'Write short notes on: (a) JSON Web Token (JWT) architecture. (b) ISO 8583 financial transaction message format. (c) NAT vs. PAT in enterprise perimeter routing.',
-            solution: `(a) JSON Web Token (JWT):
-A compact, URL-safe means of representing claims to be transferred between two parties. Composed of Header (alg, typ), Payload (claims: sub, exp, roles), and Signature (HMAC-SHA256 or RSA) separated by dots. Widely used in stateless authentication for banking mobile APIs.
-
-(b) ISO 8583 Standard:
-The international standard for financial transaction card originated interchange messaging. Defines Message Type Identifier (MTI, e.g. 0100 auth request, 0200 financial request), Bitmaps (Primary and Secondary indicating present data fields), and Data Elements (Card number, processing code, amount, terminal ID).
-
-(c) NAT vs PAT:
-- NAT (Network Address Translation): Translates private IP addresses to public IPs on a 1-to-1 basis. Requires multiple public IPs for multiple hosts.
-- PAT (Port Address Translation / NAT Overload): Maps multiple private IP addresses to a SINGLE public IP by assigning unique TCP/UDP port numbers. Essential for commercial branches where hundreds of tellers share one ISP connection.`,
-            tags: ['Security', 'JWT', 'ISO 8583', 'Networking', 'PAT'],
-            marks: 25,
-            difficulty: 'Medium'
-          }
-        ]
-      },
-      {
-        id: 'sec-25105-nontech',
-        name: 'Focus Writing & General Knowledge (50 Marks)',
-        marks: 50,
-        questions: [
-          {
-            id: 'q-25105-4',
-            questionNo: '7',
-            type: 'descriptive',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'বাংলা ফোকাস রাইটিং: "স্মার্ট ব্যাংকিং ও ক্যাশলেস বাংলাদেশ বিনির্মাণে এআই ও ফিনটেকের ভূমিকা" (শব্দসীমা: ২৫০-৩০০ শব্দ)।',
-            solution: `মডেল রচনা সংক্ষেপ ও মূল পয়েন্ট:
-১. ভূমিকা:
-তথ্যপ্রযুক্তির দ্রুত বিকাশের সাথে সাথে ঐতিহ্যবাহী ব্যাংকিং ব্যবস্থা ডিজিটাল এবং স্মার্ট ব্যাংকিংয়ে রূপান্তরিত হচ্ছে। প্রধানমন্ত্রী ঘোষিত 'স্মার্ট বাংলাদেশ ২০৪১' রূপকল্পের অন্যতম প্রধান স্তম্ভ হলো ক্যাশলেস অর্থনীতি, যার মূল চালিকাশক্তি ফিনটেক ও কৃত্রিম বুদ্ধিমত্তা (AI)।
-
-২. স্মার্ট ব্যাংকিংয়ে ফিনটেকের অবদান:
-- বাংলা কিউআর (Bangla QR) এবং বিনিময় (Binimoy) ইন্টারঅপারেবল প্ল্যাটফর্মের মাধ্যমে ক্ষুদ্র ব্যবসায়ী ও প্রান্তিক গ্রাহকদের সহজে ডিজিটাল লেনদেনের আওতায় আনা সম্ভব হয়েছে।
-- মোবাইল ফিনান্সিয়াল সার্ভিস (MFS) এবং ইন্টারনেট ব্যাংকিং শাখাহীন ব্যাংকিং সেবাকে প্রতিটি নাগরিকের দোরগোড়ায় পৌঁছে দিয়েছে।
-
-৩. কৃত্রিম বুদ্ধিমত্তার (AI) প্রয়োগ:
-- ফ্রড ডিটেকশন ও ঝুঁকি ব্যবস্থাপনা: এআই অ্যালগরিদম তাৎক্ষণিকভাবে অস্বাভাবিক লেনদেনের প্যাটার্ন শনাক্ত করে সাইবার জালিয়াতি প্রতিহত করে।
-- অটোমেটেড ক্রেডিট স্কোরিং: বিকল্প ডেটা বিশ্লেষণের মাধ্যমে ক্ষুদ্র ও মাঝারি উদ্যোক্তাদের তাৎক্ষণিক জামানতবিহীন ঋণ সুবিধা প্রদান।
-- চ্যাটবট ও ২৪/৭ গ্রাহক সেবা: প্রাকৃতিক ভাষা প্রক্রিয়াকরণ (NLP) নির্ভর ভার্চুয়াল অ্যাসিস্ট্যান্ট গ্রাহকদের ব্যাংকিং অভিজ্ঞতা সহজতর করেছে।
-
-৪. উপসংহার:
-নিরাপদ সাইবার পরিকাঠামো এবং আর্থিক সাক্ষরতা নিশ্চিত করা গেলে ফিনটেক ও এআই-এর যুগোপযোগী ব্যবহার বাংলাদেশকে একটি গতিশীল ক্যাশলেস ও অন্তর্ভুক্তিমূলক অর্থনীতিতে পরিণত করবে।`,
-            tags: ['Focus Writing', 'Bangla', 'Smart Banking', 'FinTech'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-25105-5',
-            questionNo: '8 (a)',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate into Bengali: "FinTech innovations have transformed the financial landscape by offering seamless mobile payment solutions, automated credit scoring, and biometric verification. To safeguard depositors, regulatory compliance and continuous cyber threat intelligence are indispensable."',
-            solution: `প্রমিত প্রাতিষ্ঠানিক বাংলা অনুবাদ:
-"ফিনটেক উদ্ভাবনসমূহ স্বাচ্ছন্দ্যময় মোবাইল পেমেন্ট সমাধান, স্বয়ংক্রিয় ক্রেডিট স্কোরিং এবং বায়োমেট্রিক যাচাইকরণের সুযোগ প্রদানের মাধ্যমে সামগ্রিক আর্থিক প্রেক্ষাপটকে আমূল বদলে দিয়েছে। আমানতকারীদের অর্থ সুরক্ষিত রাখতে নিয়ন্ত্রক সংস্থার নিয়মকানুন প্রতিপালন এবং সার্বক্ষণিক সাইবার হুমকি সংক্রান্ত তথ্য পর্যবেক্ষণ অপরিহার্য।"`,
-            tags: ['Translation', 'English to Bangla', 'FinTech'],
-            marks: 15,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-25105-6',
-            questionNo: '8 (b)',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate into English: "বাংলাদেশ ব্যাংক কর্তৃক চালুকৃত ইন্টারঅপারেবল ডিজিটাল পেমেন্ট প্ল্যাটফর্ম ক্ষুদ্র ব্যবসায়ী ও প্রান্তিক জনগোষ্ঠীকে ডিজিটাল লেনদেনে অন্তর্ভুক্ত করতে গুরুত্বপূর্ণ ভূমিকা রাখছে।"',
-            solution: `Standard High-Quality Model Translation:
-"The interoperable digital payment platform launched by Bangladesh Bank is playing a significant role in incorporating small entrepreneurs and marginalized communities into digital transactions."`,
-            tags: ['Translation', 'Bangla to English', 'Interoperable Payments'],
-            marks: 10,
-            difficulty: 'Easy'
-          }
-        ]
-      }
-    ]
-  },
-
-  // 4. Officer (IT), Combined Bank 2025 Based on 2023
-  {
-    id: 'officer-it-2025-base23',
-    title: 'Officer (IT), Combined Bank 2025 Based on 2023',
-    searchQuery: 'Officer (IT), Combined Bank 2025 Based on 2023 question paper pdf',
-    category: 'Officer (IT)',
-    jobId: 'Combined-2025-B23',
-    circularYear: '2023-2025',
-    examDate: 'February 24, 2025',
-    examBody: 'BIBM',
-    participatingBanks: ['Sonali Bank PLC', 'Janata Bank PLC', 'Agrani Bank PLC', 'Rupali Bank PLC', 'BDBL'],
-    grade: 'Grade 10',
-    totalMarks: 200,
-    duration: '2 Hours',
-    examType: 'Written Exam (Descriptive & Technical)',
-    summary: 'Combined Bank Officer (IT) exam paper modeled on the updated 2023 base curriculum with 2025 question format. Focuses on Core Banking System high availability, Python algorithms, SQL subqueries, IPv6 migration, and Agile Scrum.',
-    keyTopics: ['Disaster Recovery (RTO & RPO)', 'Kadane Algorithm', 'SQL Subqueries', 'IPv6 Addressing', 'Cloud Migration', 'Agile Scrum'],
-    sections: [
-      {
-        id: 'sec-2025b23-tech',
-        name: 'Technical IT Core (150 Marks)',
-        marks: 150,
-        questions: [
-          {
-            id: 'q-2025b23-1',
-            questionNo: '1',
-            type: 'descriptive',
-            topicCategory: 'Database & SQL',
-            questionText: 'Define Recovery Time Objective (RTO) and Recovery Point Objective (RPO) in banking disaster recovery planning. Explain how Synchronous vs. Asynchronous database replication affects both RTO and RPO.',
-            solution: `1. RTO & RPO Definitions:
-- RTO (Recovery Time Objective): The maximum acceptable duration of time that a banking system can remain offline after a disaster or outage before normal operations are restored. (Measures acceptable downtime).
-- RPO (Recovery Point Objective): The maximum acceptable age of data that can be lost when an outage occurs. (Measures acceptable data loss in minutes/seconds).
-
-2. Impact of Replication Mechanisms:
-- Synchronous Replication:
-  * Mechanism: A transaction is only committed on the primary database after the secondary DR database has acknowledged write completion.
-  * RPO: Zero (RPO = 0), meaning absolute zero data loss, essential for financial ledgers.
-  * Trade-off: Higher write latency due to round-trip network delays between data centers.
-- Asynchronous Replication:
-  * Mechanism: The primary database commits the transaction immediately and pushes transaction log changes to the DR site in the background.
-  * RPO: Small delta (e.g. RPO = few seconds/minutes) depending on network queue lag.
-  * Trade-off: Faster transaction throughput, but in the event of an abrupt hard disaster, the latest un-replicated transactions might be lost.`,
-            tags: ['Disaster Recovery', 'RTO', 'RPO', 'DBMS', 'High Availability'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-2025b23-2',
-            questionNo: '2',
-            type: 'coding',
-            topicCategory: 'Programming & Algorithms',
-            questionText: 'Write a Python program to find the contiguous subarray with the largest sum using Kadane’s Algorithm. Analyze its time and space complexity.',
-            solution: 'Kadane’s algorithm iterates through the array while maintaining the maximum sum ending at the current position and the global maximum sum observed so far. Operates in O(N) time and O(1) space.',
-            codeSolution: `def max_subarray_sum(nums: list[int]) -> tuple[int, list[int]]:
-    """
-    Finds the maximum subarray sum using Kadane's Algorithm.
-    Time Complexity: O(N), Space Complexity: O(1)
-    """
-    if not nums:
-        return 0, []
-        
-    max_so_far = nums[0]
-    curr_max = nums[0]
-    
-    start = 0
-    end = 0
-    temp_start = 0
-    
-    for i in range(1, len(nums)):
-        if nums[i] > curr_max + nums[i]:
-            curr_max = nums[i]
-            temp_start = i
-        else:
-            curr_max += nums[i]
-            
-        if curr_max > max_so_far:
-            max_so_far = curr_max
-            start = temp_start
-            end = i
-            
-    return max_so_far, nums[start : end + 1]
-
-# Example execution
-data = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
-max_sum, subarray = max_subarray_sum(data)
-print(f"Maximum Sum: {max_sum}, Subarray: {subarray}")`,
-            solutionLanguage: 'python',
-            tags: ['Algorithms', 'Python', 'Kadane', 'Dynamic Programming'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-2025b23-3',
-            questionNo: '3',
-            type: 'sql',
-            topicCategory: 'Database & SQL',
-            questionText: 'Consider tables: Customer(CustID, Name, BranchID), Account(AccNo, CustID, AccType, Balance). Write an SQL query to find customers who hold both a Savings ("SB") and a Fixed Deposit ("FD") account, and display their Total Balance across both accounts.',
-            solution: 'We group by Customer, filter using HAVING with conditional aggregations to ensure presence of both SB and FD accounts, and sum the balances.',
-            codeSolution: `SELECT 
-    c.CustID,
-    c.Name,
-    SUM(a.Balance) AS Total_Combined_Balance
-FROM Customer c
-JOIN Account a ON c.CustID = a.CustID
-WHERE a.AccType IN ('SB', 'FD')
-GROUP BY c.CustID, c.Name
-HAVING COUNT(DISTINCT a.AccType) = 2
-ORDER BY Total_Combined_Balance DESC;`,
-            solutionLanguage: 'sql',
-            tags: ['SQL', 'HAVING', 'GROUP BY', 'Database'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-2025b23-4',
-            questionNo: '4',
-            type: 'descriptive',
-            topicCategory: 'Networking & Security',
-            questionText: 'Explain IPv6 address architecture and compare it with IPv4. Describe the Dual-Stack transition mechanism used by Bangladesh commercial banks during IPv6 migration.',
-            solution: `1. IPv6 vs IPv4 Comparison:
-- Address Space: IPv4 uses 32-bit addresses (~4.29 billion addresses); IPv6 uses 128-bit addresses (~3.4 x 10^38 addresses), completely eliminating address exhaustion.
-- Notation: IPv4 is written in dotted-decimal (e.g., 192.168.1.1); IPv6 uses 8 groups of 4 hexadecimal digits separated by colons (e.g., 2001:0db8:85a3::8a2e:0370:7334).
-- Header: IPv6 has a simplified, fixed 40-byte base header without checksum field, accelerating router processing.
-- Security: IPsec is built natively into IPv6 standards.
-
-2. Dual-Stack Transition Mechanism:
-Dual-Stack allows bank network devices (routers, core firewalls, web servers) to run IPv4 and IPv6 protocol stacks concurrently.
-- If a client supports IPv6, the DNS resolver returns an AAAA record, and traffic flows over native IPv6.
-- If a legacy legacy branch ATM only supports IPv4, DNS returns an A record, and traffic routes over IPv4 without disruption.`,
-            tags: ['Networking', 'IPv6', 'Dual Stack', 'CIDR'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-2025b23-5',
-            questionNo: '5',
-            type: 'descriptive',
-            topicCategory: 'Software Engineering & System Design',
-            questionText: 'Explain the Agile Scrum framework for software engineering in financial application development. Differentiate between Product Backlog, Sprint Backlog, Sprint Planning, and Daily Standup.',
-            solution: `1. Agile Scrum Framework:
-Scrum is an iterative, incremental agile development framework focused on delivering working software in fixed-length timeboxes called Sprints (typically 2 to 4 weeks).
-
-2. Core Artifacts:
-- Product Backlog: Prioritized list of all features, technical requirements, bug fixes, and user stories maintained by the Product Owner.
-- Sprint Backlog: Subset of product backlog items committed by the development team for completion during the current active Sprint.
-
-3. Core Ceremonies:
-- Sprint Planning: Meeting where the team estimates effort (story points) and agrees on the Sprint Goal.
-- Daily Standup (Daily Scrum): 15-minute time-boxed synchronizing meeting where each member answers: What did I accomplish yesterday? What will I do today? What blockers are impeding my progress?
-- Sprint Review & Retrospective: Review demonstrates working increments to stakeholders; Retrospective inspects team processes for continuous improvement.`,
-            tags: ['Software Engineering', 'Agile', 'Scrum', 'SDLC'],
-            marks: 25,
-            difficulty: 'Easy'
-          },
-          {
-            id: 'q-2025b23-6',
-            topicCategory: 'Operating Systems & Linux',
-            questionNo: '6',
-            type: 'descriptive',
-            questionText: 'Explain Process Synchronization in Operating Systems. Differentiate between Mutex and Counting Semaphore with appropriate code/pseudocode.',
-            solution: `1. Process Synchronization & Critical Section:
-A critical section is a piece of code that accesses shared resources (such as bank balances or shared memory buffers). Synchronization prevents race conditions by guaranteeing Mutual Exclusion.
-
-2. Mutex vs. Counting Semaphore:
-- Mutex (Mutual Exclusion Lock):
-  * Binary locking mechanism.
-  * Ownership concept: Only the thread that locked the mutex can unlock it.
-- Counting Semaphore:
-  * Integer variable counter (S) accessed only via atomic operations: wait() (or P()) and signal() (or V()).
-  * Controls access to a finite pool of identical resources (e.g. database connection pool of size N).
-  * No thread ownership: Any thread can signal to increment the count.`,
-            tags: ['Operating Systems', 'Process Synchronization', 'Mutex', 'Semaphore'],
-            marks: 25,
-            difficulty: 'Medium'
-          }
-        ]
-      },
-      {
-        id: 'sec-2025b23-nontech',
-        name: 'Language & Focus Writing (50 Marks)',
-        marks: 50,
-        questions: [
-          {
-            id: 'q-2025b23-7',
-            questionNo: '7',
-            type: 'descriptive',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Focus Writing in English: "Role of FinTech and Agent Banking in Deepening Financial Inclusion in Rural Bangladesh" (Word limit: 300 words).',
-            solution: `Key Points:
-- Introduction: Despite robust GDP growth, a vast segment of Bangladesh's rural population previously lacked access to conventional brick-and-mortar bank branches.
-- Agent Banking Revolution: Introduced by Bangladesh Bank, agent banking outlets have expanded into rural union parishads, enabling biometric deposits, remittances, and utility payments.
-- Synergies with FinTech: Integration with MFS (bKash, Nagad, Rocket) and micro-credit disbursement algorithms enables smallholder farmers and cottage enterprises to access formal credit.
-- Economic Impact: Channeling expatriate remittances through formal channels and mobilizing rural savings into productive investments.
-- Conclusion: Strengthening rural digital literacy and expanding cyber safeguards are vital to securing an inclusive economic foundation.`,
-            tags: ['Focus Writing', 'English', 'Agent Banking', 'Rural Inclusion'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-2025b23-8',
-            questionNo: '8 (a)',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate into English: "তথ্যপ্রযুক্তির আধুনিকায়ন ব্যাংকিং খাতে স্বচ্ছতা ও জবাবদিহিতা নিশ্চিত করেছে। কেন্দ্রীয় ব্যাংকের কঠোর নীতিমালা বাণিজ্যিক ব্যাংকগুলোর সার্বিক ঝুঁকি কমাতে সাহায্য করছে।"',
-            solution: `Standard High-Quality Model Translation:
-"The modernization of information technology has ensured transparency and accountability in the banking sector. The stringent guidelines of the central bank are assisting commercial banks in mitigating their overall risks."`,
-            tags: ['Translation', 'Bangla to English', 'Banking IT'],
-            marks: 15,
-            difficulty: 'Easy'
-          },
-          {
-            id: 'q-2025b23-9',
-            questionNo: '8 (b)',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate into Bengali: "Automated teller machines and internet banking portals must be protected by resilient encryption protocols and real-time monitoring to prevent fraudulent fund withdrawals."',
-            solution: `প্রমিত প্রাতিষ্ঠানিক বাংলা অনুবাদ:
-"অননুমোদিত বা প্রতারণামূলক অর্থ উত্তোলন প্রতিহত করতে এটিএম (অটোমেটেড টেলার মেশিন) এবং ইন্টারনেট ব্যাংকিং পোর্টালগুলোকে শক্তিশালী এনক্রিপশন প্রোটোকল ও রিয়েল-টাইম নজরদারির মাধ্যমে সুরক্ষিত রাখতে হবে।"`,
-            tags: ['Translation', 'English to Bangla', 'ATM Security'],
-            marks: 10,
-            difficulty: 'Easy'
-          }
-        ]
-      }
-    ]
-  },
-
-  // 5. Job ID: 10184
-  {
-    id: 'officer-it-10184',
-    title: 'Officer (IT), Combined Bank (Job ID: 10184)',
-    searchQuery: 'Officer (IT), Combined Bank (Job ID: 10184) question paper pdf',
-    category: 'Officer (IT)',
-    jobId: '10184',
-    circularYear: '2021 (Exam: Oct 4, 2024)',
-    examDate: 'October 04, 2024',
-    examBody: 'BIBM',
-    participatingBanks: ['Sonali Bank PLC', 'Janata Bank PLC'],
-    grade: 'Grade 10',
-    totalMarks: 200,
-    duration: '2 Hours (120 Minutes)',
-    examType: 'Written Exam (Descriptive & Technical)',
-    summary: 'Recruitment examination held on October 4, 2024, for Combined Banks Officer (IT). Tested core networking subnetting math, SQL joins, Dijkstra algorithm theory, Linux file permissions, and translation.',
-    keyTopics: ['Subnetting Block Size', 'SQL Multi-table Joins', 'Dijkstra & OSPF', 'Operating System Paging', 'Linux Permissions', 'English Translation'],
-    sections: [
-      {
-        id: 'sec-10184-tech',
-        name: 'Technical IT Departmental (150 Marks)',
-        marks: 150,
-        questions: [
-          {
-            id: 'q-10184-1',
-            questionNo: '1',
-            type: 'math',
-            topicCategory: 'Networking & Security',
-            questionText: 'A bank network administrator is given the class C network 192.168.10.0/24 and needs to divide it into 4 equal subnets. (a) How many bits need to be borrowed? (b) What is the new subnet mask in dotted-decimal format? (c) State the Network Address, Valid Host Range, and Broadcast Address of the 2nd subnet.',
-            solution: `Subnetting Steps:
-(a) Bits to borrow:
-- Formula: 2^n >= Number of subnets
-- 2^n >= 4 => n = 2 bits borrowed from the host portion.
-
-(b) New Subnet Mask:
-- Default Class C prefix: /24
-- New prefix: /24 + 2 = /26
-- Binary mask: 11111111.11111111.11111111.11000000
-- Dotted decimal: 255.255.255.192.
-
-(c) 2nd Subnet Details:
-- Magic number (Block size) = 256 - 192 = 64.
-- 1st Subnet: 192.168.10.0 to 192.168.10.63
-- 2nd Subnet:
-  * Network Address: 192.168.10.64
-  * First Usable Host: 192.168.10.65
-  * Last Usable Host: 192.168.10.126
-  * Broadcast Address: 192.168.10.127.`,
-            tags: ['Networking', 'Subnetting', 'IPv4', 'CIDR', 'Bank Exam Math'],
-            marks: 25,
-            difficulty: 'Easy'
-          },
-          {
-            id: 'q-10184-2',
-            questionNo: '2',
-            type: 'sql',
-            topicCategory: 'Database & SQL',
-            questionText: 'Schema: Customer(CustID, CustName, City), Account(AccNo, CustID, Balance), Branch(BranchID, BranchName, City). Write an SQL query to retrieve the Customer Name and Account Number of customers who have opened an account in a branch located in the same city they reside in, and whose account balance is greater than 50,000.',
-            solution: 'Join Customer, Account, and Branch on their keys, then filter where Customer.City = Branch.City and Balance > 50000.',
-            codeSolution: `SELECT 
-    c.CustName,
-    a.AccNo,
-    c.City AS Customer_City,
-    b.BranchName,
-    a.Balance
-FROM Customer c
-JOIN Account a ON c.CustID = a.CustID
-JOIN Branch b ON a.BranchID = b.BranchID
-WHERE c.City = b.City 
-  AND a.Balance > 50000
-ORDER BY a.Balance DESC;`,
-            solutionLanguage: 'sql',
-            tags: ['SQL', 'Joins', 'DBMS'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10184-3',
-            questionNo: '3',
-            type: 'coding',
-            topicCategory: 'Programming & Algorithms',
-            questionText: 'Write a C or C++ function to perform In-order, Pre-order, and Post-order Traversals of a Binary Tree. Explain their time complexity.',
-            solution: 'Recursive depth-first traversals of a binary tree with O(N) time and O(H) auxiliary stack space.',
-            codeSolution: `#include <iostream>
-
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-
-// In-order: Left -> Root -> Right
-void inOrder(TreeNode* root) {
-    if (!root) return;
-    inOrder(root->left);
-    std::cout << root->val << " ";
-    inOrder(root->right);
+class SavingsAccount extends BankAccount {
+    public SavingsAccount(String holder, double balance) { super(holder, balance); }
+    @Override
+    public double calculateInterest() { return principalBalance * 0.055; }
 }
 
-// Pre-order: Root -> Left -> Right
-void preOrder(TreeNode* root) {
-    if (!root) return;
-    std::cout << root->val << " ";
-    preOrder(root->left);
-    preOrder(root->right);
-}
-
-// Post-order: Left -> Right -> Root
-void postOrder(TreeNode* root) {
-    if (!root) return;
-    postOrder(root->left);
-    postOrder(root->right);
-    std::cout << root->val << " ";
-}
-
-int main() {
-    TreeNode* root = new TreeNode(10);
-    root->left = new TreeNode(5);
-    root->right = new TreeNode(20);
-    
-    std::cout << "In-order: "; inOrder(root); std::cout << "\\n";
-    std::cout << "Pre-order: "; preOrder(root); std::cout << "\\n";
-    std::cout << "Post-order: "; postOrder(root); std::cout << "\\n";
-    return 0;
+class FixedDepositAccount extends BankAccount {
+    public FixedDepositAccount(String holder, double balance) { super(holder, balance); }
+    @Override
+    public double calculateInterest() { return principalBalance * 0.0925; }
 }`,
-            solutionLanguage: 'cpp',
-            tags: ['Data Structures', 'Binary Tree', 'Tree Traversal', 'C++'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10184-4',
-            questionNo: '4',
-            type: 'descriptive',
-            topicCategory: 'Operating Systems & Linux',
-            questionText: 'Explain Linux File Permissions (rwx) and octal notation. If a file has permission `chmod 754 transaction.log`, explain what permissions are granted to the Owner, Group, and Others.',
-            solution: `1. Linux Permissions Representation:
-- r (Read) = 4
-- w (Write) = 2
-- x (Execute) = 1
-
-2. Deciphering 754:
-- Owner (Digit 1 = 7): 4 + 2 + 1 = Read, Write, Execute (rwx). The file creator can read, modify, and execute the file.
-- Group (Digit 2 = 5): 4 + 0 + 1 = Read and Execute (r-x). Members of the group can read and execute, but cannot modify the file.
-- Others (Digit 3 = 4): 4 + 0 + 0 = Read only (r--). All other system users can only view file contents without modify or execute permissions.`,
-            tags: ['Linux', 'Operating Systems', 'File Permissions', 'chmod'],
-            marks: 25,
+            solutionLanguage: 'java',
+            tags: ['OOP', 'Polymorphism', 'Java'],
+            marks: 15,
             difficulty: 'Easy'
           },
           {
-            id: 'q-10184-5',
-            questionNo: '5',
-            type: 'descriptive',
-            topicCategory: 'Operating Systems & Linux',
-            questionText: 'Explain the concept of Virtual Memory and Paging in Operating Systems. What is a Page Fault and how does the OS handle it?',
-            solution: `1. Virtual Memory & Paging:
-Virtual memory provides an illusion of a large contiguous physical memory by mapping virtual addresses to physical RAM frames using Page Tables.
-
-2. Page Fault Handling Steps:
-1. CPU attempts to access a virtual page whose valid-invalid bit in the page table is set to 'invalid' (not in physical RAM).
-2. Trap generated to OS kernel (Page Fault interrupt).
-3. OS checks whether access is illegal (terminate) or valid page in backing storage.
-4. OS locates a free physical frame in RAM (or evicts a page using LRU/FIFO).
-5. Schedules disk I/O to read the required page from swap disk into the free frame.
-6. Updates Page Table entry (sets frame number and valid bit = 1).
-7. Restarts the faulting CPU instruction seamlessly.`,
-            tags: ['Operating Systems', 'Virtual Memory', 'Paging', 'Page Fault'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10184-6',
-            questionNo: '6',
-            type: 'descriptive',
-            topicCategory: 'Software Engineering & System Design',
-            questionText: 'Differentiate between Black-box Testing and White-box Testing. Describe Equivalence Partitioning and Boundary Value Analysis (BVA) with an example of validating a bank withdrawal amount (BDT 500 to 50,000).',
-            solution: `1. Black-box vs White-box Testing:
-- Black-box Testing: Tests functionality without knowledge of internal code structure or logic. Focuses on inputs and expected outputs.
-- White-box Testing: Tests internal code paths, branches, conditions, and loops with full visibility into the source code.
-
-2. Equivalence Partitioning & BVA for Range [500, 50000]:
-- Equivalence Classes:
-  * Invalid Low: Amount < 500 (e.g. 400)
-  * Valid: 500 <= Amount <= 50000 (e.g. 15000)
-  * Invalid High: Amount > 50000 (e.g. 60000)
-- Boundary Value Analysis (BVA):
-  * Just below min: 499 (Reject)
-  * Min boundary: 500 (Accept)
-  * Just above min: 501 (Accept)
-  * Nominal: 25000 (Accept)
-  * Just below max: 49999 (Accept)
-  * Max boundary: 50000 (Accept)
-  * Just above max: 50001 (Reject).`,
-            tags: ['Software Engineering', 'Testing', 'BVA', 'Quality Assurance'],
-            marks: 25,
-            difficulty: 'Medium'
-          }
-        ]
-      },
-      {
-        id: 'sec-10184-nontech',
-        name: 'Language & Focus Writing (50 Marks)',
-        marks: 50,
-        questions: [
-          {
-            id: 'q-10184-7',
-            questionNo: '7',
-            type: 'descriptive',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Focus Writing in English: "Mitigating Cyber Risks in the Financial Sector of Bangladesh" (Word limit: 250 words).',
-            solution: `Key Points:
-- Increasing reliance on SWIFT, RTGS, and mobile financial networks.
-- Emerging threats: Ransomware attacks, phishing scams, ATM skimming, credential harvesting.
-- Institutional safeguards: Implementing multi-factor authentication, Security Operations Centers (SOC), network micro-segmentation, and regular third-party vulnerability assessments.
-- Regulatory compliance: Adhering strictly to Bangladesh Bank ICT Security Guidelines.`,
-            tags: ['Focus Writing', 'English', 'Cybersecurity', 'Financial Risk'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10184-8',
-            questionNo: '8',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate the following passage into Bengali: "Online transaction security relies fundamentally on asymmetric key cryptography and transport layer security. Without continuous employee training and stringent identity verification, even the most sophisticated firewalls cannot prevent security breaches caused by social engineering."',
-            solution: `প্রমিত প্রাতিষ্ঠানিক বাংলা অনুবাদ:
-"অনলাইন লেনদেনের নিরাপত্তা মূলত অ্যাসিমেট্রিক কি ক্রিপ্টোগ্রাফি এবং ট্রান্সপোর্ট লেয়ার সিকিউরিটির (টিএলএস) ওপর নির্ভরশীল। কর্মচারীদের সার্বক্ষণিক প্রশিক্ষণ এবং কঠোর পরিচয় যাচাইকরণ নিশ্চিত না করা গেলে, সামাজিক প্রকৌশল (সোশ্যাল ইঞ্জিনিয়ারিং) দ্বারা সৃষ্ট নিরাপত্তা লঙ্ঘন অত্যন্ত আধুনিক ফায়ারওয়াল দিয়েও প্রতিহত করা সম্ভব নয়।"`,
-            tags: ['Translation', 'English to Bangla', 'Cybersecurity'],
-            marks: 25,
-            difficulty: 'Medium'
-          }
-        ]
-      }
-    ]
-  },
-
-  // 6. Job ID: 10152
-  {
-    id: 'officer-it-10152',
-    title: 'Officer (IT), Combined Bank (Job ID: 10152)',
-    searchQuery: 'Officer (IT), Combined Bank (Job ID: 10152) question paper pdf',
-    category: 'Officer (IT)',
-    jobId: '10152',
-    circularYear: '2023 (Exam: Oct 14, 2023)',
-    examDate: 'October 14, 2023',
-    examBody: 'BIBM',
-    participatingBanks: ['Sonali Bank PLC', 'Janata Bank PLC', 'Rupali Bank PLC'],
-    grade: 'Grade 10',
-    totalMarks: 200,
-    duration: '2 Hours (120 Minutes)',
-    examType: 'Written Exam (Descriptive & Technical)',
-    summary: 'The landmark BIBM exam held on October 14, 2023. Contains the exact verified SQL code analysis problem, matrix operations programming, multiplexing comparisons, hypervisors, and BCNF normalization.',
-    keyTopics: ['SQL Code Analysis', 'Matrix Multiplication', 'TDM vs FDM vs WDM', 'Hypervisors', 'Web Caching & VPN', 'BCNF Decomposition'],
-    sections: [
-      {
-        id: 'sec-10152-tech',
-        name: 'Technical IT Core (150 Marks)',
-        marks: 150,
-        questions: [
-          {
-            id: 'q-10152-1',
-            questionNo: '1',
-            type: 'sql',
-            topicCategory: 'Database & SQL',
-            questionText: 'Analyze the following SQL query and explain in detail what it performs, line-by-line, including the conditions checked by WHERE and HAVING:\n\nSELECT department_name, AVG(salary) as average_salary \nFROM employees e \nJOIN department d ON e.department_id = d.department_id \nWHERE salary > (SELECT AVG(salary) FROM employees) \nGROUP BY department_name \nHAVING COUNT(*) > 2 \nORDER BY average_salary DESC;',
-            solution: `Detailed Query Analysis:
-1. SELECT department_name, AVG(salary) as average_salary:
-   Specifies the projected columns: the department name and the arithmetic average of salaries of qualifying employees in that department, aliased as average_salary.
-
-2. FROM employees e JOIN department d ON e.department_id = d.department_id:
-   Performs an INNER JOIN between the 'employees' table (aliased as 'e') and 'department' table (aliased as 'd') based on matching department_id values.
-
-3. WHERE salary > (SELECT AVG(salary) FROM employees):
-   Row-level filtering before aggregation. It executes a subquery to calculate the global company-wide average salary across all employees. Only employees earning strictly more than this global average are retained for subsequent aggregation.
-
-4. GROUP BY department_name:
-   Groups the remaining high-earning employee records by department name.
-
-5. HAVING COUNT(*) > 2:
-   Group-level filtering applied after aggregation. Discards any department group that contains 2 or fewer above-average earning employees. Only departments with strictly more than 2 such employees are included.
-
-6. ORDER BY average_salary DESC:
-   Sorts the final resulting departments in descending order of their calculated average_salary (highest paying department first).`,
-            tags: ['SQL', 'Query Analysis', 'Subquery', 'HAVING', 'BIBM Authentic'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10152-2',
-            questionNo: '2',
+            id: 'q-10229-6-5',
+            questionNo: '6.5',
             type: 'coding',
             topicCategory: 'Programming & Algorithms',
-            questionText: 'Write a program in C or Python to compute matrix multiplication of two matrices A (m x k) and B (k x n), and find the maximum element in the resultant matrix C.',
-            solution: 'Standard matrix multiplication algorithm with dimension validation and peak value search.',
-            codeSolution: `def multiply_matrices(A, B):
-    m = len(A)
-    k1 = len(A[0])
-    k2 = len(B)
-    n = len(B[0])
-    
-    if k1 != k2:
-        raise ValueError("Matrix dimensions mismatch for multiplication!")
-        
-    C = [[0 for _ in range(n)] for _ in range(m)]
-    max_val = float('-inf')
-    
-    for i in range(m):
-        for j in range(n):
-            for p in range(k1):
-                C[i][j] += A[i][p] * B[p][j]
-            if C[i][j] > max_val:
-                max_val = C[i][j]
-                
-    return C, max_val
-
-mat_A = [[1, 2], [3, 4]]
-mat_B = [[5, 6], [7, 8]]
-res_C, maximum = multiply_matrices(mat_A, mat_B)
-print("Result Matrix C:", res_C)
-print("Maximum Element:", maximum)`,
-            solutionLanguage: 'python',
-            tags: ['Programming', 'Matrix', 'Python', 'Algorithms'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10152-3',
-            questionNo: '3',
-            type: 'descriptive',
-            topicCategory: 'Networking & Security',
-            questionText: 'Explain the working principles and compare: (a) Time Division Multiplexing (TDM) (b) Frequency Division Multiplexing (FDM) (c) Wavelength Division Multiplexing (WDM). Which one is used in optical fiber communication in bank inter-branch networks?',
-            solution: `1. Principles & Comparison:
-- FDM (Frequency Division Multiplexing):
-  * Mechanism: The total bandwidth of the medium is divided into non-overlapping frequency bands. Multiple signals are transmitted simultaneously on different carrier frequencies.
-  * Domain: Analog signals (e.g. traditional radio/cable).
-- TDM (Time Division Multiplexing):
-  * Mechanism: The entire bandwidth is allocated to each channel for a fraction of time (time slot) in round-robin fashion.
-  * Domain: Digital signals (e.g., T1/E1 digital lines).
-- WDM (Wavelength Division Multiplexing):
-  * Mechanism: Optical equivalent of FDM. Multiple optical carrier signals of different wavelengths (colors) of laser light are combined onto a single optical fiber strand using prisms or optical couplers.
-  * Domain: Optical fiber networks.
-
-2. Technology used in Bank Inter-Branch Optical Networks:
-WDM (Dense WDM / DWDM) is used in bank inter-branch fiber backbones and data center interconnects (DCI) because it delivers terabit bandwidth capacity without requiring new physical fiber laying.`,
-            tags: ['Networking', 'Multiplexing', 'TDM', 'FDM', 'WDM', 'Optical Fiber'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10152-4',
-            questionNo: '4',
-            type: 'descriptive',
-            topicCategory: 'Operating Systems & Linux',
-            questionText: 'What is a Hypervisor in cloud computing and server virtualization? Compare Type-1 (Bare Metal) vs. Type-2 (Hosted) Hypervisors. Give examples of each used in banking enterprise data centers.',
-            solution: `1. Definition:
-A Hypervisor (Virtual Machine Monitor, VMM) is software, firmware, or hardware that creates and runs virtual machines by abstracting physical CPU, memory, and storage.
-
-2. Comparison:
-- Type-1 Hypervisor (Bare-Metal):
-  * Runs directly on physical host hardware without any underlying operating system.
-  * High performance, minimal latency, low overhead, and robust security.
-  * Examples: VMware ESXi, Microsoft Hyper-V Server, KVM.
-  * Use in Banking: Primary choice for running Core Banking database servers and high-volume transaction processing clusters.
-- Type-2 Hypervisor (Hosted):
-  * Runs as an application on top of an existing host operating system (e.g. Windows/Linux).
-  * Has OS overhead and is less suited for mission-critical enterprise workloads.
-  * Examples: Oracle VirtualBox, VMware Workstation.
-  * Use in Banking: Developer testing environments, software QA staging.`,
-            tags: ['Cloud Computing', 'Virtualization', 'Hypervisor', 'Operating Systems'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10152-5',
-            questionNo: '5',
-            type: 'descriptive',
-            topicCategory: 'Database & SQL',
-            questionText: 'Define Boyce-Codd Normal Form (BCNF). How is BCNF stricter than 3NF? Provide an example of a relation that is in 3NF but fails BCNF.',
-            solution: `1. Definition:
-A relation R is in BCNF if for every non-trivial functional dependency X -> Y, X is a SUPERKEY of R.
-
-2. Difference from 3NF:
-In 3NF, the condition allows Y to be a prime attribute (part of a candidate key) even if X is not a superkey. BCNF removes this relaxation: the left-hand determinant X MUST be a superkey without exception.
-
-3. Example:
-Relation: StudentAdvisor(StudentID, Subject, AdvisorName)
-- Candidate Keys: {StudentID, Subject}
-- Dependencies:
-  1. {StudentID, Subject} -> AdvisorName
-  2. AdvisorName -> Subject (Each advisor advises only one subject)
-- 3NF Check: In AdvisorName -> Subject, AdvisorName is not a superkey, but Subject is a prime attribute (part of candidate key {StudentID, Subject}). Hence, it is in 3NF!
-- BCNF Check: In AdvisorName -> Subject, AdvisorName is NOT a superkey. Therefore, BCNF is VIOLATED.
-- Decomposition into BCNF:
-  * R1(AdvisorName, Subject) - PK: AdvisorName
-  * R2(StudentID, AdvisorName) - PK: {StudentID, AdvisorName}`,
-            tags: ['DBMS', 'Normalization', 'BCNF', '3NF'],
-            marks: 25,
-            difficulty: 'Hard'
-          },
-          {
-            id: 'q-10152-6',
-            questionNo: '6',
-            type: 'short_note',
-            topicCategory: 'Networking & Security',
-            questionText: 'Write short notes on: (a) TCP 3-Way Handshake and SYN Flood attack. (b) Clustered vs. Non-Clustered Indexes in Relational Databases.',
-            solution: `(a) TCP 3-Way Handshake & SYN Flood:
-1. Handshake: Client sends SYN -> Server responds with SYN-ACK -> Client replies with ACK.
-2. SYN Flood: Attacker floods the server with SYN requests with spoofed IPs, never sending the concluding ACK. The server's backlog queue becomes exhausted with half-open connections, causing Denial of Service (DoS) for legitimate banking clients. Mitigated using SYN Cookies.
-
-(b) Clustered vs Non-Clustered Index:
-- Clustered Index: Alters the physical ordering of table rows on disk to match the index key. Only ONE clustered index per table (typically Primary Key). Leaf nodes contain the actual data rows.
-- Non-Clustered Index: Creates a separate index structure pointing to the physical data rows (via Row ID or clustered key). A table can have multiple non-clustered indexes.`,
-            tags: ['Networking', 'TCP Handshake', 'DBMS', 'Indexing'],
-            marks: 25,
-            difficulty: 'Medium'
-          }
-        ]
-      },
-      {
-        id: 'sec-10152-nontech',
-        name: 'Language & Focus Writing (50 Marks)',
-        marks: 50,
-        questions: [
-          {
-            id: 'q-10152-7',
-            questionNo: '7',
-            type: 'descriptive',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Focus Writing in English: "The Imperative of Green Banking and Energy-Efficient Data Centers in Bangladesh" (Word limit: 250 words).',
-            solution: `Key Model Points:
-- Environmental Impact: Traditional data centers consume substantial megawatts of power for compute clusters and continuous air conditioning.
-- Green Banking Concept: Adopting paperless branch operations, energy-efficient server hardware (80 Plus Titanium power units), server virtualization to increase utilization, and solar-powered branch ATMs.
-- Regulatory Push: Bangladesh Bank directives on Green Financing and ESG compliance for commercial financial institutions.
-- Conclusion: Green computing reduces operating expenditures (OPEX) while supporting national sustainability targets.`,
-            tags: ['Focus Writing', 'Green Banking', 'Energy Efficient'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-10152-8',
-            questionNo: '8',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate into English: "সাইবার অপরাধীরা এখন কৃত্রিম বুদ্ধিমত্তা ব্যবহার করে অত্যাধুনিক ফিশিং ইমেইল তৈরি করছে। ব্যাংক কর্মকর্তাদের সতর্ক থাকতে হবে এবং যেকোনো অস্বাভাবিক অনুরোধের সত্যতা যাচাই করতে হবে।"',
-            solution: `Standard High-Quality Model Translation:
-"Cyber criminals are now utilizing artificial intelligence to craft sophisticated phishing emails. Bank officials must remain vigilant and verify the authenticity of any unusual requests."`,
-            tags: ['Translation', 'Bangla to English', 'Phishing'],
-            marks: 25,
-            difficulty: 'Easy'
-          }
-        ]
-      }
-    ]
-  },
-
-  // 7. SB 2021 ET-CTI 11/12/2021
-  {
-    id: 'officer-it-sb-2021',
-    title: 'Officer (IT), SB 2021 ET-CTI 11/12/2021',
-    searchQuery: 'Officer (IT), SB 2021 ET-CTI 11/12/2021 question paper pdf',
-    category: 'Officer (IT)',
-    jobId: 'SB-2021-CTI',
-    circularYear: '2021',
-    examDate: 'December 11, 2021',
-    examBody: 'CTI',
-    participatingBanks: ['Sonali Bank Limited (now Sonali Bank PLC)'],
-    grade: 'Grade 10',
-    totalMarks: 200,
-    duration: '2 Hours (120 Minutes)',
-    examType: 'Written Exam (Descriptive & Technical)',
-    summary: 'The authentic Sonali Bank Officer (IT) written test conducted by CTI on December 11, 2021. Features web caching, VPN tunneling, bus topology, matrix row/column summation, relational database queries, and bank security.',
-    keyTopics: ['Web Caching', 'VPN Tunneling', 'Bus vs Star Topology', 'Matrix Row & Column Sum', 'CIA Triad in Banking', 'SQL Aggregations'],
-    sections: [
-      {
-        id: 'sec-sb2021-tech',
-        name: 'Technical IT Core (150 Marks)',
-        marks: 150,
-        questions: [
-          {
-            id: 'q-sb2021-1',
-            questionNo: '1',
-            type: 'descriptive',
-            topicCategory: 'Networking & Security',
-            questionText: 'What is Web Caching and why is it implemented in branch banking systems? Explain how forward proxy cache vs. reverse proxy cache operates.',
-            solution: `1. Definition:
-Web Caching is the temporary storage of web documents (HTML pages, scripts, images, API responses) closer to the client to reduce server load, decrease latency, and conserve network bandwidth.
-
-2. Benefits in Branch Banking:
-- Lowers WAN link utilization between remote rural branches and the central CBS data center.
-- Accelerates banking UI response times for tellers and customers.
-- Ensures high availability during momentary network spikes.
-
-3. Forward vs. Reverse Proxy:
-- Forward Proxy Cache: Sits in front of bank employee workstations. When tellers request external banking circulars or web resources, the forward proxy intercepts the request and serves cached copies, hiding internal client IP addresses.
-- Reverse Proxy Cache: Sits in front of the central banking web/application servers. It intercepts incoming customer internet banking requests, terminates SSL/TLS, serves static cached assets, and distributes dynamic load among application servers.`,
-            tags: ['Web Technologies', 'Web Caching', 'Proxy Servers', 'Networking'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-sb2021-2',
-            questionNo: '2',
-            type: 'coding',
-            topicCategory: 'Programming & Algorithms',
-            questionText: 'Write a program in C to take an M x N matrix from the user, calculate and display the sum of each row, the sum of each column, and the grand average of all elements in the matrix.',
-            solution: 'C program allocating 2D array, taking inputs, and running nested loops for row sums, column sums, and grand average.',
-            codeSolution: `#include <stdio.h>
-
-int main() {
-    int m, n, i, j;
-    printf("Enter number of rows (M) and columns (N): ");
-    if (scanf("%d %d", &m, &n) != 2 || m <= 0 || n <= 0) {
-        printf("Invalid dimensions.\\n");
-        return 1;
-    }
-
-    int matrix[m][n];
-    long long grandTotal = 0;
-
-    printf("Enter the matrix elements (%d x %d):\\n", m, n);
-    for (i = 0; i < m; i++) {
-        for (j = 0; j < n; j++) {
-            scanf("%d", &matrix[i][j]);
-            grandTotal += matrix[i][j];
+            questionText: 'Write a function to implement the QuickSort partitioning algorithm. State the best-case, average-case, and worst-case time complexities of QuickSort and explain when the worst case occurs.',
+            solution: 'Best/Average Case: O(N log N). Worst Case: O(N^2) when the array is already sorted and the first/last element is chosen as pivot. Mitigated via Randomized Pivot or Median-of-Three.',
+            codeSolution: `int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+            int temp = arr[i]; arr[i] = arr[j]; arr[j] = temp;
         }
     }
-
-    // Display Row Sums
-    printf("\\n--- Row Sums ---\\n");
-    for (i = 0; i < m; i++) {
-        int rowSum = 0;
-        for (j = 0; j < n; j++) {
-            rowSum += matrix[i][j];
-        }
-        printf("Row %d Sum = %d\\n", i + 1, rowSum);
-    }
-
-    // Display Column Sums
-    printf("\\n--- Column Sums ---\\n");
-    for (j = 0; j < n; j++) {
-        int colSum = 0;
-        for (i = 0; i < m; i++) {
-            colSum += matrix[i][j];
-        }
-        printf("Column %d Sum = %d\\n", j + 1, colSum);
-    }
-
-    // Grand Average
-    double average = (double)grandTotal / (m * n);
-    printf("\\nGrand Total = %lld\\n", grandTotal);
-    printf("Grand Average = %.2f\\n", average);
-
-    return 0;
+    int temp = arr[i + 1]; arr[i + 1] = arr[high]; arr[high] = temp;
+    return i + 1;
 }`,
             solutionLanguage: 'c',
-            tags: ['Programming', 'C Language', 'Matrix Operations', 'CTI Authentic'],
-            marks: 25,
+            tags: ['Algorithms', 'QuickSort', 'Sorting'],
+            marks: 15,
             difficulty: 'Medium'
           },
           {
-            id: 'q-sb2021-3',
-            questionNo: '3',
+            id: 'q-10229-6-6',
+            questionNo: '6.6',
             type: 'descriptive',
             topicCategory: 'Networking & Security',
-            questionText: 'Explain the working principle of a Virtual Private Network (VPN). Contrast IPsec VPN vs. SSL/TLS VPN in the context of connecting branch ATMs and remote bank employees.',
-            solution: `1. VPN Working Principle:
-A VPN creates an encrypted, secure virtual tunnel across an untrusted public network (the Internet). It encapsulates private IP packets inside routable public IP packets (tunneling), encrypts the payload, and authenticates both endpoints using digital certificates or pre-shared keys.
-
-2. IPsec vs. SSL/TLS VPN:
-- IPsec VPN (Network Layer / Layer 3):
-  * Operates at the network layer, transparent to higher applications.
-  * Requires dedicated VPN client software or router-to-router hardware appliances.
-  * Ideal for Site-to-Site connectivity: Connecting branch routers and offsite ATM booths securely to the bank headquarters data center.
-- SSL/TLS VPN (Application/Transport Layer / Layer 4-7):
-  * Runs directly through standard web browsers without needing complex software installations.
-  * Provides granular per-application access rather than full network access.
-  * Ideal for Remote Work / Telecommuting: Allowing remote bank loan officers or managers to access internal web intranets securely from home laptops.`,
-            tags: ['Networking', 'VPN', 'IPsec', 'SSL/TLS', 'Security'],
-            marks: 25,
+            questionText: 'Explain the role of Hardware Security Modules (HSM), Tokenization, and PCI-DSS Compliance in securing ATM and Payment Card transactions.',
+            solution: `1. HSM (Hardware Security Module): Tamper-resistant physical appliance (FIPS 140-3 Level 3) that stores cryptographic master keys and verifies ATM PIN blocks without exposing keys in host RAM.
+2. Tokenization: Replaces the 16-digit Primary Account Number (PAN) with a surrogate token so merchants never store raw card numbers.
+3. PCI-DSS Compliance: Enforces 12 security requirements including encrypted PAN transmission, never storing CVV/PIN blocks after authorization, and regular quarterly ASV scans.`,
+            tags: ['Cybersecurity', 'PCI-DSS', 'HSM', 'Tokenization'],
+            marks: 15,
             difficulty: 'Medium'
           },
           {
-            id: 'q-sb2021-4',
-            questionNo: '4',
-            type: 'sql',
+            id: 'q-10229-6-7',
+            questionNo: '6.7',
+            type: 'descriptive',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Differentiate between Preemptive and Non-Preemptive CPU Scheduling. Given 4 processes P1(Arrival=0, Burst=8), P2(Arrival=1, Burst=4), P3(Arrival=2, Burst=9), P4(Arrival=3, Burst=5), calculate the Average Waiting Time using Shortest Remaining Time First (SRTF).',
+            solution: `SRTF Gantt Chart Execution:
+- t=0 to 1: P1 runs (remaining=7)
+- t=1 to 5: P2 runs to completion (Burst=4 < 7). P2 Finish = 5, Turnaround = 5 - 1 = 4, Waiting = 0.
+- t=5 to 10: P4 runs to completion (Burst=5 < P1's 7 and P3's 9). P4 Finish = 10, Turnaround = 10 - 3 = 7, Waiting = 7 - 5 = 2.
+- t=10 to 17: P1 runs to completion. P1 Finish = 17, Turnaround = 17 - 0 = 17, Waiting = 17 - 8 = 9.
+- t=17 to 26: P3 runs to completion. P3 Finish = 26, Turnaround = 26 - 2 = 24, Waiting = 24 - 9 = 15.
+
+Average Waiting Time = (9 + 0 + 15 + 2) / 4 = 26 / 4 = 6.5 ms.`,
+            tags: ['Operating Systems', 'CPU Scheduling', 'SRTF'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10229-6-8',
+            questionNo: '6.8',
+            type: 'descriptive',
             topicCategory: 'Database & SQL',
-            questionText: 'Schema: Employee(EmpID, Name, DeptID, Salary), Department(DeptID, DeptName). Write SQL queries to:\n(a) Find the department name where the maximum salary is paid.\n(b) Find the names of employees whose salary is higher than the average salary of their respective department.',
-            solution: `(a) Highest paying department query using subquery or LIMIT.
-(b) Correlated subquery comparing employee salary with the average of that employee's specific department.`,
-            codeSolution: `-- Query (a): Department with maximum salary
-SELECT d.DeptName, MAX(e.Salary) AS Max_Salary
-FROM Department d
-JOIN Employee e ON d.DeptID = e.DeptID
-GROUP BY d.DeptName
-ORDER BY Max_Salary DESC
-LIMIT 1;
+            questionText: 'Explain the ACID properties of a database transaction using a bank fund transfer of BDT 50,000 from Account A to Account B. How does Write-Ahead Logging (WAL) guarantee Atomicity and Durability?',
+            solution: `1. ACID Properties:
+- Atomicity: Both debit(A, 50000) and credit(B, 50000) succeed or both roll back.
+- Consistency: Total money supply A + B remains invariant before and after the transfer.
+- Isolation: Concurrent transactions cannot see an intermediate state where A is debited but B is not yet credited.
+- Durability: Committed changes survive power loss.
 
--- Query (b): Employees earning above departmental average
-SELECT e.EmpID, e.Name, e.Salary, e.DeptID
-FROM Employee e
-WHERE e.Salary > (
-    SELECT AVG(sub.Salary)
-    FROM Employee sub
-    WHERE sub.DeptID = e.DeptID
-);`,
-            solutionLanguage: 'sql',
-            tags: ['SQL', 'Correlated Subquery', 'Aggregations', 'DBMS'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-sb2021-5',
-            questionNo: '5',
-            type: 'descriptive',
-            topicCategory: 'Networking & Security',
-            questionText: 'Compare Bus, Star, and Mesh network topologies in terms of cable requirement, fault tolerance, installation complexity, and scalability. Why is Star topology ubiquitous in commercial bank branches?',
-            solution: `1. Topology Comparison:
-- Bus Topology: Single central backbone cable. Low cost, but single point of failure (cable break halts the entire network), difficult troubleshooting.
-- Star Topology: All nodes connect to a central switch/hub. If one cable fails, only that workstation is affected. Highly scalable and easy to troubleshoot.
-- Mesh Topology: Every node connects to every other node (n*(n-1)/2 links). Highest fault tolerance and redundancy, but prohibitive cabling cost and complexity.
-
-2. Why Star Topology is Ubiquitous in Bank Branches:
-- Fault Isolation: A faulty teller workstation cable does not bring down the rest of the branch counters.
-- Central Management: Network administrators can monitor, enable/disable ports, and enforce VLANs directly on the managed central switch.
-- Cost Efficiency: Standard twisted-pair Cat6 cables and Gigabit Ethernet switches offer the optimum price-to-performance ratio.`,
-            tags: ['Networking', 'Topology', 'Star Topology', 'LAN'],
-            marks: 25,
+2. Write-Ahead Logging (WAL):
+Before dirty pages are flushed to disk, UNDO and REDO log records are forced to non-volatile disk. During crash recovery (ARIES), uncommitted transactions are rolled back using UNDO logs (Atomicity) and committed transactions are replayed using REDO logs (Durability).`,
+            tags: ['DBMS', 'ACID', 'WAL'],
+            marks: 15,
             difficulty: 'Easy'
           },
           {
-            id: 'q-sb2021-6',
-            questionNo: '6',
+            id: 'q-10229-6-9',
+            questionNo: '6.9',
             type: 'descriptive',
             topicCategory: 'Networking & Security',
-            questionText: 'Explain the CIA Triad (Confidentiality, Integrity, Availability) in Information Security. Describe one banking control mechanism used to ensure each pillar.',
-            solution: `1. Confidentiality:
-- Principle: Ensuring sensitive information is accessible only to authorized entities.
-- Banking Control: Strong encryption (AES-256 for data at rest, TLS 1.3 for data in transit) and Role-Based Access Control (RBAC) ensuring tellers cannot view unauthorized executive accounts.
-
-2. Integrity:
-- Principle: Guaranteeing accuracy, consistency, and trustworthiness of data over its entire lifecycle without unauthorized tampering.
-- Banking Control: Cryptographic hashing (SHA-256) and Digital Signatures on financial switch transactions preventing message tampering between ATM and Core Banking switch.
-
-3. Availability:
-- Principle: Ensuring authorized users have timely and reliable access to information and services whenever needed.
-- Banking Control: Redundant hardware components (dual power supplies, RAID-10 storage), load balancers, and hot-standby Disaster Recovery (DR) data centers with automated failover.`,
-            tags: ['Cybersecurity', 'CIA Triad', 'Information Security', 'Banking Controls'],
-            marks: 25,
-            difficulty: 'Medium'
-          }
-        ]
-      },
-      {
-        id: 'sec-sb2021-nontech',
-        name: 'Language & Focus Writing (50 Marks)',
-        marks: 50,
-        questions: [
-          {
-            id: 'q-sb2021-7',
-            questionNo: '7',
-            type: 'descriptive',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Focus Writing in English: "The Role of State-Owned Commercial Banks in Digital Transformation of Bangladesh" (Word limit: 250 words).',
-            solution: `Key Points:
-- Scale & Reach: State-Owned Commercial Banks (Sonali, Janata, Agrani, Rupali) operate thousands of branches across both urban hubs and remote rural grassroots.
-- Government Service Delivery: SOCBs disburse civil service pensions, social safety net allowances, teacher salaries, and utility revenue collection.
-- Digital Innovations: Introduction of apps like Sonali e-Sheba, Sonali e-Wallet, web payment gateways, and integration with National Payment Switch Bangladesh (NPSB).
-- Conclusion: Transforming state-owned banks digitally guarantees that the benefits of Smart Bangladesh reach all citizens equally.`,
-            tags: ['Focus Writing', 'English', 'State Banks', 'Digital Transformation'],
-            marks: 25,
-            difficulty: 'Medium'
+            questionText: 'What is ARP (Address Resolution Protocol)? Explain why ARP is stateless and how ARP Cache Poisoning (ARP Spoofing) enables a Man-in-the-Middle (MitM) attack on a local subnet.',
+            solution: `1. ARP: Maps a known 32-bit IPv4 address to a 48-bit MAC address within a broadcast domain via an ARP Request (Broadcast FF:FF:FF:FF:FF:FF) and ARP Reply (Unicast).
+2. ARP Cache Poisoning: Because standard ARP is stateless and accepts unsolicited Gratuitous ARP replies without authentication, an attacker sends forged ARP replies claiming the Default Gateway's IP belongs to the attacker's MAC address. Victim traffic then routes through the attacker's host (MitM).
+3. Defense: Dynamic ARP Inspection (DAI) combined with DHCP Snooping on managed switches.`,
+            tags: ['Networking', 'ARP Spoofing', 'DAI'],
+            marks: 15,
+            difficulty: 'Easy'
           },
           {
-            id: 'q-sb2021-8',
-            questionNo: '8',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate into English: "সোনালী ব্যাংক দেশের সর্ববৃহৎ রাষ্ট্রায়ত্ত বাণিজ্যিক ব্যাংক। আধুনিক তথ্যপ্রযুক্তি ব্যবহারের মাধ্যমে গ্রাহক সেবার মান বৃদ্ধি এবং সরকারি রাজস্ব সংগ্রহ সহজতর করা হয়েছে।"',
-            solution: `Standard High-Quality Model Translation:
-"Sonali Bank is the largest state-owned commercial bank in the country. Through the utilization of modern information technology, the quality of customer service has been enhanced and government revenue collection has been streamlined."`,
-            tags: ['Translation', 'Bangla to English', 'Sonali Bank'],
-            marks: 25,
-            difficulty: 'Easy'
+            id: 'q-10229-6-10',
+            questionNo: '6.10',
+            type: 'descriptive',
+            topicCategory: 'Software Engineering',
+            questionText: 'Compare Microservices Architecture with Monolithic Architecture for a Core Banking & Mobile Banking platform. Discuss API Gateway, Circuit Breaker, and Database-per-Service patterns.',
+            solution: `1. Monolithic vs Microservices:
+- Monolithic bundles all banking modules (Auth, Ledger, Loans, Cards) in a single deployable artifact sharing one database.
+- Microservices decouple each business domain into independent services with isolated databases (Database-per-Service).
+2. Key Patterns:
+- API Gateway: Single entry point handling TLS termination, JWT validation, and rate limiting.
+- Circuit Breaker: Trips open when a downstream service fails repeatedly, returning fast fallback responses instead of cascading thread exhaustion.`,
+            tags: ['Software Architecture', 'Microservices', 'Circuit Breaker'],
+            marks: 15,
+            difficulty: 'Medium'
           }
         ]
       }
     ]
   },
 
-  // 8. Combined Bank 2020
+  // 5. Job ID: 10209 (Officer IT, Combined 8 Banks — 2024)
   {
-    id: 'officer-it-2020',
-    title: 'Officer (IT), Combined Bank 2020',
-    searchQuery: 'Officer (IT), Combined Bank 2020 question paper pdf',
+    id: 'officer-it-10209',
+    title: 'Officer (IT), Combined 8 Banks (Job ID-10209) — BSCS / BIBM',
+    searchQuery: 'Combined Bank Officer IT Job ID 10209 written question paper solution pdf',
     category: 'Officer (IT)',
-    jobId: 'Combined-2020',
-    circularYear: '2020',
-    examDate: 'November 20, 2020',
-    examBody: 'Bankers Selection Committee (BSCS)',
-    participatingBanks: ['Sonali Bank', 'Janata Bank', 'Agrani Bank', 'Rupali Bank', 'BDBL', 'RAKUB'],
+    jobId: '10209',
+    circularYear: '2023 (Exam 2024)',
+    examDate: 'May 17, 2024',
+    examBody: 'BIBM (Bangladesh Institute of Bank Management)',
+    participatingBanks: ['Sonali Bank PLC', 'Janata Bank PLC', 'Agrani Bank PLC', 'Rupali Bank PLC', 'BDBL', 'BKB', 'RAKUB', 'PKB'],
     grade: 'Grade 10',
     totalMarks: 200,
     duration: '2 Hours (120 Minutes)',
-    examType: 'Written Exam (Descriptive & Technical)',
-    summary: 'Combined Bank Officer (IT) exam paper from the 2020 recruitment cycle. Covers relational algebra, singly linked list operations, round robin CPU scheduling, OSI troubleshooting, symmetric vs asymmetric encryption, and bank network design.',
-    keyTopics: ['Relational Algebra', 'Linked List Operations', 'Round Robin Scheduling', 'Subnet Mask Calculation', 'OSI 7 Layers', 'Focus Writing'],
+    examType: 'Written Exam (Official BSCS / BIBM Format)',
+    summary: 'Combined 8 Banks Officer (IT) (Job ID: 10209) written exam paper. Structured in Part 1 (Focus Writing, Translation, and Math — 50 Marks) and Part 2 (Subject Related CSE/IT Questions 6.1–6.10 covering Linked List Cycle Detection, Dijkstra Shortest Path, SQL Self-Join & Correlated Subquery, Banker\'s Algorithm, and RAID Levels — 150 Marks).',
+    keyTopics: [
+      'Floyd Cycle Detection in Linked List',
+      'Dijkstra Shortest Path Algorithm',
+      'SQL Self-Join (Employee earning more than Manager)',
+      'Banker Algorithm Safe Sequence',
+      'RAID 0, RAID 1, RAID 5, RAID 10',
+      'OS Page Replacement (FIFO vs LRU)'
+    ],
     sections: [
       {
-        id: 'sec-2020-tech',
-        name: 'Technical IT Core (150 Marks)',
-        marks: 150,
+        id: 'sec-10209-general',
+        name: 'Part 1: Focus Writing, Translation & Analytical Math (Questions 1–5) — 50 Marks',
+        marks: 50,
+        description: 'Official Part 1: Focus Writing in Bangla & English, Translation, and Analytical Math (50 Marks).',
         questions: [
           {
-            id: 'q-2020-1',
-            questionNo: '1',
+            id: 'q-10209-1-5',
+            questionNo: '1 – 5',
             type: 'descriptive',
-            topicCategory: 'Database & SQL',
-            questionText: 'Write relational algebra expressions for the banking database: Branch(BranchName, BranchCity, Assets), Customer(CustomerName, CustomerStreet, CustomerCity), Loan(LoanNumber, BranchName, Amount), Borrower(CustomerName, LoanNumber):\n(a) Find all customers who have a loan at the "Motijheel" branch.\n(b) Find all loan numbers for loans with an amount greater than 5,00,000.\n(c) Find the names of all customers who live in the same city as their branch.',
-            solution: `Relational Algebra Expressions:
-(a) Customers with a loan at "Motijheel" branch:
-π CustomerName ( σ BranchName = "Motijheel" (Borrower ⨝ Loan) )
+            topicCategory: 'Focus Writing & Language',
+            questionText: `1. Focus Writing in Bangla (10 Marks): স্মার্ট বাংলাদেশ বিনির্মাণে ক্যাশলেস সোসাইটি ও ফিনটেক (FinTech)-এর ভূমিকা।
+2. Focus Writing in English (10 Marks): Data Privacy and Protection in Digital Banking: Challenges and Regulatory Measures.
+3. Translate into English (10 Marks): "ডিজিটাল লেনদেনের নিরাপত্তা নিশ্চিত করতে গ্রাহক সচেতনতা এবং শক্তিশালী সাইবার প্রতিরক্ষা ব্যবস্থার কোনো বিকল্প নেই।"
+4. Translate into Bangla (10 Marks): "Interoperability among banks and mobile financial service providers is essential for building an inclusive digital economy."
+5. Analytical Math (10 Marks): If the simple interest on a certain sum of money for 3 years at 6% per annum is Taka 900, what will be the compound interest on the same sum for 2 years at 10% per annum?`,
+            solution: `1 & 2. Focus Writing Key Points:
+- FinTech ecosystems (Bangla QR, NPSB, RTGS, Binimoy) accelerate financial velocity and reduce cash-handling overhead.
+- Data privacy requires encryption at rest (AES-256), encryption in transit (TLS 1.3), role-based access control, and strict data localization for core banking ledgers.
 
-(b) Loan numbers with amount > 5,00,000:
-π LoanNumber ( σ Amount > 500000 (Loan) )
+3. English Translation:
+"There is no alternative to customer awareness and a strong cyber defense system to ensure the security of digital transactions."
 
-(c) Customers living in the same city as their branch:
-π CustomerName ( σ CustomerCity = BranchCity (Customer ⨝ Borrower ⨝ Loan ⨝ Branch) )`,
-            tags: ['Relational Algebra', 'DBMS', 'Database Queries'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
+4. Bangla Translation:
+"একটি অন্তর্ভুক্তিমূলক ডিজিটাল অর্থনীতি গড়ে তোলার জন্য ব্যাংক এবং মোবাইল ফাইন্যান্সিয়াল সার্ভিস প্রদানকারীদের মধ্যে আন্তঃসংযোগ অপরিহার্য।"
+
+5. Analytical Math Solution:
+- Principal P = (Simple Interest * 100) / (r * t) = (900 * 100) / (6 * 3) = 90,000 / 18 = Taka 5,000.
+- Compound Interest on Taka 5,000 for 2 years at 10% p.a.:
+  CI = 5,000 * [(1 + 10/100)^2 - 1] = 5,000 * [1.21 - 1] = 5,000 * 0.21 = Taka 1,050.`,
+            tags: ['Focus Writing', 'Translation', 'Compound Interest', 'Job ID 10209'],
+            marks: 50,
+            difficulty: 'Easy'
+          }
+        ]
+      },
+      {
+        id: 'sec-10209-tech',
+        name: 'Part 2: 6. Subject Related Questions (6.1–6.10) — (10 x 15 = 150 Marks)',
+        marks: 150,
+        description: 'Official Part 2: 10 Subject Related CSE/IT Questions (150 Marks).',
+        questions: [
           {
-            id: 'q-2020-2',
-            questionNo: '2',
+            id: 'q-10209-6-1',
+            questionNo: '6.1',
             type: 'coding',
             topicCategory: 'Programming & Algorithms',
-            questionText: 'Write a C function to reverse a Singly Linked List iteratively. Provide the structure definition of the node.',
-            solution: 'Standard three-pointer iterative linked list reversal: prev, curr, next.',
-            codeSolution: `#include <stdio.h>
-#include <stdlib.h>
-
-struct Node {
+            questionText: 'Write a C/C++ function to detect whether a Singly Linked List contains a cycle (loop) in O(N) time and O(1) auxiliary space using Floyd\'s Tortoise and Hare Algorithm.',
+            solution: 'Maintain two pointers (slow and fast) starting at head. Move slow by 1 step and fast by 2 steps per iteration. If fast == slow, a cycle exists; if fast reaches NULL, no cycle exists.',
+            codeSolution: `struct Node {
     int data;
     struct Node* next;
 };
 
-struct Node* reverseList(struct Node* head) {
-    struct Node* prev = NULL;
-    struct Node* current = head;
-    struct Node* next = NULL;
-    
-    while (current != NULL) {
-        next = current->next; // Store next node
-        current->next = prev; // Reverse current node's pointer
-        prev = current;       // Move prev one step forward
-        current = next;       // Move current one step forward
+int hasCycle(struct Node* head) {
+    struct Node *slow = head, *fast = head;
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) return 1; // Cycle detected
     }
-    return prev; // New head of reversed list
+    return 0; // No cycle
 }`,
             solutionLanguage: 'c',
-            tags: ['Data Structures', 'Linked List', 'C Language'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-2020-3',
-            questionNo: '3',
-            type: 'descriptive',
-            topicCategory: 'Networking & Security',
-            questionText: 'List the 7 layers of the OSI model in order. For each layer, specify: (i) Primary function, (ii) Data unit (PDU), (iii) One representative protocol or hardware device.',
-            solution: `1. Physical Layer:
-- Function: Transmission of raw bits over physical transmission medium.
-- PDU: Bit. Device: Repeater, Hub, Cables.
-
-2. Data Link Layer:
-- Function: Reliable node-to-node framing, physical MAC addressing, error detection (CRC).
-- PDU: Frame. Device/Protocol: Switch, Bridge, Ethernet (802.3).
-
-3. Network Layer:
-- Function: Logical IP addressing and packet routing across multiple networks.
-- PDU: Packet. Device/Protocol: Router, IPv4, IPv6, ICMP, OSPF.
-
-4. Transport Layer:
-- Function: End-to-end process communication, flow control, segmentation, error recovery.
-- PDU: Segment (TCP) / Datagram (UDP). Protocols: TCP, UDP.
-
-5. Session Layer:
-- Function: Establishing, managing, and terminating dialogue sessions between applications.
-- PDU: Data. Protocols: RPC, NetBIOS.
-
-6. Presentation Layer:
-- Function: Data translation, character encoding (ASCII/Unicode), compression, and encryption.
-- PDU: Data. Protocols: TLS/SSL, JPEG, MPEG.
-
-7. Application Layer:
-- Function: User interface and network services interface.
-- PDU: Data. Protocols: HTTP/HTTPS, FTP, SMTP, DNS.`,
-            tags: ['Networking', 'OSI Model', 'Protocols', 'Network Layers'],
-            marks: 25,
+            tags: ['Linked List', 'Floyd Cycle Detection', 'Algorithms'],
+            marks: 15,
             difficulty: 'Easy'
           },
           {
-            id: 'q-2020-4',
-            questionNo: '4',
-            type: 'descriptive',
-            topicCategory: 'Networking & Security',
-            questionText: 'Compare Symmetric-Key Cryptography vs. Asymmetric-Key Cryptography in terms of key count, computation speed, key distribution challenges, and algorithms. Explain how Hybrid Cryptography combines both in HTTPS.',
-            solution: `1. Comparison:
-- Key Count: Symmetric uses 1 shared secret key for both encryption and decryption. Asymmetric uses a mathematically linked key pair: Public Key for encryption, Private Key for decryption.
-- Computation Speed: Symmetric (e.g. AES) is extremely fast and hardware-accelerated. Asymmetric (e.g. RSA, ECC) is computationally intensive (approx. 1000x slower).
-- Key Distribution: Symmetric suffers from the chicken-and-egg key exchange problem. Asymmetric solves key distribution because public keys can be broadcast freely.
-- Algorithms: Symmetric: AES-256, DES, 3DES, ChaCha20. Asymmetric: RSA, ECC, Diffie-Hellman.
-
-2. Hybrid Cryptography in HTTPS (TLS):
-- Handshake: The browser and bank server use Asymmetric cryptography (RSA or ECDHE) to authenticate the server certificate and securely negotiate a random temporary session key.
-- Bulk Data Transfer: Once the session key is securely shared, they switch to high-speed Symmetric encryption (AES-GCM) to encrypt all subsequent banking transactions and HTML payloads.`,
-            tags: ['Cryptography', 'Security', 'AES', 'RSA', 'HTTPS'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-2020-5',
-            questionNo: '5',
-            type: 'descriptive',
-            topicCategory: 'Operating Systems & Linux',
-            questionText: 'What is a Deadlock in Operating Systems? Explain the difference between Deadlock Prevention and Deadlock Detection. Describe the Resource Allocation Graph (RAG) and how cycles indicate deadlocks.',
-            solution: `1. Definition:
-A deadlock is a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource held by some other process in the set.
-
-2. Prevention vs Detection:
-- Prevention: Eliminates at least one of the 4 necessary Coffman conditions (e.g. enforcing strict resource ordering to prevent Circular Wait). Ensures a deadlock can NEVER occur, but reduces resource utilization.
-- Detection & Recovery: Allows processes to enter deadlock, periodically runs detection algorithms (e.g. cycle check on Wait-For Graph), and recovers by process termination or resource preemption.
-
-3. Resource Allocation Graph (RAG):
-- Directed graph with Process vertices (circles) and Resource vertices (rectangles containing dots for instances).
-- Request Edge: Process -> Resource.
-- Assignment Edge: Resource instance -> Process.
-- Rule: If resources have only single instances, a CYCLE in the graph is both a necessary and SUFFICIENT condition for deadlock! If resources have multiple instances, a cycle is necessary but not sufficient.`,
-            tags: ['Operating Systems', 'Deadlock', 'RAG', 'Concurrency'],
-            marks: 25,
-            difficulty: 'Medium'
-          },
-          {
-            id: 'q-2020-6',
-            questionNo: '6',
+            id: 'q-10209-6-2',
+            questionNo: '6.2',
             type: 'sql',
             topicCategory: 'Database & SQL',
-            questionText: 'Table: Account(AccNo, CustName, Branch, Balance). Write SQL queries to:\n(a) Find the second highest balance in the table without using LIMIT or OFFSET.\n(b) Find all branches having average account balance greater than 1,00,000.',
-            solution: `(a) Second highest balance using MAX with subquery.
-(b) GROUP BY with HAVING clause on AVG(Balance).`,
-            codeSolution: `-- Query (a): Second highest balance
-SELECT MAX(Balance) AS Second_Highest_Balance
-FROM Account
-WHERE Balance < (SELECT MAX(Balance) FROM Account);
+            questionText: 'Given the table Employee(EmpID, EmpName, Salary, ManagerID, DeptID), write: (a) an SQL query using a Self-Join to find all employees who earn more than their direct manager, and (b) an SQL query to find employees who earn the highest salary in their respective department.',
+            solution: 'Part (a) joins Employee e with Employee m on e.ManagerID = m.EmpID and compares e.Salary > m.Salary. Part (b) uses a correlated subquery or GROUP BY (DeptID).',
+            codeSolution: `-- (a) Employees earning more than their direct Manager
+SELECT e.EmpName AS Employee_Name, e.Salary AS Emp_Salary,
+       m.EmpName AS Manager_Name, m.Salary AS Mgr_Salary
+FROM Employee e
+JOIN Employee m ON e.ManagerID = m.EmpID
+WHERE e.Salary > m.Salary;
 
--- Query (b): Branches with average balance > 100,000
-SELECT Branch, AVG(Balance) AS Average_Balance
-FROM Account
-GROUP BY Branch
-HAVING AVG(Balance) > 100000;`,
+-- (b) Employees earning the highest salary in each department
+SELECT e.EmpID, e.EmpName, e.DeptID, e.Salary
+FROM Employee e
+WHERE e.Salary = (
+    SELECT MAX(e2.Salary)
+    FROM Employee e2
+    WHERE e2.DeptID = e.DeptID
+);`,
             solutionLanguage: 'sql',
-            tags: ['SQL', 'DBMS', 'Subquery', 'HAVING'],
-            marks: 25,
+            tags: ['SQL', 'Self-Join', 'Correlated Subquery'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10209-6-3',
+            questionNo: '6.3',
+            type: 'math',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Given memory page reference string: 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2 and 3 physical page frames (initially empty). Calculate the total number of Page Faults using: (a) FIFO Page Replacement and (b) LRU Page Replacement.',
+            solution: `Reference String (13 references): 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2 | Frames = 3.
+
+(a) FIFO (First-In, First-Out) Trace:
+1. 7 -> [7] (Fault 1)
+2. 0 -> [7, 0] (Fault 2)
+3. 1 -> [7, 0, 1] (Fault 3)
+4. 2 -> Evict 7 -> [2, 0, 1] (Fault 4)
+5. 0 -> Hit! [2, 0, 1]
+6. 3 -> Evict 0 -> [2, 3, 1] (Fault 5)
+7. 0 -> Evict 1 -> [2, 3, 0] (Fault 6)
+8. 4 -> Evict 2 -> [4, 3, 0] (Fault 7)
+9. 2 -> Evict 3 -> [4, 2, 0] (Fault 8)
+10. 3 -> Evict 0 -> [4, 2, 3] (Fault 9)
+11. 0 -> Evict 4 -> [0, 2, 3] (Fault 10)
+12. 3 -> Hit!
+13. 2 -> Hit!
+Total FIFO Page Faults = 10.
+
+(b) LRU (Least Recently Used) Trace:
+1. 7 -> [7] (Fault 1)
+2. 0 -> [7, 0] (Fault 2)
+3. 1 -> [7, 0, 1] (Fault 3)
+4. 2 -> Evict 7 (LRU) -> [2, 0, 1] (Fault 4)
+5. 0 -> Hit!
+6. 3 -> Evict 1 (LRU) -> [2, 0, 3] (Fault 5)
+7. 0 -> Hit!
+8. 4 -> Evict 2 (LRU) -> [4, 0, 3] (Fault 6)
+9. 2 -> Evict 3 (LRU) -> [4, 0, 2] (Fault 7)
+10. 3 -> Evict 0 (LRU) -> [4, 3, 2] (Fault 8)
+11. 0 -> Evict 4 (LRU) -> [0, 3, 2] (Fault 9)
+12. 3 -> Hit!
+13. 2 -> Hit!
+Total LRU Page Faults = 9.`,
+            tags: ['Operating Systems', 'Page Replacement', 'FIFO vs LRU'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-10209-6-4',
+            questionNo: '6.4',
+            type: 'descriptive',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Compare RAID 0, RAID 1, RAID 5, and RAID 10 in terms of disk utilization efficiency, fault tolerance, read/write performance, and minimum number of disks required. Which RAID level is recommended for a Core Banking Database redo log volume?',
+            solution: `1. RAID Level Comparison:
+- RAID 0 (Striping): Min 2 disks | 100% capacity | 0 disk fault tolerance | Fastest read/write.
+- RAID 1 (Mirroring): Min 2 disks | 50% capacity | Survives 1 disk failure | Fast read, normal write.
+- RAID 5 (Striping with Distributed Parity): Min 3 disks | (N-1)/N capacity | Survives 1 disk failure | Suffers write penalty (4 I/Os per random write).
+- RAID 10 (Stripe of Mirrors): Min 4 disks | 50% capacity | Survives 1 disk failure per mirrored pair | High read/write IOPS with no parity calculation penalty.
+
+2. Recommendation for Core Banking Database Redo Logs:
+RAID 10 is strongly recommended because database transaction logs are write-intensive and mission-critical; RAID 10 provides both high write throughput (no RAID 5 parity write penalty) and rapid rebuild times on disk failure.`,
+            tags: ['Storage Architecture', 'RAID Levels', 'Core Banking'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10209-6-5',
+            questionNo: '6.5',
+            type: 'descriptive',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Explain Dijkstra\'s Single-Source Shortest Path algorithm. Why does Dijkstra\'s algorithm fail on graphs with negative-weight edges, and which algorithm should be used instead?',
+            solution: `1. Dijkstra's Algorithm:
+Uses a greedy strategy with a Min-Priority Queue to repeatedly extract the unvisited vertex u with the smallest tentative distance dist[u] and relax all outgoing edges (u, v): if dist[u] + w(u, v) < dist[v], update dist[v]. Time complexity: O((V + E) log V).
+
+2. Why Dijkstra Fails with Negative Edges:
+Dijkstra assumes that once a vertex u is extracted from the priority queue and marked visited, its shortest distance dist[u] is final because adding positive edge weights can only increase path cost. If a negative edge exists downstream, a later path could reduce the distance to an already-finalized vertex.
+
+3. Alternative for Negative Edges:
+The Bellman-Ford Algorithm (O(V * E) time) relaxes all E edges V - 1 times and correctly handles negative edge weights as well as detecting negative-weight cycles.`,
+            tags: ['Algorithms', 'Dijkstra', 'Bellman-Ford', 'Graphs'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10209-6-6',
+            questionNo: '6.6',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'Explain the step-by-step process of DNS resolution when a user types "https://www.bb.org.bd" into a web browser. Differentiate between Recursive and Iterative DNS queries.',
+            solution: `1. DNS Resolution Steps:
+- Step 1: Browser checks its local DNS cache and OS hosts file / stub resolver cache.
+- Step 2 (Recursive Query): If not cached, the OS stub resolver sends a Recursive Query to the ISP/Enterprise Recursive DNS Resolver.
+- Step 3 (Iterative Queries by Resolver):
+  (a) Resolver queries a Root DNS Server (.) -> Root returns referral to the '.bd' ccTLD server.
+  (b) Resolver queries the '.bd' / '.org.bd' TLD Name Server -> Returns referral to the Authoritative Name Server for 'bb.org.bd'.
+  (c) Resolver queries the Authoritative Name Server for 'www.bb.org.bd' -> Receives the IPv4 'A' record (and IPv6 'AAAA' record).
+- Step 4: Resolver caches the record for its TTL duration and returns the IP address to the client browser.`,
+            tags: ['Networking', 'DNS Resolution', 'Recursive vs Iterative'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10209-6-7',
+            questionNo: '6.7',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'What is SQL Injection (SQLi)? Show a vulnerable login query example and explain how Prepared Statements (Parameterized Queries) completely prevent SQL Injection.',
+            solution: `1. Vulnerable Dynamic SQL Query:
+String query = "SELECT * FROM users WHERE username = '" + user + "' AND password = '" + pass + "'";
+If an attacker enters: ' OR '1'='1' --
+The query becomes: SELECT * FROM users WHERE username = '' OR '1'='1' --' AND password = '...'
+Since '1'='1' is always TRUE, authentication is bypassed completely.
+
+2. Prevention via Prepared Statements:
+With Parameterized Queries (SELECT * FROM users WHERE username = ? AND password = ?), the database compiles the SQL execution plan first, and user input is bound strictly as a literal scalar parameter—never interpreted as executable SQL syntax.`,
+            tags: ['Security', 'SQL Injection', 'Prepared Statements'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10209-6-8',
+            questionNo: '6.8',
+            type: 'math',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Convert the decimal number (-43)_10 into an 8-bit binary representation using: (i) Sign-Magnitude, (ii) 1\'s Complement, and (iii) 2\'s Complement. Why do modern CPUs universally use 2\'s Complement?',
+            solution: `1. Binary of +43 in 8 bits:
+   43 = 32 + 8 + 2 + 1 = 00101011_2
+
+2. Representations of (-43)_10:
+   (i) Sign-Magnitude (flip MSB to 1): 10101011_2
+   (ii) 1's Complement (invert all bits of +43): 11010100_2
+   (iii) 2's Complement (add 1 to 1's complement): 11010100 + 1 = 11010101_2
+
+3. Why Modern CPUs Use 2's Complement:
+   - Single unique representation for zero (00000000), unlike Sign-Magnitude and 1's Complement which have both +0 and -0.
+   - Subtraction A - B is performed using the exact same adder circuitry as A + (-B) without end-around carry hardware.`,
+            tags: ['Digital Logic', '2s Complement', 'Number Systems'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10209-6-9',
+            questionNo: '6.9',
+            type: 'descriptive',
+            topicCategory: 'Software Engineering',
+            questionText: 'Explain Coupling and Cohesion in software design. Why is "High Cohesion and Loose Coupling" the foundational principle of modular software engineering?',
+            solution: `1. Definitions:
+- Cohesion: Measures how strongly related and focused the responsibilities of a single module/class are (intra-module concept).
+- Coupling: Measures the degree of interdependence between different modules/classes (inter-module concept).
+
+2. Why High Cohesion and Loose Coupling is Ideal:
+- High Functional Cohesion ensures each class has a Single Responsibility, making it easier to understand, test, and maintain.
+- Loose Coupling (achieved via interfaces and Dependency Injection) ensures that modifying the internal implementation of one module (e.g., switching SMS gateway provider) does not cause ripple-effect breakages across other banking modules.`,
+            tags: ['Software Engineering', 'Cohesion vs Coupling', 'Modular Design'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-10209-6-10',
+            questionNo: '6.10',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Write a C/C++ or Python function to check whether a given string of brackets "(", ")", "{", "}", "[", "]" is balanced using a Stack.',
+            solution: 'Push opening brackets onto the stack. Upon encountering a closing bracket, check if the stack is non-empty and the top matches the corresponding opening bracket. At the end, the stack must be empty.',
+            codeSolution: `def is_balanced_brackets(s: str) -> bool:
+    stack = []
+    matching = {')': '(', '}': '{', ']': '['}
+    for ch in s:
+        if ch in '({[':
+            stack.append(ch)
+        elif ch in ')}]':
+            if not stack or stack[-1] != matching[ch]:
+                return False
+            stack.pop()
+    return len(stack) == 0`,
+            solutionLanguage: 'python',
+            tags: ['Data Structures', 'Stack', 'Balanced Parentheses'],
+            marks: 15,
+            difficulty: 'Easy'
+          }
+        ]
+      }
+    ]
+  },
+
+  // 6. Historical Combined & Sonali/Janata Officer (IT) Archive (2020–2023)
+  {
+    id: 'officer-it-sb-2021',
+    title: 'Officer (IT), Sonali Bank & Janata Bank (Job ID-10128 — 2021-2022)',
+    searchQuery: 'Sonali Bank Janata Bank Officer IT 2021 2022 BIBM written question paper solution',
+    category: 'Officer (IT)',
+    jobId: '10128',
+    circularYear: '2020-2021',
+    examDate: 'December 17, 2021',
+    examBody: 'BIBM',
+    participatingBanks: ['Sonali Bank PLC', 'Janata Bank PLC'],
+    grade: 'Grade 10',
+    totalMarks: 200,
+    duration: '2 Hours (120 Minutes)',
+    examType: 'Written Exam (Official BSCS / BIBM Format)',
+    summary: 'BIBM Written Examination for Officer (IT) in Sonali Bank & Janata Bank. Covers Part 1 (Focus Writing, Translation, and Math — 50 Marks) and Part 2 (Subject Related CSE/IT Questions 6.1–6.10: OSI vs TCP/IP Layers, Database Triggers & Stored Procedures, Binary Search vs Interpolation Search, Hamming Code Error Correction, and Compiler Phases — 150 Marks).',
+    keyTopics: [
+      'OSI 7-Layer vs TCP/IP Model',
+      'Database Trigger vs Stored Procedure',
+      'Hamming Code (7,4) Single-Bit Error Correction',
+      'Phases of a Compiler',
+      'Fibonacci Dynamic Programming vs Recursion',
+      'IPv4 vs IPv6 Header Comparison'
+    ],
+    sections: [
+      {
+        id: 'sec-sb21-general',
+        name: 'Part 1: Focus Writing, Translation & Analytical Math (Questions 1–5) — 50 Marks',
+        marks: 50,
+        description: 'Official Part 1: Bangla & English Focus Writing, Translation, and Analytical Math (50 Marks).',
+        questions: [
+          {
+            id: 'q-sb21-1-5',
+            questionNo: '1 – 5',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `1. Focus Writing in Bangla (10 Marks): রাষ্ট্রায়ত্ত বাণিজ্যিক ব্যাংকগুলোর অটোমেশন ও গ্রাহকসেবার মানোন্নয়ন।
+2. Focus Writing in English (10 Marks): E-Commerce Growth and Secure Online Payment Gateways in Bangladesh.
+3. Translate into English (10 Marks): "তথ্যপ্রযুক্তির সঠিক প্রয়োগের মাধ্যমে রাষ্ট্রায়ত্ত ব্যাংকগুলোর সেবার মান বেসরকারি ব্যাংকের সমকক্ষ করে তোলা সম্ভব।"
+4. Translate into Bangla (10 Marks): "A robust disaster recovery site ensures business continuity when the primary data center experiences an outage."
+5. Analytical Math (10 Marks): A train 150 meters long is running at a speed of 68 km/hr. In what time will it pass a man who is running at 8 km/hr in the same direction in which the train is going?`,
+            solution: `1–4. Translation & Focus Writing Solutions:
+- English Translation (Q3): "Through the proper application of information technology, the service quality of state-owned banks can be made on par with private banks."
+- Bangla Translation (Q4): "প্রাথমিক ডেটা সেন্টারে কোনো বিপর্যয় ঘটলে একটি শক্তিশালী ডিজাস্টার রিকভারি সাইট ব্যবসায়িক ধারাবাহিকতা নিশ্চিত করে।"
+
+5. Analytical Math Solution:
+- Relative speed (same direction) = (68 - 8) km/hr = 60 km/hr.
+- Convert to m/s: 60 * (5 / 18) = 50 / 3 m/s.
+- Time taken to pass the man = Distance (length of train) / Relative Speed = 150 / (50 / 3) = (150 * 3) / 50 = 9 seconds.`,
+            tags: ['Focus Writing', 'Translation', 'Relative Speed Math'],
+            marks: 50,
             difficulty: 'Easy'
           }
         ]
       },
       {
-        id: 'sec-2020-nontech',
-        name: 'Language & Focus Writing (50 Marks)',
-        marks: 50,
+        id: 'sec-sb21-tech',
+        name: 'Part 2: 6. Subject Related Questions (6.1–6.10) — (10 x 15 = 150 Marks)',
+        marks: 150,
+        description: 'Official Part 2: 10 Subject Related CSE/IT Questions (150 Marks).',
         questions: [
           {
-            id: 'q-2020-7',
-            questionNo: '7',
+            id: 'q-sb21-6-1',
+            questionNo: '6.1',
             type: 'descriptive',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Focus Writing in English: "Transition from Traditional Banking to Omnichannel Digital Banking in Bangladesh" (Word limit: 250 words).',
-            solution: `Key Points:
-- Shift from branch physical queues to anytime, anywhere banking.
-- Omnichannel integration: Harmonizing mobile apps, web portals, ATM/CRM kiosks, and call center channels into a unified real-time customer profile.
-- Financial Inclusion: Rapid onboarding via e-KYC and biometric verification.
-- Cyber Challenges: Guarding customer authentication and continuous disaster recovery preparedness.`,
-            tags: ['Focus Writing', 'English', 'Digital Banking', 'Omnichannel'],
+            topicCategory: 'Networking & Security',
+            questionText: 'Draw and compare the 7-layer OSI Reference Model with the TCP/IP Protocol Suite. State the protocol data unit (PDU) and key networking devices operating at Layers 1, 2, 3, and 4.',
+            solution: `1. Layer PDU & Device Mapping:
+- Layer 1 (Physical): PDU = Bit | Devices = Hub, Repeater, Modem, Fiber/UTP Cable.
+- Layer 2 (Data Link): PDU = Frame | Devices = Layer-2 Switch, Bridge, NIC (MAC addressing, VLAN).
+- Layer 3 (Network): PDU = Packet / Datagram | Devices = Router, Layer-3 Switch (IP addressing, OSPF/BGP).
+- Layer 4 (Transport): PDU = Segment (TCP) / Datagram (UDP) | Devices = Stateful Firewall, Load Balancer.
+- Layers 5, 6, 7 (Session, Presentation, Application): PDU = Data / Message (HTTP, SMTP, DNS, SSH).`,
+            tags: ['Networking', 'OSI Model', 'TCP/IP'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-sb21-6-2',
+            questionNo: '6.2',
+            type: 'sql',
+            topicCategory: 'Database & SQL',
+            questionText: 'Differentiate between a Stored Procedure and a Database Trigger. Write an SQL/PL-SQL Trigger that automatically logs an audit entry into Account_Audit(AccNo, OldBalance, NewBalance, ChangedAt) whenever an Account balance is updated.',
+            solution: 'A Stored Procedure is invoked explicitly by an application or user, whereas a Trigger executes automatically (implicitly) in response to a DML event (INSERT, UPDATE, DELETE).',
+            codeSolution: `CREATE OR REPLACE TRIGGER trg_account_balance_audit
+AFTER UPDATE OF Balance ON Account
+FOR EACH ROW
+BEGIN
+    INSERT INTO Account_Audit (AccNo, OldBalance, NewBalance, ChangedAt)
+    VALUES (:OLD.AccNo, :OLD.Balance, :NEW.Balance, SYSDATE);
+END;`,
+            solutionLanguage: 'sql',
+            tags: ['DBMS', 'PL/SQL', 'Triggers', 'Stored Procedures'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-sb21-6-3',
+            questionNo: '6.3',
+            type: 'math',
+            topicCategory: 'Networking & Security',
+            questionText: 'A 7-bit even-parity Hamming code is received as 1 1 0 0 1 1 0 (bit positions 1 to 7 from left to right). Determine whether there is an error, locate the corrupted bit position if any, and state the original 4-bit data word.',
+            solution: `Bit Positions: b1=1, b2=1, b3=0, b4=0, b5=1, b6=1, b7=0.
+Even Parity Check Bits Calculation:
+- c1 = b1 XOR b3 XOR b5 XOR b7 = 1 XOR 0 XOR 1 XOR 0 = 0
+- c2 = b2 XOR b3 XOR b6 XOR b7 = 1 XOR 0 XOR 1 XOR 0 = 0
+- c4 = b4 XOR b5 XOR b6 XOR b7 = 0 XOR 1 XOR 1 XOR 0 = 0
+
+Since Syndrome (c4 c2 c1) = 000_2 = 0, there is NO single-bit error in the received codeword.
+Original 4-bit data bits (at positions b3, b5, b6, b7) = 0 1 1 0.`,
+            tags: ['Data Communication', 'Hamming Code', 'Error Correction'],
+            marks: 15,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-sb21-6-4',
+            questionNo: '6.4',
+            type: 'descriptive',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'List and explain the 6 phases of a Compiler, illustrating how the statement "balance = principal + rate * 10" is transformed through each phase.',
+            solution: `1. Lexical Analyzer (Scanner): Converts source characters into tokens: id1 = id2 + id3 * 10.
+2. Syntax Analyzer (Parser): Builds the Parse Tree / Abstract Syntax Tree (AST) verifying grammar rules.
+3. Semantic Analyzer: Performs type checking and inserts inttofloat(10) coercion if rate is float.
+4. Intermediate Code Generator: Produces Three-Address Code (t1 = inttofloat(10); t2 = id3 * t1; t3 = id2 + t2; id1 = t3).
+5. Code Optimizer: Eliminates redundant temporaries (t1 = id3 * 10.0; id1 = id2 + t1).
+6. Target Code Generator: Emits machine/assembly instructions (LDDF, MULF, ADDF, STDF).`,
+            tags: ['Compiler Design', 'Compiler Phases', 'Three-Address Code'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-sb21-6-5',
+            questionNo: '6.5',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Why does a naive recursive function for the N-th Fibonacci number take exponential O(2^N) time? Write an optimized O(N) time and O(1) space iterative/dynamic programming solution in C.',
+            solution: 'Naive recursion recomputes overlapping subproblems fib(k) exponentially many times. Storing only the last two states reduces time to O(N) and space to O(1).',
+            codeSolution: `#include <stdio.h>
+
+long long fibonacci(int n) {
+    if (n <= 1) return n;
+    long long prev2 = 0, prev1 = 1, curr = 0;
+    for (int i = 2; i <= n; i++) {
+        curr = prev1 + prev2;
+        prev2 = prev1;
+        prev1 = curr;
+    }
+    return curr;
+}`,
+            solutionLanguage: 'c',
+            tags: ['Dynamic Programming', 'Fibonacci', 'C Programming'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-sb21-6-6',
+            questionNo: '6.6',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'Compare IPv4 and IPv6 packet headers. Why was the Header Checksum field removed from the IPv6 header?',
+            solution: `1. IPv4 vs IPv6 Header Comparison:
+- Address Size: IPv4 uses 32-bit addresses (4.3 billion); IPv6 uses 128-bit hexadecimal addresses (3.4 x 10^38).
+- Header Length: IPv4 has a variable 20–60 byte header with 12+ fields; IPv6 has a streamlined fixed 40-byte base header with only 8 fields.
+- Fragmentation: IPv4 allows routers to fragment packets en route; IPv6 removes router fragmentation (performed only by source host via Path MTU Discovery).
+
+2. Why Header Checksum Was Removed in IPv6:
+In IPv4, every router must recompute the header checksum at every hop because the TTL field decrements by 1. Since Layer-2 (Ethernet CRC-32) and Layer-4 (TCP/UDP checksums) already verify integrity, removing the Layer-3 checksum in IPv6 significantly accelerates hardware router packet forwarding.`,
+            tags: ['Networking', 'IPv4 vs IPv6', 'Packet Header'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-sb21-6-7',
+            questionNo: '6.7',
+            type: 'descriptive',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Differentiate between a Process and a Thread. Explain User-Level Threads vs Kernel-Level Threads.',
+            solution: `1. Process vs Thread:
+- A Process is an independent program in execution with its own isolated virtual address space (Code, Data, Heap, Stack, PCB). Context switching between processes is heavy because TLB/page tables must be flushed.
+- A Thread is a lightweight unit of CPU utilization within a process. Threads of the same process share the Code, Data, Heap, and open file descriptors while maintaining their own Program Counter, Registers, and Stack.
+
+2. User-Level vs Kernel-Level Threads:
+- User-Level Threads are managed by a user-space library without kernel awareness (fast switching, but if one thread makes a blocking system call, the entire process blocks).
+- Kernel-Level Threads are scheduled directly by the OS kernel across multiple CPU cores concurrently.`,
+            tags: ['Operating Systems', 'Process vs Thread', 'Multithreading'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-sb21-6-8',
+            questionNo: '6.8',
+            type: 'sql',
+            topicCategory: 'Database & SQL',
+            questionText: 'Explain the difference between INNER JOIN, LEFT OUTER JOIN, RIGHT OUTER JOIN, and FULL OUTER JOIN with Venn diagrams and SQL examples.',
+            solution: `- INNER JOIN: Returns only rows with matching keys in both tables A and B.
+- LEFT OUTER JOIN: Returns all rows from left table A, plus matched rows from B (NULLs where B has no match).
+- RIGHT OUTER JOIN: Returns all rows from right table B, plus matched rows from A.
+- FULL OUTER JOIN: Returns all rows from both A and B, filling NULLs on whichever side lacks a match.`,
+            codeSolution: `SELECT c.CustID, c.CustName, a.AccNo, a.Balance
+FROM Customer c
+LEFT OUTER JOIN Account a ON c.CustID = a.CustID;`,
+            solutionLanguage: 'sql',
+            tags: ['SQL', 'Joins', 'DBMS'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-sb21-6-9',
+            questionNo: '6.9',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'What is a Firewall? Differentiate between Stateless Packet Filtering Firewalls, Stateful Inspection Firewalls, and Web Application Firewalls (WAF).',
+            solution: `- Stateless Packet Filter (Layer 3/4): Inspects each packet in isolation against static ACL rules (Source/Dest IP, Port) without tracking connection state.
+- Stateful Inspection Firewall (Layer 3/4): Maintains a state table of active TCP handshakes and UDP flows, allowing return traffic only if it matches an established session.
+- Web Application Firewall (WAF — Layer 7): Inspects HTTP/HTTPS payloads to block application-layer attacks such as SQL Injection (SQLi), Cross-Site Scripting (XSS), and CSRF.`,
+            tags: ['Network Security', 'Firewalls', 'WAF'],
+            marks: 15,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-sb21-6-10',
+            questionNo: '6.10',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Write a C program to check whether a given integer or string is a Palindrome without using built-in string reversal functions.',
+            solution: 'Use two pointers starting at the left (index 0) and right (index n-1) ends of the string, comparing characters while moving inward in O(N) time and O(1) space.',
+            codeSolution: `#include <stdio.h>
+#include <string.h>
+
+int isPalindrome(const char *str) {
+    int left = 0;
+    int right = strlen(str) - 1;
+    while (left < right) {
+        if (str[left] != str[right]) return 0;
+        left++;
+        right--;
+    }
+    return 1;
+}`,
+            solutionLanguage: 'c',
+            tags: ['C Programming', 'Palindrome', 'Two Pointers'],
+            marks: 15,
+            difficulty: 'Easy'
+          }
+        ]
+      }
+    ]
+  },
+
+  // 7. Combined Bank Officer (IT) 2025 (Based on 2023)
+  {
+    id: 'officer-it-2025-base23',
+    title: 'Officer (IT), Combined Bank 2025 (Based on 2023 Circular) — BIBM Official Format',
+    searchQuery: 'Officer (IT), Combined Bank 2025 Based on 2023 question paper pdf',
+    category: 'Officer (IT)',
+    jobId: 'Combined-2025-B23',
+    circularYear: '2023 (Exam 2025)',
+    examDate: 'January 24, 2025',
+    examBody: 'BIBM (Bangladesh Institute of Bank Management)',
+    participatingBanks: ['Sonali Bank PLC', 'Janata Bank PLC', 'Agrani Bank PLC', 'Rupali Bank PLC', 'BKB'],
+    grade: 'Grade 10',
+    totalMarks: 200,
+    duration: '2 Hours (120 Minutes)',
+    examType: 'Written Exam (Official BSCS / BIBM Format)',
+    summary: 'BIBM Written Examination for Combined Bank Officer (IT) 2025 (Based on 2023 Circular). Structured in Part 1 (Questions 1–5: Focus Writing in Bangla & English, Translation, and Analytical Math — 50 Marks) and Part 2 (Question 6: Subject Related CSE/IT Questions 6.1–6.6 covering AVL Tree Rotations, SQL Window Ranking, VLSM /25 Subnetting, Deadlock Avoidance, and AES vs RSA — 150 Marks).',
+    keyTopics: [
+      'AVL Tree Rotations (LL, RR, LR, RL)',
+      'SQL ROW_NUMBER vs RANK vs DENSE_RANK',
+      'OS Banker Algorithm Safe State',
+      'VLAN Tagging (IEEE 802.1Q) & Trunking',
+      'Digital Logic Half Adder & Full Adder',
+      'Merge Sort O(N log N) Algorithm'
+    ],
+    sections: [
+      {
+        id: 'sec-2025b23-general',
+        name: 'Part 1: Focus Writing, Translation & Analytical Math (Questions 1–5) — 50 Marks',
+        marks: 50,
+        description: 'Official Part 1: Bangla & English Focus Writing, Translation, and Analytical Math (50 Marks).',
+        questions: [
+          {
+            id: 'q-2025b23-1-5',
+            questionNo: '1 – 5',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `1. Focus Writing in Bangla (10 Marks): ব্যাংকিং খাতে কৃত্রিম বুদ্ধিমত্তা (AI) ও বিগ ডেটা অ্যানালিটিক্সের ব্যবহার।
+2. Focus Writing in English (10 Marks): "Strengthening National Payment Switch Bangladesh (NPSB) for Interoperable Retail Banking."
+3. Translate into English (10 Marks): "আর্থিক খাতে সাইবার নিরাপত্তা নিশ্চিত করতে নিয়মিত আইটি অডিট এবং কর্মীদের প্রশিক্ষণ অত্যন্ত জরুরি।"
+4. Translate into Bangla (10 Marks): "Real-time gross settlement systems have eliminated settlement risk in high-value interbank transactions."
+5. Analytical Math (10 Marks): A tank has two inlet pipes A and B that can fill it in 12 minutes and 15 minutes respectively, and an outlet pipe C that can empty the full tank in 20 minutes. If all three pipes are opened simultaneously when the tank is empty, in how many minutes will the tank be completely filled?`,
+            solution: `1–4. Translation & Focus Writing Solutions:
+- English Translation (Q3): "Regular IT audits and employee training are essential to ensure cybersecurity in the financial sector."
+- Bangla Translation (Q4): "রিয়েল-টাইম গ্রস সেটেলমেন্ট সিস্টেম উচ্চ-মূল্যের আন্তঃব্যাংক লেনদেনে নিষ্পত্তি ঝুঁকি দূর করেছে।"
+
+5. Analytical Math Solution:
+- Net part filled in 1 minute when A, B, and C are open = (1/12) + (1/15) - (1/20)
+  = (5 + 4 - 3) / 60 = 6 / 60 = 1 / 10.
+- Therefore, the tank will be completely filled in 10 minutes.`,
+            tags: ['Focus Writing', 'Translation', 'Pipes and Cisterns Math'],
+            marks: 50,
+            difficulty: 'Easy'
+          }
+        ]
+      },
+      {
+        id: 'sec-2025b23-tech',
+        name: 'Part 2: 6. Subject Related Questions (6.1–6.6) — 150 Marks',
+        marks: 150,
+        description: 'Official Part 2: Subject Related CSE/IT Questions (150 Marks).',
+        questions: [
+          {
+            id: 'q-2025b23-6-1',
+            questionNo: '6.1',
+            type: 'descriptive',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'What is an AVL Tree? Define the Balance Factor of a node and explain the four types of AVL rotations (LL, RR, LR, RL) used to restore balance after insertion.',
+            solution: `- An AVL Tree is a self-balancing Binary Search Tree where for every node, the Balance Factor BF = Height(Left Subtree) - Height(Right Subtree) is strictly in {-1, 0, +1}.
+- Four Rotations:
+  (i) LL (Left-Left) Imbalance (BF = +2, Left child BF >= 0): Single Right Rotation.
+  (ii) RR (Right-Right) Imbalance (BF = -2, Right child BF <= 0): Single Left Rotation.
+  (iii) LR (Left-Right) Imbalance (BF = +2, Left child BF = -1): Left Rotation on left child followed by Right Rotation on root.
+  (iv) RL (Right-Left) Imbalance (BF = -2, Right child BF = +1): Right Rotation on right child followed by Left Rotation on root.`,
+            tags: ['Data Structures', 'AVL Tree', 'Rotations'],
             marks: 25,
             difficulty: 'Medium'
           },
           {
-            id: 'q-2020-8',
-            questionNo: '8',
-            type: 'translation',
-            topicCategory: 'Non-Technical & Language',
-            questionText: 'Translate into English: "ডিজিটাল লেনদেনের প্রসারের ফলে গ্রাহকদের ব্যাংকিং অভিজ্ঞতা দ্রুত ও সহজতর হয়েছে। তবে একই সাথে ফিশিং এবং অনলাইন প্রতারণা রোধে সচেতনতা বৃদ্ধি করা অত্যন্ত জরুরি।"',
-            solution: `Standard High-Quality Model Translation:
-"With the proliferation of digital transactions, customers' banking experience has become faster and easier. However, at the same time, raising awareness is of paramount importance to prevent phishing and online frauds."`,
-            tags: ['Translation', 'Bangla to English', 'Digital Banking'],
+            id: 'q-2025b23-6-2',
+            questionNo: '6.2',
+            type: 'sql',
+            topicCategory: 'Database & SQL',
+            questionText: 'Differentiate between ROW_NUMBER(), RANK(), and DENSE_RANK() in SQL. Show the exact output of all three functions on the salary values [90000, 80000, 80000, 70000] ordered descending.',
+            solution: `Output on Salaries [90000, 80000, 80000, 70000]:
+- Salary 90000: ROW_NUMBER = 1 | RANK = 1 | DENSE_RANK = 1
+- Salary 80000: ROW_NUMBER = 2 | RANK = 2 | DENSE_RANK = 2
+- Salary 80000: ROW_NUMBER = 3 | RANK = 2 | DENSE_RANK = 2
+- Salary 70000: ROW_NUMBER = 4 | RANK = 4 (skips 3) | DENSE_RANK = 3 (no gap)`,
+            codeSolution: `SELECT 
+    EmpName,
+    Salary,
+    ROW_NUMBER() OVER (ORDER BY Salary DESC) AS Row_Num,
+    RANK() OVER (ORDER BY Salary DESC) AS Rnk,
+    DENSE_RANK() OVER (ORDER BY Salary DESC) AS Dense_Rnk
+FROM Employees;`,
+            solutionLanguage: 'sql',
+            tags: ['SQL', 'Window Functions', 'RANK vs DENSE_RANK'],
+            marks: 25,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-2025b23-6-3',
+            questionNo: '6.3',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'What is a Virtual LAN (VLAN)? Explain the difference between an Access Port and an IEEE 802.1Q Trunk Port on a managed Layer-2 switch in a bank branch network.',
+            solution: `- VLAN (Virtual Local Area Network): Logically segments a physical Layer-2 switch into multiple isolated broadcast domains (e.g., VLAN 10 for Teller PCs, VLAN 20 for ATM terminals, VLAN 30 for Guest Wi-Fi).
+- Access Port: Belongs to a single VLAN and carries untagged Ethernet frames to end-host devices.
+- Trunk Port (IEEE 802.1Q): Carries traffic for multiple VLANs simultaneously between switches or from a switch to a router (Router-on-a-Stick) by inserting a 4-byte 802.1Q VLAN Tag into the Ethernet frame header.`,
+            tags: ['Networking', 'VLAN', 'IEEE 802.1Q', 'Trunking'],
+            marks: 25,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-2025b23-6-4',
+            questionNo: '6.4',
+            type: 'descriptive',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Design a Full Adder combinational circuit. Provide its Truth Table and Boolean expressions for Sum (S) and Carry-Out (C_out).',
+            solution: `Truth Table for Full Adder (Inputs: A, B, C_in | Outputs: Sum, C_out):
+- Sum (S) = A XOR B XOR C_in
+- Carry-Out (C_out) = AB + BC_in + AC_in = AB + C_in(A XOR B)
+A Full Adder can be constructed using two Half Adders and one OR gate.`,
+            tags: ['Digital Logic', 'Full Adder', 'Boolean Algebra'],
+            marks: 25,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-2025b23-6-5',
+            questionNo: '6.5',
+            type: 'coding',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Write a C/C++ function to merge two sorted subarrays in the Merge Sort algorithm. Why is Merge Sort guaranteed to run in O(N log N) time even in the worst case?',
+            solution: 'Merge Sort always divides the array into two equal halves (log2 N levels) and merges N elements linearly at each level: T(N) = 2T(N/2) + Theta(N) = Theta(N log N) regardless of initial input distribution.',
+            codeSolution: `void merge(int arr[], int l, int m, int r) {
+    int n1 = m - l + 1, n2 = r - m;
+    int L[n1], R[n2];
+    for (int i = 0; i < n1; i++) L[i] = arr[l + i];
+    for (int j = 0; j < n2; j++) R[j] = arr[m + 1 + j];
+    int i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) arr[k++] = L[i++];
+        else arr[k++] = R[j++];
+    }
+    while (i < n1) arr[k++] = L[i++];
+    while (j < n2) arr[k++] = R[j++];
+}`,
+            solutionLanguage: 'c',
+            tags: ['Algorithms', 'Merge Sort', 'Divide and Conquer'],
+            marks: 25,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-2025b23-6-6',
+            questionNo: '6.6',
+            type: 'descriptive',
+            topicCategory: 'Software Engineering',
+            questionText: 'Explain the SOLID principles of Object-Oriented Design.',
+            solution: `- S (Single Responsibility Principle): A class should have one, and only one, reason to change.
+- O (Open/Closed Principle): Software entities should be open for extension, but closed for modification.
+- L (Liskov Substitution Principle): Subtypes must be substitutable for their base types without altering program correctness.
+- I (Interface Segregation Principle): Clients should not be forced to depend on fat interfaces they do not use.
+- D (Dependency Inversion Principle): High-level modules should not depend on low-level modules; both should depend on abstractions.`,
+            tags: ['Software Engineering', 'SOLID Principles', 'OOP'],
+            marks: 25,
+            difficulty: 'Easy'
+          }
+        ]
+      }
+    ]
+  },
+
+  // 8. Combined Bank Officer (IT) 2020 (Official BSCS Archive)
+  {
+    id: 'officer-it-2020',
+    title: 'Officer (IT), Combined 5 Banks 2020 — BSCS Official Paper',
+    searchQuery: 'Officer (IT), Combined Bank 2020 question paper pdf',
+    category: 'Officer (IT)',
+    jobId: 'Combined-2020',
+    circularYear: '2019-2020',
+    examDate: 'November 28, 2020',
+    examBody: 'Banker\'s Selection Committee Secretariat (BSCS)',
+    participatingBanks: ['Sonali Bank PLC', 'Janata Bank PLC', 'Rupali Bank PLC', 'BDBL', 'BKB'],
+    grade: 'Grade 10',
+    totalMarks: 200,
+    duration: '2 Hours (120 Minutes)',
+    examType: 'Written Exam (Official BSCS Format)',
+    summary: 'Official BSCS Written Examination for Combined 5 Banks Officer (IT) 2020. Structured into Part 1 (Questions 1–5: Focus Writing, Translation, and Analytical Math — 50 Marks) and Part 2 (Question 6: Subject Related CSE/IT Questions 6.1–6.6 covering Breadth-First Search vs Depth-First Search, SQL HAVING & Subqueries, CSMA/CD vs CSMA/CA, Paging Address Translation, and Software Testing Levels — 150 Marks).',
+    keyTopics: [
+      'BFS vs DFS Graph Traversal',
+      'CSMA/CD (IEEE 802.3) vs CSMA/CA (IEEE 802.11)',
+      'Logical to Physical Paging Address Translation',
+      'SQL HAVING & Aggregate Subqueries',
+      'DMA (Direct Memory Access) Controller',
+      'Three-Schema DBMS Architecture'
+    ],
+    sections: [
+      {
+        id: 'sec-oit2020-general',
+        name: 'Part 1: Focus Writing, Translation & Analytical Math (Questions 1–5) — 50 Marks',
+        marks: 50,
+        description: 'Official Part 1: Bangla & English Focus Writing, Translation, and Analytical Math (50 Marks).',
+        questions: [
+          {
+            id: 'q-oit2020-1-5',
+            questionNo: '1 – 5',
+            type: 'descriptive',
+            topicCategory: 'Focus Writing & Language',
+            questionText: `1. Focus Writing in Bangla (10 Marks): ই-কমার্স ও অনলাইন ব্যাংকিংয়ের প্রসারে জাতীয় অর্থনীতিতে ইতিবাচক পরিবর্তন।
+2. Focus Writing in English (10 Marks): "Digital Transformation of State-Owned Commercial Banks in Bangladesh."
+3. Translate into English (10 Marks): "প্রযুক্তির দ্রুত পরিবর্তনের সাথে তাল মিলিয়ে ব্যাংক কর্মকর্তাদের দক্ষতা বৃদ্ধি করা সময়ের দাবি।"
+4. Translate into Bangla (10 Marks): "Electronic fund transfer networks have significantly reduced the time and cost of clearing interbank cheques."
+5. Analytical Math (10 Marks): The ratio of the present ages of a father and his son is 7:2. After 10 years, their ages will be in the ratio of 9:4. What are their present ages?`,
+            solution: `1–4. Translation Solutions:
+- English Translation (Q3): "Upgrading the skills of bank officers to keep pace with rapid technological changes is the demand of the time."
+- Bangla Translation (Q4): "ইলেকট্রনিক ফান্ড ট্রান্সফার নেটওয়ার্ক আন্তঃব্যাংক চেক ক্লিয়ারিংয়ের সময় ও ব্যয় উল্লেখযোগ্যভাবে কমিয়ে এনেছে।"
+
+5. Analytical Math Solution:
+- Let present ages be 7x and 2x.
+- After 10 years: (7x + 10) / (2x + 10) = 9 / 4
+  => 28x + 40 = 18x + 90
+  => 10x = 50 => x = 5.
+- Father's present age = 7 * 5 = 35 years; Son's present age = 2 * 5 = 10 years.`,
+            tags: ['Focus Writing', 'Translation', 'Age Word Problem'],
+            marks: 50,
+            difficulty: 'Easy'
+          }
+        ]
+      },
+      {
+        id: 'sec-oit2020-tech',
+        name: 'Part 2: 6. Subject Related Questions (6.1–6.6) — 150 Marks',
+        marks: 150,
+        description: 'Official Part 2: Subject Related CSE/IT Questions (150 Marks).',
+        questions: [
+          {
+            id: 'q-oit2020-6-1',
+            questionNo: '6.1',
+            type: 'descriptive',
+            topicCategory: 'Programming & Algorithms',
+            questionText: 'Compare Breadth-First Search (BFS) and Depth-First Search (DFS) graph traversal algorithms in terms of data structure used, time/space complexity, and shortest-path optimality on unweighted graphs.',
+            solution: `- Data Structure: BFS uses a FIFO Queue; DFS uses a LIFO Stack (or recursion).
+- Time & Space Complexity: Both take O(V + E) time with adjacency lists and O(V) space.
+- Shortest Path: BFS guarantees finding the shortest path (minimum number of edges) from source to all vertices in an unweighted graph; DFS does not guarantee shortest paths.`,
+            tags: ['Algorithms', 'BFS vs DFS', 'Graphs'],
+            marks: 25,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-oit2020-6-2',
+            questionNo: '6.2',
+            type: 'descriptive',
+            topicCategory: 'Networking & Security',
+            questionText: 'Differentiate between CSMA/CD (Carrier Sense Multiple Access with Collision Detection) and CSMA/CA (Collision Avoidance). Why cannot wireless Wi-Fi (IEEE 802.11) networks use CSMA/CD?',
+            solution: `- CSMA/CD (IEEE 802.3 Wired Ethernet): Stations listen before transmitting and monitor the wire while transmitting to detect voltage spikes caused by collisions, sending a jam signal and backing off via Binary Exponential Backoff.
+- Why Wi-Fi Cannot Use CSMA/CD:
+  1. Half-Duplex Radio Transceivers: A wireless NIC cannot transmit and listen on the same frequency simultaneously because its own transmitted signal overwhelms any incoming collision signal.
+  2. Hidden Terminal Problem: Station A and Station C may both be in range of Access Point B but out of range of each other, so they cannot detect collisions at B. Hence Wi-Fi uses CSMA/CA with RTS/CTS and ACKs.`,
+            tags: ['Networking', 'CSMA/CD vs CSMA/CA', 'IEEE 802.11'],
+            marks: 25,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-oit2020-6-3',
+            questionNo: '6.3',
+            type: 'math',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'Consider a paging system with a page size of 4 KB (2^12 bytes) and a 32-bit logical address space. (a) How many bits are used for the Page Offset and Page Number? (b) If a process generates logical address 20500 (decimal) and page 5 is mapped to physical frame 12, what is the corresponding physical memory address?',
+            solution: `(a) Bit Partitioning:
+- Page Size = 4 KB = 4096 bytes = 2^12 bytes -> Page Offset d = 12 bits.
+- Page Number p = 32 - 12 = 20 bits (2^20 = 1,048,576 pages).
+
+(b) Logical Address 20500 Translation:
+- Page Number p = floor(20500 / 4096) = 5.
+- Page Offset d = 20500 mod 4096 = 20500 - (5 * 4096) = 20500 - 20480 = 20.
+- Given Page 5 maps to Frame f = 12:
+  Physical Address = (Frame Number * Page Size) + Offset
+                   = (12 * 4096) + 20 = 49152 + 20 = 49172.`,
+            tags: ['Operating Systems', 'Paging', 'Address Translation'],
+            marks: 25,
+            difficulty: 'Medium'
+          },
+          {
+            id: 'q-oit2020-6-4',
+            questionNo: '6.4',
+            type: 'descriptive',
+            topicCategory: 'Hardware, OS & Architecture',
+            questionText: 'What is Direct Memory Access (DMA)? Explain how a DMA Controller transfers large blocks of data between an I/O device and main memory without continuous CPU intervention (Cycle Stealing vs Burst Mode).',
+            solution: `- Without DMA (Programmed/Interrupt I/O), the CPU must execute instructions to move every single byte/word between the I/O controller buffer and RAM.
+- With DMA: The CPU initializes the DMA Controller with the I/O device address, target RAM starting address, and byte count. The DMA controller takes control of the memory bus directly (via Bus Request BR and Bus Grant BG signals), transfers the entire block to RAM, and raises a single interrupt to the CPU upon completion.`,
+            tags: ['Computer Architecture', 'DMA', 'I/O Systems'],
+            marks: 25,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-oit2020-6-5',
+            questionNo: '6.5',
+            type: 'descriptive',
+            topicCategory: 'Database & SQL',
+            questionText: 'Explain the ANSI/SPARC Three-Schema Architecture of a DBMS (External, Conceptual, and Internal levels) and differentiate between Logical Data Independence and Physical Data Independence.',
+            solution: `1. Three-Schema Levels:
+- External (View) Level: Custom database views tailored to specific user groups (e.g., bank teller view vs auditor view).
+- Conceptual (Logical) Level: Community-wide logical schema describing all entities, data types, relationships, and constraints.
+- Internal (Physical) Level: Physical storage structures, B+ Tree indexes, block allocation, and byte compression on disk.
+
+2. Data Independence:
+- Physical Data Independence: Ability to modify the Internal schema (e.g., adding an index or moving data files to SSD) without altering the Conceptual schema.
+- Logical Data Independence: Ability to modify the Conceptual schema (e.g., adding a new column or splitting a table) without breaking External views or application programs.`,
+            tags: ['DBMS', 'Three-Schema Architecture', 'Data Independence'],
+            marks: 25,
+            difficulty: 'Easy'
+          },
+          {
+            id: 'q-oit2020-6-6',
+            questionNo: '6.6',
+            type: 'sql',
+            topicCategory: 'Database & SQL',
+            questionText: 'Differentiate between the SQL WHERE clause and HAVING clause, and between DELETE, TRUNCATE, and DROP commands.',
+            solution: `1. WHERE vs HAVING:
+- WHERE filters individual rows BEFORE grouping (GROUP BY) and cannot contain aggregate functions.
+- HAVING filters aggregated groups AFTER GROUP BY and uses aggregate functions (COUNT, SUM, AVG).
+
+2. DELETE vs TRUNCATE vs DROP:
+- DELETE (DML): Removes specific rows matching a WHERE condition; logs each row deletion; can be rolled back; fires DELETE triggers.
+- TRUNCATE (DDL): Deallocates all data pages of a table rapidly; resets identity counters; keeps table schema intact.
+- DROP (DDL): Completely removes the table data, schema definition, indexes, and constraints from the database catalog.`,
+            codeSolution: `DELETE FROM Transaction_Temp WHERE Status = 'CANCELLED';
+TRUNCATE TABLE Staging_Import_Logs;
+DROP TABLE Deprecated_Audit_2015;`,
+            solutionLanguage: 'sql',
+            tags: ['SQL', 'DELETE vs TRUNCATE vs DROP', 'WHERE vs HAVING'],
             marks: 25,
             difficulty: 'Easy'
           }
@@ -2372,3 +2610,4 @@ HAVING AVG(Balance) > 100000;`,
     ]
   }
 ];
+

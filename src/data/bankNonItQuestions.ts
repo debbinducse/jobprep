@@ -4,14 +4,6 @@ import { computerAndDataEntryPapers2010To2026 } from './computerAndDataEntryPape
 import { officerCashPapers2010To2026 } from './officerCashPapers2010To2026';
 import { officerGeneralPapers2010To2026 } from './officerGeneralPapers2010To2026';
 import { seniorOfficerGeneralPapers2010To2026 } from './seniorOfficerGeneralPapers2010To2026';
-import {
-  buildFull100DecoMcqQuestions,
-  buildFullDecoWrittenQuestions
-} from './dataEntryControlOperatorPapers2010To2026';
-import {
-  buildFull100ComputerOperatorMcqQuestions,
-  buildFullComputerOperatorWrittenQuestions
-} from './computerOperatorPapers2010To2026';
 
 export type NonItJobCategory =
   | 'Senior Officer (General)'
@@ -1918,9 +1910,8 @@ export const bankNonItExamPapers: NonItExamPaper[] = allMergedPapers.filter(
 );
 
 // 1. Bank IT Prep — Computer Operator & Data Entry / Control Operator Papers (2010–2026)
-// Every Computer Operator AND Data Entry / Control Operator paper (2010–2026) is enriched with a full 100-MCQ Preliminary Set (MCQ-001 to MCQ-100) + Written Set
-let compOpPaperCounter = 0;
-let decoPaperCounter = 0;
+// Preserve authentic original questions per paper and eliminate duplicate questions across the Bank IT Operator archive
+const seenItOperatorQuestionTexts = new Set<string>();
 export const bankItOperatorExamPapers: NonItExamPaper[] = allMergedPapers
   .filter(
     p =>
@@ -1928,38 +1919,20 @@ export const bankItOperatorExamPapers: NonItExamPaper[] = allMergedPapers
       p.category === 'Data Entry / Control Operator'
   )
   .map(paper => {
-    if (paper.category === 'Computer Operator') {
-      const idx = compOpPaperCounter++;
-      const full100Mcqs = buildFull100ComputerOperatorMcqQuestions(paper, idx);
-      const fullWritten = buildFullComputerOperatorWrittenQuestions(paper, idx);
-      return {
-        ...paper,
-        title: paper.title.includes('100-MCQ')
-          ? paper.title
-          : `${paper.title} (Full 100-MCQ Preliminary & Written Set)`,
-        mcqMarks: 100,
-        writtenMarks: 100,
-        summary: `Complete ${paper.year} ${paper.organizationName} — Computer Operator Full Question Paper Set containing 100 Preliminary MCQ Questions (MCQ-001 to MCQ-100: Bangla 20, English 20, Mathematics 20, General Knowledge & Banking 15, Computer, Office Automation, OS, Networking & ICT 25) and Written Examination Solutions.`,
-        questions: [...full100Mcqs, ...fullWritten]
-      };
-    }
-    if (paper.category === 'Data Entry / Control Operator') {
-      const idx = decoPaperCounter++;
-      const full100Mcqs = buildFull100DecoMcqQuestions(paper, idx);
-      const fullWritten = buildFullDecoWrittenQuestions(paper, idx);
-      return {
-        ...paper,
-        title: paper.title.includes('100-MCQ')
-          ? paper.title
-          : `${paper.title} (Full 100-MCQ Preliminary & Written Set)`,
-        mcqMarks: 100,
-        writtenMarks: 100,
-        summary: `Complete ${paper.year} ${paper.organizationName} — Data Entry / Control Operator Full Question Paper Set containing 100 Preliminary MCQ Questions (MCQ-001 to MCQ-100: Bangla 20, English 20, Mathematics 20, General Knowledge & Banking 15, Computer, Data Entry & ICT 25) and Written Examination Solutions.`,
-        questions: [...full100Mcqs, ...fullWritten]
-      };
-    }
-    return paper;
-  });
+    const uniqueQuestions = paper.questions.filter(q => {
+      const normalized = q.questionText.trim().toLowerCase().replace(/\s+/g, ' ');
+      if (seenItOperatorQuestionTexts.has(normalized)) {
+        return false;
+      }
+      seenItOperatorQuestionTexts.add(normalized);
+      return true;
+    });
+    return {
+      ...paper,
+      questions: uniqueQuestions
+    };
+  })
+  .filter(paper => paper.questions.length > 0);
 
 export function getTotalNonItQuestionsCount(): number {
   return bankNonItExamPapers.reduce((sum, p) => sum + p.questions.length, 0);

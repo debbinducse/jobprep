@@ -14,8 +14,14 @@ import {
   HelpCircle, 
   ExternalLink, 
   Filter,
-  X
+  X,
+  Download,
+  Loader2
 } from 'lucide-react';
+import {
+  downloadItFilteredQuestionsPdf,
+  downloadItExamPaperPdf
+} from '../utils/pdfDownload';
 
 interface CategoryWiseExplorerProps {
   onSelectPaper: (paperId: string) => void;
@@ -38,6 +44,8 @@ export const CategoryWiseExplorer: React.FC<CategoryWiseExplorerProps> = ({
   const [visibleCount, setVisibleCount] = useState<number>(60);
   const [activeQuestionSubTabs, setActiveQuestionSubTabs] = useState<{ [qId: string]: 'question' | 'answer' | 'code' }>({});
   const [userAnswers, setUserAnswers] = useState<{ [qId: string]: number }>({});
+  const [downloadingBulk, setDownloadingBulk] = useState<'questions' | 'solutions' | null>(null);
+  const [downloadingPaperId, setDownloadingPaperId] = useState<string | null>(null);
 
   useEffect(() => {
     if (initialTopic) setSelectedTopic(initialTopic);
@@ -55,13 +63,23 @@ export const CategoryWiseExplorer: React.FC<CategoryWiseExplorerProps> = ({
     setVisibleCount(60);
   }, [selectedTopic, selectedSector, selectedQType, selectedYear, searchQuery]);
 
-  // Flatten all questions with paper metadata and determine topic category if not explicitly set
+  // Flatten all questions with paper metadata, determine topic category, and deduplicate by normalized question text
   const allCategorizedQuestions = useMemo(() => {
     const list: { question: ExamQuestion; paper: ExamPaper; derivedTopic: TopicCategory }[] = [];
+    const seenQuestions = new Set<string>();
 
     allExamPapers.forEach(paper => {
       paper.sections.forEach(sec => {
         sec.questions.forEach(q => {
+          const normKey = q.questionText
+            .toLowerCase()
+            .replace(/\s+/g, ' ')
+            .trim();
+          if (seenQuestions.has(normKey)) {
+            return;
+          }
+          seenQuestions.add(normKey);
+
           let derived: TopicCategory = q.topicCategory || 'Programming & Algorithms';
 
           if (!q.topicCategory) {
@@ -346,6 +364,79 @@ export const CategoryWiseExplorer: React.FC<CategoryWiseExplorerProps> = ({
             </select>
           </div>
         </div>
+
+        {/* Row 4: Direct Written Question PDF Download Bar */}
+        <div className="pt-4 border-t border-[#E6E0D6] dark:border-[#2D3139] flex flex-wrap items-center justify-between gap-3 bg-[#FAF8F5] dark:bg-[#16181D] -mx-5 sm:-mx-6 -mb-5 sm:-mb-6 px-5 sm:px-6 py-3.5 rounded-b-2xl">
+          <div className="space-y-0.5">
+            <div className="text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8] flex items-center gap-1.5">
+              <Download className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span>Bank IT Written Question PDF Download (Current Filter Selection)</span>
+            </div>
+            <p className="text-[11px] text-[#4A4A4A] dark:text-[#A0A0A0]">
+              Export clean A4 printable Written Question sets (or with verified SQL/code &amp; step-by-step model solutions).
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            <button
+              type="button"
+              disabled={downloadingBulk !== null || filteredQuestions.length === 0}
+              onClick={async () => {
+                if (downloadingBulk) return;
+                setDownloadingBulk('questions');
+                try {
+                  const writtenItems = filteredQuestions.filter(i => i.question.type !== 'mcq');
+                  const targetItems = writtenItems.length > 0 ? writtenItems : filteredQuestions;
+                  const summary = `${selectedSector} · Topic: ${selectedTopic} · Year: ${selectedYear}`;
+                  await downloadItFilteredQuestionsPdf(targetItems, summary, false);
+                } finally {
+                  setDownloadingBulk(null);
+                }
+              }}
+              className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-xs min-h-[38px]"
+            >
+              {downloadingBulk === 'questions' ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Download className="w-3.5 h-3.5" />
+              )}
+              <span>
+                {downloadingBulk === 'questions'
+                  ? 'Preparing Written PDF...'
+                  : 'Download Written Questions PDF'}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              disabled={downloadingBulk !== null || filteredQuestions.length === 0}
+              onClick={async () => {
+                if (downloadingBulk) return;
+                setDownloadingBulk('solutions');
+                try {
+                  const writtenItems = filteredQuestions.filter(i => i.question.type !== 'mcq');
+                  const targetItems = writtenItems.length > 0 ? writtenItems : filteredQuestions;
+                  const summary = `${selectedSector} · Topic: ${selectedTopic} · Year: ${selectedYear}`;
+                  await downloadItFilteredQuestionsPdf(targetItems, summary, true);
+                } finally {
+                  setDownloadingBulk(null);
+                }
+              }}
+              className="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-xs min-h-[38px]"
+            >
+              {downloadingBulk === 'solutions' ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Download className="w-3.5 h-3.5" />
+              )}
+              <span>
+                {downloadingBulk === 'solutions'
+                  ? 'Preparing Solutions PDF...'
+                  : 'Download Written + Solutions PDF'}
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Questions List with 3 Sub-Tabs */}
@@ -394,7 +485,30 @@ export const CategoryWiseExplorer: React.FC<CategoryWiseExplorerProps> = ({
                     <span className="font-mono font-semibold text-[#1A1A1A] dark:text-[#E8E8E8] tabular-nums">{q.marks} Marks</span>
                   </div>
 
-                  <div className="flex items-center gap-3 shrink-0">
+                  <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                    <button
+                      type="button"
+                      disabled={downloadingPaperId === paper.id}
+                      onClick={async () => {
+                        if (downloadingPaperId) return;
+                        setDownloadingPaperId(paper.id);
+                        try {
+                          await downloadItExamPaperPdf(paper, { includeSolutions: true, writtenOnly: true });
+                        } finally {
+                          setDownloadingPaperId(null);
+                        }
+                      }}
+                      className="px-2.5 py-1 bg-emerald-50 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 rounded-lg text-xs font-semibold inline-flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer min-h-[32px]"
+                      title="Download full Written Question Paper + Model Solutions PDF"
+                    >
+                      {downloadingPaperId === paper.id ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      ) : (
+                        <Download className="w-3.5 h-3.5" />
+                      )}
+                      <span>{downloadingPaperId === paper.id ? 'Saving PDF...' : 'Written Paper PDF'}</span>
+                    </button>
+
                     <button
                       onClick={() => onSelectPaper(paper.id)}
                       className="text-xs text-blue-600 dark:text-blue-400 hover:underline font-semibold inline-flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer min-h-[36px]"
@@ -600,7 +714,7 @@ export const CategoryWiseExplorer: React.FC<CategoryWiseExplorerProps> = ({
                         <div>
                           <div className="flex items-center justify-between bg-slate-900 text-slate-300 px-4 py-2.5 rounded-t-lg text-xs font-mono">
                             <span>{q.solutionLanguage?.toUpperCase() || 'CODE'} Implementation</span>
-                            <span className="text-slate-400">Read-Only</span>
+                            <span className="text-emerald-400">Verified Solution</span>
                           </div>
                           <pre className="p-4 bg-[#14171D] text-emerald-400 rounded-b-lg text-sm font-mono overflow-x-auto leading-relaxed border-x border-b border-[#2D3139]">
                             {q.codeSolution}

@@ -72,12 +72,3 @@ input, textarea {
 .dark ::-webkit-scrollbar-thumb {
   background: rgba(148, 163, 184, 0.2);
 }
-
-/* Block print scraping */
-@media print {
-  body {
-    display: none !important;
-  }
-}
-
-

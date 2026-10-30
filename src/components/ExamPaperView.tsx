@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { ExamPaper } from '../types/exam';
 import { 
-  Lock,
   FileCheck2,
   FileQuestion,
-  HelpCircle
+  HelpCircle,
+  Download,
+  Loader2
 } from 'lucide-react';
+import { downloadItExamPaperPdf } from '../utils/pdfDownload';
 
 interface ExamPaperViewProps {
   paper: ExamPaper;
@@ -18,11 +20,27 @@ export const ExamPaperView: React.FC<ExamPaperViewProps> = ({
   const [activeTab, setActiveTab] = useState<'questions' | 'answers' | 'official'>('questions');
   const [selectedSectionId, setSelectedSectionId] = useState<string>('all');
   const [userAnswers, setUserAnswers] = useState<{ [qId: string]: number }>({});
+  const [downloadingPdf, setDownloadingPdf] = useState<'questions' | 'solutions' | null>(null);
+  const [showOriginalScans, setShowOriginalScans] = useState<boolean>(false);
 
   const totalPaperQuestions = paper.sections.reduce((acc, s) => acc + s.questions.length, 0);
+  const writtenQuestionCount = paper.sections.reduce(
+    (acc, s) => acc + s.questions.filter(q => q.type !== 'mcq').length,
+    0
+  );
   const displayedSections = selectedSectionId === 'all'
     ? paper.sections
     : paper.sections.filter(s => s.id === selectedSectionId);
+
+  const handleDownloadPdf = async (includeSolutions: boolean) => {
+    if (downloadingPdf) return;
+    setDownloadingPdf(includeSolutions ? 'solutions' : 'questions');
+    try {
+      await downloadItExamPaperPdf(paper, { includeSolutions, writtenOnly: true });
+    } finally {
+      setDownloadingPdf(null);
+    }
+  };
 
   return (
     <div className="space-y-6 sm:space-y-8">
@@ -67,14 +85,99 @@ export const ExamPaperView: React.FC<ExamPaperViewProps> = ({
             </div>
           </div>
 
-          {/* Right Action Controls */}
-          <div className="flex items-center gap-2 shrink-0">
-            <div className="px-3 py-1.5 bg-[#F2EFE9] dark:bg-[#16181D] text-[#4A4A4A] dark:text-[#A0A0A0] rounded-lg text-xs font-semibold flex items-center gap-1.5 border border-[#E6E0D6] dark:border-[#2D3139] whitespace-nowrap shrink-0">
-              <Lock className="w-3.5 h-3.5 text-[#666666] dark:text-[#888888]" />
-              <span>Read-Only Study</span>
-            </div>
+          {/* Right Action Controls: Written PDF Download */}
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            {paper.originalPaperImages && paper.originalPaperImages.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setShowOriginalScans(prev => !prev)}
+                className="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-xs min-h-[38px]"
+              >
+                <FileQuestion className="w-3.5 h-3.5" />
+                <span>
+                  {showOriginalScans
+                    ? 'Hide Scanned Question Paper'
+                    : `View Original Scanned Paper (${paper.originalPaperImages.length} Pages)`}
+                </span>
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={() => handleDownloadPdf(false)}
+              disabled={downloadingPdf !== null}
+              className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-xs min-h-[38px]"
+              title="Download Written Question Paper PDF (Questions Only)"
+            >
+              {downloadingPdf === 'questions' ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Download className="w-3.5 h-3.5" />
+              )}
+              <span>
+                {downloadingPdf === 'questions'
+                  ? 'Generating PDF...'
+                  : writtenQuestionCount > 0
+                  ? 'Download Written Questions PDF'
+                  : 'Download Question Paper PDF'}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleDownloadPdf(true)}
+              disabled={downloadingPdf !== null}
+              className="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-xs min-h-[38px]"
+              title="Download Written Questions + Verified Model Solutions PDF"
+            >
+              {downloadingPdf === 'solutions' ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Download className="w-3.5 h-3.5" />
+              )}
+              <span>
+                {downloadingPdf === 'solutions'
+                  ? 'Generating Solutions PDF...'
+                  : writtenQuestionCount > 0
+                  ? 'Download Written + Solutions PDF'
+                  : 'Download Paper + Solutions PDF'}
+              </span>
+            </button>
           </div>
         </div>
+
+        {/* Original Scanned Paper Viewer (when available and toggled) */}
+        {paper.originalPaperImages && paper.originalPaperImages.length > 0 && showOriginalScans && (
+          <div className="pt-4 border-t border-[#E6E0D6] dark:border-[#2D3139] space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xs sm:text-sm font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
+                Original Scanned Question Paper Sheets (Bangladesh Bank / BSCS — Job ID: {paper.jobId})
+              </h3>
+              <span className="text-xs font-mono text-[#4A4A4A] dark:text-[#A0A0A0]">
+                {paper.originalPaperImages.length} Pages
+              </span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {paper.originalPaperImages.map((imgSrc, idx) => (
+                <div
+                  key={imgSrc}
+                  className="rounded-xl overflow-hidden border border-[#E6E0D6] dark:border-[#2D3139] bg-[#F8F6F2] dark:bg-[#16181D] flex flex-col"
+                >
+                  <div className="px-3 py-2 border-b border-[#E6E0D6] dark:border-[#2D3139] text-xs font-mono font-bold text-[#1A1A1A] dark:text-[#E8E8E8] flex items-center justify-between">
+                    <span>Original Question Paper — Page {idx + 1}</span>
+                    <span className="text-blue-600 dark:text-blue-400">Job ID-{paper.jobId}</span>
+                  </div>
+                  <img
+                    src={imgSrc}
+                    alt={`${paper.title} - Original Question Paper Page ${idx + 1}`}
+                    loading="lazy"
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* 3 VIEWING MODES SEGMENTED BAR */}
         <div className="pt-4 border-t border-[#E6E0D6] dark:border-[#2D3139] space-y-2">
@@ -143,12 +246,23 @@ export const ExamPaperView: React.FC<ExamPaperViewProps> = ({
                 All {totalPaperQuestions} questions ({paper.totalMarks} marks) are presented cleanly without solutions.
               </p>
             </div>
-            <button
-              onClick={() => setActiveTab('answers')}
-              className="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-            >
-              Switch to Model Answers →
-            </button>
+            <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => handleDownloadPdf(false)}
+                disabled={downloadingPdf !== null}
+                className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white font-semibold text-xs rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-1.5"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download Questions PDF</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('answers')}
+                className="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              >
+                Switch to Model Answers →
+              </button>
+            </div>
           </div>
 
           {paper.sections.length > 1 && (
@@ -304,12 +418,23 @@ export const ExamPaperView: React.FC<ExamPaperViewProps> = ({
                 Verified theoretical derivations, database normalizations, network calculations, and code implementations.
               </p>
             </div>
-            <button
-              onClick={() => setActiveTab('official')}
-              className="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-            >
-              Open Official Hall Print View →
-            </button>
+            <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => handleDownloadPdf(true)}
+                disabled={downloadingPdf !== null}
+                className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white font-semibold text-xs rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-1.5"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download Solutions PDF</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('official')}
+                className="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              >
+                Open Official Hall Print View →
+              </button>
+            </div>
           </div>
 
           {paper.sections.length > 1 && (
@@ -402,6 +527,31 @@ export const ExamPaperView: React.FC<ExamPaperViewProps> = ({
       {/* ======================================================== */}
       {activeTab === 'official' && (
         <div className="bg-white dark:bg-[#1E1E1E] rounded-2xl border border-[#E6E0D6] dark:border-[#2D3139] p-6 sm:p-10 max-w-4xl mx-auto shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-[#E6E0D6] dark:border-[#2D3139]">
+            <span className="text-xs font-bold text-[#4A4A4A] dark:text-[#A0A0A0]">
+              Official A4 Examination Print Format
+            </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={() => handleDownloadPdf(false)}
+                disabled={downloadingPdf !== null}
+                className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download Questions PDF</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleDownloadPdf(true)}
+                disabled={downloadingPdf !== null}
+                className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download With Solutions PDF</span>
+              </button>
+            </div>
+          </div>
           <div className="text-center border-b-2 border-[#1A1A1A] dark:border-[#E8E8E8] pb-5 mb-6">
             <h2 className="text-lg sm:text-xl font-bold text-[#1A1A1A] dark:text-[#E8E8E8]">
               {paper.examBody}

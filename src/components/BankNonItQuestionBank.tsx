@@ -30,8 +30,14 @@ import {
   Calendar,
   Layers,
   ListChecks,
-  PenTool
+  PenTool,
+  Download,
+  Loader2
 } from 'lucide-react';
+import {
+  downloadNonItPaperPdf,
+  downloadNonItBulkWrittenPdf
+} from '../utils/pdfDownload';
 
 interface BankNonItQuestionBankProps {
   sectionMode?: 'non-it' | 'it-operator';
@@ -74,6 +80,9 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
   const [paperWrittenRange, setPaperWrittenRange] = useState<{
     [paperId: string]: 'all' | 'focus' | 'math' | 'comp' | 'trans';
   }>({});
+  // PDF Download loading states
+  const [downloadingPaperKey, setDownloadingPaperKey] = useState<string | null>(null);
+  const [downloadingBulkMode, setDownloadingBulkMode] = useState<'questions' | 'solutions' | null>(null);
 
   useEffect(() => {
     setSelectedCategory(initialCategory);
@@ -585,6 +594,79 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
             ))}
           </div>
         </div>
+
+        {/* Written Question PDF Download Bar (Bulk Filtered Export) */}
+        <div className="pt-4 border-t border-[#E6E0D6] dark:border-[#2D3139] flex flex-wrap items-center justify-between gap-3 bg-[#FAF8F5] dark:bg-[#16181D] -mx-5 -mb-5 px-5 py-3.5 rounded-b-xl">
+          <div className="space-y-0.5">
+            <div className="text-xs font-bold text-[#1A1A1A] dark:text-[#E8E8E8] flex items-center gap-1.5">
+              <Download className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span>
+                {isItOperatorMode
+                  ? 'Computer Operator & Data Entry Written Question PDF Download'
+                  : 'Bank Non-IT Written Question PDF Download (Senior Officer, Officer & Cash)'}
+              </span>
+            </div>
+            <p className="text-[11px] text-[#4A4A4A] dark:text-[#A0A0A0]">
+              Download all Part B Written Examination Papers matching your current filter ({filteredPapersWithQuestions.filter(g => g.writtenList.length > 0).length} Papers) or download individual papers below.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            <button
+              type="button"
+              disabled={downloadingBulkMode !== null || filteredPapersWithQuestions.every(g => g.writtenList.length === 0)}
+              onClick={async () => {
+                if (downloadingBulkMode) return;
+                setDownloadingBulkMode('questions');
+                try {
+                  const title = `${selectedCategory === 'All' ? (isItOperatorMode ? 'Computer & Data Entry Operator' : 'Bank Non-IT (SO, Officer, Cash)') : selectedCategory} — Written Question Bank (${selectedYear === 'All' ? '2010–2026' : selectedYear})`;
+                  await downloadNonItBulkWrittenPdf(filteredPapersWithQuestions, title, false);
+                } finally {
+                  setDownloadingBulkMode(null);
+                }
+              }}
+              className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-xs min-h-[38px]"
+            >
+              {downloadingBulkMode === 'questions' ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Download className="w-3.5 h-3.5" />
+              )}
+              <span>
+                {downloadingBulkMode === 'questions'
+                  ? 'Generating Written PDF...'
+                  : 'Download Written Questions PDF'}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              disabled={downloadingBulkMode !== null || filteredPapersWithQuestions.every(g => g.writtenList.length === 0)}
+              onClick={async () => {
+                if (downloadingBulkMode) return;
+                setDownloadingBulkMode('solutions');
+                try {
+                  const title = `${selectedCategory === 'All' ? (isItOperatorMode ? 'Computer & Data Entry Operator' : 'Bank Non-IT (SO, Officer, Cash)') : selectedCategory} — Written Questions & Solutions (${selectedYear === 'All' ? '2010–2026' : selectedYear})`;
+                  await downloadNonItBulkWrittenPdf(filteredPapersWithQuestions, title, true);
+                } finally {
+                  setDownloadingBulkMode(null);
+                }
+              }}
+              className="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-xs min-h-[38px]"
+            >
+              {downloadingBulkMode === 'solutions' ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Download className="w-3.5 h-3.5" />
+              )}
+              <span>
+                {downloadingBulkMode === 'solutions'
+                  ? 'Generating Solutions PDF...'
+                  : 'Download Written + Solutions PDF'}
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Grouped Question Papers Stream */}
@@ -673,48 +755,105 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                       </p>
                     </div>
 
-                    {/* Per-Paper Section Switcher (Both / Preliminary MCQ / Written) */}
-                    <div className="flex items-center gap-1 bg-[#F8F6F2] dark:bg-[#14171D] p-1 rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] shrink-0">
+                    <div className="flex flex-wrap items-center gap-2 shrink-0">
+                      {/* Per-Paper Written PDF Download Buttons */}
                       <button
-                        onClick={() =>
-                          setPaperSectionTab(prev => ({ ...prev, [paper.paperId]: 'both' }))
-                        }
-                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[34px] ${
-                          currentPaperMode === 'both'
-                            ? 'bg-blue-600 text-white font-bold shadow-xs'
-                            : 'text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8]'
-                        }`}
+                        type="button"
+                        disabled={downloadingPaperKey !== null}
+                        onClick={async () => {
+                          const key = `${paper.paperId}-q`;
+                          setDownloadingPaperKey(key);
+                          try {
+                            await downloadNonItPaperPdf(paper, { includeSolutions: false, writtenOnly: true });
+                          } finally {
+                            setDownloadingPaperKey(null);
+                          }
+                        }}
+                        className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-xs min-h-[36px]"
+                        title="Download Part B Written Question Paper PDF (Questions Only)"
                       >
-                        MCQ + Written ({mcqList.length + writtenList.length})
+                        {downloadingPaperKey === `${paper.paperId}-q` ? (
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        ) : (
+                          <Download className="w-3.5 h-3.5" />
+                        )}
+                        <span>
+                          {downloadingPaperKey === `${paper.paperId}-q`
+                            ? 'Saving PDF...'
+                            : 'Written Questions PDF'}
+                        </span>
                       </button>
-                      {mcqList.length > 0 && (
+
+                      <button
+                        type="button"
+                        disabled={downloadingPaperKey !== null}
+                        onClick={async () => {
+                          const key = `${paper.paperId}-s`;
+                          setDownloadingPaperKey(key);
+                          try {
+                            await downloadNonItPaperPdf(paper, { includeSolutions: true, writtenOnly: true });
+                          } finally {
+                            setDownloadingPaperKey(null);
+                          }
+                        }}
+                        className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-xs min-h-[36px]"
+                        title="Download Part B Written Questions + Model Solutions PDF"
+                      >
+                        {downloadingPaperKey === `${paper.paperId}-s` ? (
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        ) : (
+                          <Download className="w-3.5 h-3.5" />
+                        )}
+                        <span>
+                          {downloadingPaperKey === `${paper.paperId}-s`
+                            ? 'Saving PDF...'
+                            : 'Written + Solutions PDF'}
+                        </span>
+                      </button>
+
+                      {/* Per-Paper Section Switcher (Both / Preliminary MCQ / Written) */}
+                      <div className="flex items-center gap-1 bg-[#F8F6F2] dark:bg-[#14171D] p-1 rounded-xl border border-[#E6E0D6] dark:border-[#2D3139] shrink-0">
                         <button
                           onClick={() =>
-                            setPaperSectionTab(prev => ({ ...prev, [paper.paperId]: 'mcq' }))
+                            setPaperSectionTab(prev => ({ ...prev, [paper.paperId]: 'both' }))
                           }
                           className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[34px] ${
-                            currentPaperMode === 'mcq'
+                            currentPaperMode === 'both'
                               ? 'bg-blue-600 text-white font-bold shadow-xs'
                               : 'text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8]'
                           }`}
                         >
-                          Part A: MCQ ({mcqList.length})
+                          MCQ + Written ({mcqList.length + writtenList.length})
                         </button>
-                      )}
-                      {writtenList.length > 0 && (
-                        <button
-                          onClick={() =>
-                            setPaperSectionTab(prev => ({ ...prev, [paper.paperId]: 'written' }))
-                          }
-                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[34px] ${
-                            currentPaperMode === 'written'
-                              ? 'bg-emerald-600 text-white font-bold shadow-xs'
-                              : 'text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8]'
-                          }`}
-                        >
-                          Part B: Written ({writtenList.length})
-                        </button>
-                      )}
+                        {mcqList.length > 0 && (
+                          <button
+                            onClick={() =>
+                              setPaperSectionTab(prev => ({ ...prev, [paper.paperId]: 'mcq' }))
+                            }
+                            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[34px] ${
+                              currentPaperMode === 'mcq'
+                                ? 'bg-blue-600 text-white font-bold shadow-xs'
+                                : 'text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8]'
+                            }`}
+                          >
+                            Part A: MCQ ({mcqList.length})
+                          </button>
+                        )}
+                        {writtenList.length > 0 && (
+                          <button
+                            onClick={() =>
+                              setPaperSectionTab(prev => ({ ...prev, [paper.paperId]: 'written' }))
+                            }
+                            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer min-h-[34px] ${
+                              currentPaperMode === 'written'
+                                ? 'bg-emerald-600 text-white font-bold shadow-xs'
+                                : 'text-[#4A4A4A] dark:text-[#A0A0A0] hover:text-[#1A1A1A] dark:hover:text-[#E8E8E8]'
+                            }`}
+                          >
+                            Part B: Written ({writtenList.length})
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -835,9 +974,45 @@ export const BankNonItQuestionBank: React.FC<BankNonItQuestionBankProps> = ({
                               Part B — Written Examination Section ({paper.questionPaperCode})
                             </h3>
                           </div>
-                          <span className="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400">
-                            {writtenList.length} Written {writtenList.length === 1 ? 'Question' : 'Questions'} · Full Written Paper Marks: {paper.writtenMarks}
-                          </span>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 mr-1">
+                              {writtenList.length} Written {writtenList.length === 1 ? 'Question' : 'Questions'} · Full Marks: {paper.writtenMarks}
+                            </span>
+                            <button
+                              type="button"
+                              disabled={downloadingPaperKey !== null}
+                              onClick={async () => {
+                                const key = `${paper.paperId}-q`;
+                                setDownloadingPaperKey(key);
+                                try {
+                                  await downloadNonItPaperPdf(paper, { includeSolutions: false, writtenOnly: true });
+                                } finally {
+                                  setDownloadingPaperKey(null);
+                                }
+                              }}
+                              className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white rounded-lg text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                            >
+                              <Download className="w-3 h-3" />
+                              <span>Download Questions PDF</span>
+                            </button>
+                            <button
+                              type="button"
+                              disabled={downloadingPaperKey !== null}
+                              onClick={async () => {
+                                const key = `${paper.paperId}-s`;
+                                setDownloadingPaperKey(key);
+                                try {
+                                  await downloadNonItPaperPdf(paper, { includeSolutions: true, writtenOnly: true });
+                                } finally {
+                                  setDownloadingPaperKey(null);
+                                }
+                              }}
+                              className="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-lg text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                            >
+                              <Download className="w-3 h-3" />
+                              <span>With Solutions PDF</span>
+                            </button>
+                          </div>
                         </div>
 
                         {/* 12-Question Written Set Navigator */}
